@@ -53,10 +53,11 @@ set_option('bo', 'undolevels', 5000)
 set_option('wo', 'foldmethod', 'syntax')
 set_option('o', 'foldlevelstart', 999)
 
+-- Color right part in different color
+set_option('w', 'textwidth', 80)
+set_option('w', 'colorcolumn', '+1')
 
 --[[
--- Disable auto comment symbols insert
-autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
 " Setup encoding
 set encoding=utf-8
@@ -68,7 +69,6 @@ set termencoding=utf-8
 " enable syntax highlight
 syntax enable
 
-
 " enable pasting by mouse wheel
 set mouse=r
 
@@ -76,12 +76,6 @@ set background=dark
 colorscheme wombat256mod " molokai
 
 set wildmenu
-
-
-" Change current directory to file directory
-autocmd BufEnter * if expand("%:p:h") !~ '^/tmp' | silent! lcd %:p:h | endif
-
-au BufReadPost quickfix setlocal wrap
 
 set nospell
 

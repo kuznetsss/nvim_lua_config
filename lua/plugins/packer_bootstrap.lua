@@ -7,3 +7,4 @@ if fn.empty(fn.glob(install_path)) > 0 then
 	execute('!git clone https://github.com/wbthomason/packer.nvim '..install_path)
     execute 'packadd packer.nvim'
 end
+vim.cmd 'packadd packer.nvim'
