@@ -1,6 +1,6 @@
 vim.api.nvim_exec([[
 " Disable auto comment symbols insert
-autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+autocmd BufEnter * setlocal formatoptions-=cro
 
 " Change current directory to file directory
 autocmd BufEnter * if expand("%:p:h") !~ '^/tmp' | silent! lcd %:p:h | endif
@@ -14,4 +14,3 @@ autocmd TermOpen * setlocal bufhidden=hide
 " Turn on wrap for quickfix
 au BufReadPost quickfix setlocal wrap
 --]]
-
