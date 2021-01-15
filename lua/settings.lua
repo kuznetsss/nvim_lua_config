@@ -53,9 +53,13 @@ set_option('bo', 'undolevels', 5000)
 set_option('wo', 'foldmethod', 'syntax')
 set_option('o', 'foldlevelstart', 999)
 
+-- Don't fold text
+set_option('wo', 'conceallevel', 0)
+
+
 -- Color right part in different color
-set_option('w', 'textwidth', 80)
-set_option('w', 'colorcolumn', '+1')
+--set_option('w', 'textwidth', 80)
+--set_option('w', 'colorcolumn', '+1')
 
 --[[
 
