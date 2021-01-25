@@ -5,7 +5,9 @@ require('packer').startup( function()
     use 'neovim/nvim-lspconfig'
     use { 'nvim-lua/completion-nvim',
         config = { function()
-            vim.g.completion_matching_strategy_list = {'substring', 'fuzzy'}
+            vim.g.completion_matching_strategy_list = {'exact', 'substring', 'fuzzy'}
+            vim.o.completeopt = "menuone,noinsert,noselect"
+            vim.o.shortmess = vim.o.shortmess .. 'c'
         end }
     }
     -- Syntax hightlight
@@ -38,7 +40,7 @@ require('packer').startup( function()
 
 -- colorschemes
     use { 'michalbachowski/vim-wombat256mod',
-        config = {function() vim.cmd('colorscheme wombat256mod') end}
+        --config = {function() vim.cmd('colorscheme wombat256mod') end}
     }
     use 'NLKNguyen/papercolor-theme'
     use 'drewtempelmeyer/palenight.vim'
@@ -76,7 +78,7 @@ require('packer').startup( function()
     use 'Yggdroot/indentLine'
     use 'iamcco/markdown-preview.vim'
     use 'kuznetsss/shswitch'
-    use 'honza/vim-snippets'
     use 'mhinz/vim-signify'
 end
 )
+vim.cmd('colorscheme wombat256mod')

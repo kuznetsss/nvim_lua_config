@@ -6,6 +6,7 @@ end
 set_option('o', 'termguicolors', true)
 
 set_option('o', 'background', 'dark')
+vim.cmd('syntax on')
 
 set_option('wo', 'scrolloff', 5)
 
@@ -29,7 +30,6 @@ set_option('o', 'hlsearch', true)
 set_option('o', 'incsearch', true)
 
 set_option('o', 'splitbelow', true)
-
 -- highlight current line
 set_option('wo', 'cursorline', true)
 set_option('bo', 'autoread', true)
@@ -58,49 +58,5 @@ set_option('wo', 'conceallevel', 0)
 
 
 -- Color right part in different color
---set_option('w', 'textwidth', 80)
---set_option('w', 'colorcolumn', '+1')
-
---[[
-
-" Setup encoding
-set encoding=utf-8
-set termencoding=utf-8
-
-" use space as window border
-"set fillchars+=vert:\ 
-
-" enable syntax highlight
-syntax enable
-
-" enable pasting by mouse wheel
-set mouse=r
-
-set background=dark
-colorscheme wombat256mod " molokai
-
-set wildmenu
-
-set nospell
-
-if has('nvim')
-    exec 'source ' . g:vim_config_dir . 'neovim.nvim'
-endif
-
-" For CoC
-if g:use_coc
-    " Give more space for displaying messages.
-    set cmdheight=2
-    " Don't pass messages to |ins-completion-menu|.
-    set shortmess+=c
-
-    " Always show the signcolumn, otherwise it would shift the text each time
-    " diagnostics appear/become resolved.
-    if has("patch-8.1.1564")
-      " Recently vim can merge signcolumn and number column into one
-      set signcolumn=number
-    else
-      set signcolumn=yes
-    endif
-endif
-]]--
+set_option('bo', 'textwidth', 80)
+vim.cmd('highlight ColorColumn guibg=#313233')
