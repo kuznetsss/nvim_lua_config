@@ -8,11 +8,21 @@ require('packer').startup( function()
             vim.g.completion_matching_strategy_list = {'exact', 'substring', 'fuzzy'}
             vim.o.completeopt = "menuone,noinsert,noselect"
             vim.o.shortmess = vim.o.shortmess .. 'c'
+            vim.g.completion_auto_change_source = 1
+            vim.g.completion_chain_complete_list = {
+              default = {
+                default = {
+                  { complete_items = {'lsp'} },
+                  { complete_items = { 'path' } },
+                }
+              }
+            }
         end }
     }
     -- Syntax hightlight
     -- use 'jackguo380/vim-lsp-cxx-highlight'
     use { 'nvim-treesitter/nvim-treesitter',
+        disabled = true,
         run = function() vim.cmd('TSUpdate') end,
         config = { function()
             require'nvim-treesitter.configs'.setup {
@@ -38,7 +48,7 @@ require('packer').startup( function()
 --        end }
 --   }
 
-    -- Improve quickfix 
+    -- Improve quickfix
     use 'kevinhwang91/nvim-bqf'
 -- colorschemes
     use { 'michalbachowski/vim-wombat256mod',
@@ -47,7 +57,14 @@ require('packer').startup( function()
     use 'NLKNguyen/papercolor-theme'
     use 'drewtempelmeyer/palenight.vim'
     use 'ayu-theme/ayu-vim'
-
+    use {
+        'tjdevries/gruvbuddy.nvim',
+    	requires = { 'tjdevries/colorbuddy.nvim' }
+    }
+    use {
+        'Th3Whit3Wolf/onebuddy',
+    	requires = { 'tjdevries/colorbuddy.nvim' }
+    }
 
 -- -----------------Haven't refactored yet
     use { 'vim-airline/vim-airline',
