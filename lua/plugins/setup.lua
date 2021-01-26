@@ -38,6 +38,8 @@ require('packer').startup( function()
 --        end }
 --   }
 
+    -- Improve quickfix 
+    use 'kevinhwang91/nvim-bqf'
 -- colorschemes
     use { 'michalbachowski/vim-wombat256mod',
         --config = {function() vim.cmd('colorscheme wombat256mod') end}
@@ -70,8 +72,6 @@ require('packer').startup( function()
             vim.g.fzf_command_prefix = 'Fzf'
         end }
     }
-    -- Remove quickfix from buffers
-    use 'romainl/vim-qf'
     -- Git plugin
     use 'tpope/vim-fugitive'
     -- Indent line display
