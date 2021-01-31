@@ -4,7 +4,7 @@ require('packer').startup( function()
     -- LSP
     use 'neovim/nvim-lspconfig'
     use { 'nvim-lua/completion-nvim',
-        config = { function()
+        config = function()
             vim.g.completion_matching_strategy_list = {'exact', 'substring', 'fuzzy'}
             vim.o.completeopt = "menuone,noinsert,noselect"
             vim.o.shortmess = vim.o.shortmess .. 'c'
@@ -13,14 +13,15 @@ require('packer').startup( function()
               default = {
                 default = {
                   { complete_items = {'lsp'} },
-                  { complete_items = { 'path' } },
+                  { complete_items = { 'path', 'buffer' } },
+                  { complete_items = { 'buffers' } },
                 }
               }
             }
-        end }
+        end,
+        requires = { 'steelsojka/completion-buffers' }
     }
     -- Syntax hightlight
-    -- use 'jackguo380/vim-lsp-cxx-highlight'
     use { 'nvim-treesitter/nvim-treesitter',
         disabled = true,
         run = function() vim.cmd('TSUpdate') end,
@@ -50,6 +51,9 @@ require('packer').startup( function()
 
     -- Improve quickfix
     use 'kevinhwang91/nvim-bqf'
+    -- Close buffer
+    use 'ojroques/nvim-bufdel'
+
 -- colorschemes
     use { 'michalbachowski/vim-wombat256mod',
         --config = {function() vim.cmd('colorscheme wombat256mod') end}
@@ -94,7 +98,7 @@ require('packer').startup( function()
     -- Indent line display
     use 'Yggdroot/indentLine'
     use 'iamcco/markdown-preview.vim'
-    use 'kuznetsss/shswitch'
+
     use 'mhinz/vim-signify'
 end
 )
