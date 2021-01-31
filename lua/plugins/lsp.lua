@@ -59,3 +59,6 @@ lspconfig.clangd.setup {
     -- root_dir = root_pattern('compile_commands.json', 'compile_flags.txt', '.git') or dirname
     on_attach = custom_attach
 }
+lspconfig.pyls.setup{
+    on_attach = custom_attach
+}
