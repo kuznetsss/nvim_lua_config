@@ -58,5 +58,4 @@ set_option('wo', 'conceallevel', 0)
 
 
 -- Color right part in different color
-set_option('bo', 'textwidth', 80)
 vim.cmd('highlight ColorColumn guibg=#313233')

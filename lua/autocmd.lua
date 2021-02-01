@@ -12,7 +12,7 @@ autocmd TermOpen * setlocal bufhidden=hide
 
 " Enable colorcolumn for programming languages
 let colorcolumn_enabled_for = 'lua,h,hh,c,cc,cpp,py,sh'
-exe 'autocmd FileType ' . colorcolumn_enabled_for . ' set colorcolumn=+' . join(range(1,200),",+")
+exe 'autocmd FileType ' . colorcolumn_enabled_for . ' set colorcolumn=' . join(range(81,200), ",")
 
 " Run PackerCompile on every saving plugins.lua
 autocmd BufWritePost setup.lua PackerCompile
