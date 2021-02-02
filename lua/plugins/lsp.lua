@@ -28,9 +28,10 @@ end
 vim.fn.nvim_set_keymap('n', '<F1>', ":exe 'h ' . expand('<cword>')<CR>", {noremap = true, silent = true})
 
 local lspconfig = require('lspconfig')
+local defaults = require('plugins.defaults')
 
 lspconfig.sumneko_lua.setup{
-    cmd = {'/usr/bin/lua-language-server', '-E', '/usr/share/lua-language-server/main.lua'},
+    cmd = defaults['lsp_cmd']['sumneko_lua'],
     settings = {
         Lua = {
             runtime = { version = "LuaJIT", path = vim.split(package.path, ';'), },
@@ -48,7 +49,7 @@ lspconfig.sumneko_lua.setup{
     on_attach = custom_attach
 }
 lspconfig.clangd.setup {
-    cmd = { "clangd", "--background-index", "-j=6", "--header-insertion=never"},
+    cmd = defaults['lsp_cmd']['clangd_lua'],
     log_level =  vim.lsp.protocol.MessageType.Log,
     highlight = {
         enable = true,
