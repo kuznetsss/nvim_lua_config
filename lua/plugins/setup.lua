@@ -55,18 +55,14 @@ require('packer').startup( function()
     use 'ojroques/nvim-bufdel'
 
 -- colorschemes
-    use { 'michalbachowski/vim-wombat256mod',
-        --config = {function() vim.cmd('colorscheme wombat256mod') end}
-    }
+    use 'michalbachowski/vim-wombat256mod' 
     use 'NLKNguyen/papercolor-theme'
     use 'drewtempelmeyer/palenight.vim'
     use 'ayu-theme/ayu-vim'
-    use {
-        'tjdevries/gruvbuddy.nvim',
+    use { 'tjdevries/gruvbuddy.nvim',
     	requires = { 'tjdevries/colorbuddy.nvim' }
     }
-    use {
-        'Th3Whit3Wolf/onebuddy',
+    use { 'Th3Whit3Wolf/onebuddy',
     	requires = { 'tjdevries/colorbuddy.nvim' }
     }
 
@@ -79,6 +75,7 @@ require('packer').startup( function()
             vim.cmd 'let g:airline#extensions#keymap#enabled = 0'
             vim.cmd 'let g:airline#extensions#whitespace#enabled = 0'
             vim.cmd 'let g:airline_detect_spell = 0'
+            vim.cmd 'let g:airline#extensions#nvimlsp#enabled = 0'
         end }
     }
     use { 'scrooloose/nerdtree',

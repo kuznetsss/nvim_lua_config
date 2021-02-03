@@ -10,7 +10,6 @@ end
 
 nnoremap('<C-k>', ':bnext<CR>')
 nnoremap('<C-j>', ':bprev<CR>')
-nnoremap('<C-x>', ':bp<bar>sp<bar>bn<bar>bd<CR>')
 
 nnoremap('<C-t>', ':split | resize 20 | terminal<CR>')
 
