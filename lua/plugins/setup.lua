@@ -66,6 +66,34 @@ require('packer').startup( function()
     	requires = { 'tjdevries/colorbuddy.nvim' }
     }
 
+-- Draw colors of codes
+    use { 'norcalli/nvim-colorizer.lua',
+        config = function()
+            require'colorizer'.setup()
+        end
+    }
+
+-- Indent draw
+    --use 'Yggdroot/indentLine'
+    use { 'glepnir/indent-guides.nvim',
+        config = function() 
+            require('indent_guides').setup({
+                exclude_filetypes = {
+                    'help', 'dashboard', 'dashpreview',
+                    'NvimTree','vista','sagahover'
+                };
+                even_colors = { fg ='#2E323A',bg='#34383F' };
+                odd_colors = {fg='#34383F',bg='#2E323A'};
+            })
+        end
+    }
+-- Fuzzy finder
+   use { 'junegunn/fzf.vim',
+        config = { function()
+            vim.g.fzf_command_prefix = 'Fzf'
+        end }
+    }
+
 -- -----------------Haven't refactored yet
     use { 'vim-airline/vim-airline',
         requires = { 'vim-airline/vim-airline-themes' },
@@ -75,9 +103,10 @@ require('packer').startup( function()
             vim.cmd 'let g:airline#extensions#keymap#enabled = 0'
             vim.cmd 'let g:airline#extensions#whitespace#enabled = 0'
             vim.cmd 'let g:airline_detect_spell = 0'
-            vim.cmd 'let g:airline#extensions#nvimlsp#enabled = 0'
+            vim.cmd 'let g:airline#extensions#nvimlsp#enabled = 1'
         end }
     }
+    
     use { 'scrooloose/nerdtree',
         config = { function()
             vim.g.NERDTreeShowHidden = 1
@@ -85,15 +114,9 @@ require('packer').startup( function()
     }
     use 'preservim/nerdcommenter'
     use 'mhinz/vim-startify'
-    use { 'junegunn/fzf.vim',
-        config = { function()
-            vim.g.fzf_command_prefix = 'Fzf'
-        end }
-    }
     -- Git plugin
     use 'tpope/vim-fugitive'
     -- Indent line display
-    use 'Yggdroot/indentLine'
     use 'iamcco/markdown-preview.vim'
 
     use 'mhinz/vim-signify'

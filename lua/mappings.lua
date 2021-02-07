@@ -18,4 +18,4 @@ nnoremap('<C-l>', '<C-i>')
 
 inoremap('<C-l>', '<C-^>')
 inoremap('<C-t>', '<Esc>:split | resize 20 | terminal<CR>')
-vim.api.nvim_set_keymap('t', '<Esc>', '<C-\\><C-n>', {noremap=true, silent=true})
+vim.api.nvim_set_keymap('t', '<Esc>', '(&filetype == "fzf") ? "<Esc>" : "<C-\\><C-n>"', {noremap=true, expr=true, silent=true})

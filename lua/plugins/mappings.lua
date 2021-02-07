@@ -1,13 +1,10 @@
-local function map(mode, mapping, command, noremap, expr, silent)
-    noremap = noremap or true
-    expr = expr or false
-    silent = silent or true
-    vim.api.nvim_set_keymap(
-        mode,
-        mapping,
-        command,
-        { expr = expr, noremap = noremap, silent = silent }
-    )
+local function map(mode, mapping, command, expr, noremap)
+    local options = {
+        expr = expr or false,
+        noremap = noremap or true,
+        silent = true
+    }
+    vim.api.nvim_set_keymap(mode, mapping, command, options)
 end
 ------ BufDel
 map('n', '<C-x>', '<cmd>BufDel<CR>')
@@ -28,9 +25,12 @@ map('n','<leader>rn','<cmd>lua vim.lsp.buf.rename()<CR>')
 map('n','<leader>=', '<cmd>lua vim.lsp.buf.formatting()<CR>')
 map('n','<leader>ai','<cmd>lua vim.lsp.buf.incoming_calls()<CR>')
 map('n','<leader>ao','<cmd>lua vim.lsp.buf.outgoing_calls()<CR>')
-map('i', '<C-Space>', '<Plug>(completion_trigger)', false);
-map('i', '<Tab>', 'pumvisible() ? "\\<C-n>" : "\\<Tab>"', true, true);
-map('i', '<S-Tab>', 'pumvisible() ? "\\<C-p>" : "\\<S-Tab>"', true, true);
+vim.api.nvim_set_keymap(
+    'i', '<C-Space>', '<Plug>(completion_trigger)',
+    {silent = true}
+)
+map('i', '<Tab>', 'pumvisible() ? "\\<C-n>" : "\\<Tab>"', true)
+map('i', '<S-Tab>', 'pumvisible() ? "\\<C-p>" : "\\<S-Tab>"', true)
 
 ------ NERDTree
 map('n', '<F2>', '<cmd>NERDTreeToggle<CR>')
@@ -38,6 +38,10 @@ map('i', '<F2>', '<Esc><cmd>NERDTreeToggle<CR>')
 
 -- Startify
 map('n', '<leader>s', '<cmd>Startify<CR>')
+
+-- Fuzzy search
+map('n', '<C-y>', "<cmd>FzfBuffers<CR>")
+map('n', '<C-p>', "<cmd>FzfFiles<CR>")
 --[[
 nnoremap <F12> :TagbarToggle<CR>
 nnoremap <space><space> :call FzfFindProjectFiles()<CR>
