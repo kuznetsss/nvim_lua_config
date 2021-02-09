@@ -10,21 +10,23 @@ end
 map('n', '<C-x>', '<cmd>BufDel<CR>')
 
 ------ LSP
-map('n','gd','<cmd>lua vim.lsp.buf.declaration()<CR>')
-map('n','gf','<cmd>lua vim.lsp.buf.definition()<CR>')
-map('n','K','<cmd>lua vim.lsp.buf.hover()<CR>')
-map('n','gr','<cmd>lua vim.lsp.buf.references()<CR>')
-map('n','gs','<cmd>lua vim.lsp.buf.signature_help()<CR>')
-map('n','gi','<cmd>lua vim.lsp.buf.implementation()<CR>')
-map('n','gt','<cmd>lua vim.lsp.buf.type_definition()<CR>')
-map('n','<leader>gw','<cmd>lua vim.lsp.buf.document_symbol()<CR>')
-map('n','<leader>gW','<cmd>lua vim.lsp.buf.workspace_symbol()<CR>')
-map('n','<leader>qf','<cmd>lua vim.lsp.buf.code_action()<CR>')
-map('n','<leader>ee','<cmd>lua vim.lsp.util.show_line_diagnostics()<CR>')
-map('n','<leader>rn','<cmd>lua vim.lsp.buf.rename()<CR>')
-map('n','<leader>=', '<cmd>lua vim.lsp.buf.formatting()<CR>')
-map('n','<leader>ai','<cmd>lua vim.lsp.buf.incoming_calls()<CR>')
-map('n','<leader>ao','<cmd>lua vim.lsp.buf.outgoing_calls()<CR>')
+map('n', 'gd', '<cmd>lua vim.lsp.buf.declaration()<CR>')
+map('n', 'gf', '<cmd>lua vim.lsp.buf.definition()<CR>')
+map('n', 'K', "<cmd>lua require('lspsaga.hover').render_hover_doc()<CR>")
+map('n', 'gr', "<cmd>lua require'lspsaga.provider'.lsp_finder()<CR>")
+map('n', 'gh', "<cmd>lua require'lspsaga.provider'.preview_definition()<CR>")
+map('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>')
+map('n', 'gt', '<cmd>lua vim.lsp.buf.type_definition()<CR>')
+map('n', '<leader>gw', '<cmd>lua vim.lsp.buf.document_symbol()<CR>')
+map('n', '<leader>gW', '<cmd>lua vim.lsp.buf.workspace_symbol()<CR>')
+map('n', '<leader>qf', "<cmd>lua require('lspsaga.codeaction').code_action()<CR>")
+map('n', '<leader>ee', "<cmd>lua require'lspsaga.diagnostic'.show_line_diagnostics()<CR>")
+map('n', '<leader>rn', "<cmd>lua require('lspsaga.rename').rename()<CR>")
+map('n', '<leader>=', '<cmd>lua vim.lsp.buf.formatting()<CR>')
+map('n', '<leader>ai', '<cmd>lua vim.lsp.buf.incoming_calls()<CR>')
+map('n', '<leader>ao', '<cmd>lua vim.lsp.buf.outgoing_calls()<CR>')
+
+------ Completion
 vim.api.nvim_set_keymap(
     'i', '<C-Space>', '<Plug>(completion_trigger)',
     {silent = true}

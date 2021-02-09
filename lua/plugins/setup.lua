@@ -21,6 +21,12 @@ require('packer').startup( function()
         end,
         requires = { 'steelsojka/completion-buffers' }
     }
+    use { 'glepnir/lspsaga.nvim',
+        config = function()
+            local saga = require 'lspsaga'
+            saga.init_lsp_saga()
+        end
+    }
     -- Syntax hightlight
     use { 'nvim-treesitter/nvim-treesitter',
         disabled = true,
