@@ -1,4 +1,5 @@
 require('plugins.packer_bootstrap')
-require('plugins.setup')
+require('plugins.install')
 require('plugins.lsp')
 require('plugins.mappings')
+require('plugins.setup')

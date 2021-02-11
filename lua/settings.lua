@@ -1,12 +1,4 @@
-local set_option = function(scope, key, value)
-    vim[scope][key] = value
-    if scope ~= 'o' then vim.o[key] = value end
-end
--- Support true color
-set_option('o', 'termguicolors', true)
-
-set_option('o', 'background', 'dark')
-vim.cmd('syntax on')
+local set_option = require'common'.set_option
 
 set_option('wo', 'scrolloff', 5)
 
@@ -21,6 +13,7 @@ set_option('bo', 'smartindent', true)
 
 set_option('wo', 'number', true)
 set_option('wo', 'relativenumber', true)
+set_option('wo', 'signcolumn', 'yes:2')
 -- Ignore letter size (capitalize or not) while search (for searching using
 -- capitalize insert \C in search request)
 set_option('o', 'ignorecase', true)
@@ -57,5 +50,3 @@ set_option('o', 'foldlevelstart', 999)
 set_option('wo', 'conceallevel', 0)
 
 
--- Color right part in different color
-vim.cmd('highlight ColorColumn guibg=#313233')

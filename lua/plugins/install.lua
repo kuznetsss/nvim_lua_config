@@ -1,6 +1,6 @@
+local use = require('packer').use
 require('packer').startup( function()
     use { 'wbthomason/packer.nvim', opt = true }
-
     -- LSP
     use 'neovim/nvim-lspconfig'
     use { 'nvim-lua/completion-nvim',
@@ -23,13 +23,39 @@ require('packer').startup( function()
     }
     use { 'glepnir/lspsaga.nvim',
         config = function()
-            local saga = require 'lspsaga'
-            saga.init_lsp_saga()
+            require 'lspsaga'.init_lsp_saga {
+                use_saga_diagnostic_sign = true,
+                error_sign = '',
+                warn_sign = '',
+                hint_sign = '',
+                infor_sign = '',
+                error_header = "  Error",
+                warn_header = "  Warn",
+                hint_header = "  Hint",
+                infor_header = "  Infor",
+                -- max_diag_msg_width = 50,
+                code_action_icon = ' ',
+                code_action_keys = { quit = 'q',exec = '<CR>' },
+                finder_definition_icon = '  ',
+                finder_reference_icon = '  ',
+                max_finder_preview_lines = 10,
+                finder_action_keys = {
+                    open = '<CR>', vsplit = 's', split = 'i',
+                    quit = 'q', scroll_down = '<C-f>', scroll_up = '<C-b>'
+                },
+                definition_preview_icon = '  ',
+                -- 1: thin border | 2: rounded border | 3: thick border
+                border_style = 1
+                -- rename_prompt_prefix = '➤',
+                -- if you don't use nvim-lspconfig you must pass your server name and
+                -- the related filetypes into this table
+                -- like server_filetype_map = {metals = {'sbt', 'scala'}}
+                -- server_filetype_map = {}
+            }
         end
     }
     -- Syntax hightlight
     use { 'nvim-treesitter/nvim-treesitter',
-        disabled = true,
         run = function() vim.cmd('TSUpdate') end,
         config = { function()
             require'nvim-treesitter.configs'.setup {
@@ -61,7 +87,7 @@ require('packer').startup( function()
     use 'ojroques/nvim-bufdel'
 
 -- colorschemes
-    use 'michalbachowski/vim-wombat256mod' 
+    use 'michalbachowski/vim-wombat256mod'
     use 'NLKNguyen/papercolor-theme'
     use 'drewtempelmeyer/palenight.vim'
     use 'ayu-theme/ayu-vim'
@@ -78,15 +104,17 @@ require('packer').startup( function()
             require'colorizer'.setup()
         end
     }
+-- Icons
+    use 'kyazdani42/nvim-web-devicons'
 
 -- Indent draw
     --use 'Yggdroot/indentLine'
     use { 'glepnir/indent-guides.nvim',
-        config = function() 
+        config = function()
             require('indent_guides').setup({
                 exclude_filetypes = {
                     'help', 'dashboard', 'dashpreview',
-                    'NvimTree','vista','sagahover'
+                    'NvimTree','vista','sagahover', 'lspsaga'
                 };
                 even_colors = { fg ='#2E323A',bg='#34383F' };
                 odd_colors = {fg='#34383F',bg='#2E323A'};
@@ -99,8 +127,8 @@ require('packer').startup( function()
             vim.g.fzf_command_prefix = 'Fzf'
         end }
     }
-
 -- -----------------Haven't refactored yet
+    use 'ryanoasis/vim-devicons'
     use { 'vim-airline/vim-airline',
         requires = { 'vim-airline/vim-airline-themes' },
         config = { function()
@@ -112,7 +140,6 @@ require('packer').startup( function()
             vim.cmd 'let g:airline#extensions#nvimlsp#enabled = 1'
         end }
     }
-    
     use { 'scrooloose/nerdtree',
         config = { function()
             vim.g.NERDTreeShowHidden = 1
@@ -128,4 +155,3 @@ require('packer').startup( function()
     use 'mhinz/vim-signify'
 end
 )
-vim.cmd('colorscheme wombat256mod')
