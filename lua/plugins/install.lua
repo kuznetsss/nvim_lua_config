@@ -121,11 +121,20 @@ require('packer').startup( function()
             })
         end
     }
+-- Vim script plugins ------------------
 -- Fuzzy finder
    use { 'junegunn/fzf.vim',
         config = { function()
             vim.g.fzf_command_prefix = 'Fzf'
         end }
+    }
+-- Highliht VCS changes
+    use { 'mhinz/vim-signify',
+        config = function()
+            vim.g.signify_sign_add = '+'
+            vim.g.signify_sign_delete = '-'
+            vim.g.signify_sign_change = ''
+        end
     }
 -- -----------------Haven't refactored yet
     use 'ryanoasis/vim-devicons'
@@ -151,7 +160,5 @@ require('packer').startup( function()
     use 'tpope/vim-fugitive'
     -- Indent line display
     use 'iamcco/markdown-preview.vim'
-
-    use 'mhinz/vim-signify'
 end
 )
