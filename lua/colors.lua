@@ -106,4 +106,4 @@ vim.g.bubbly_colors = {
         inactive = 'white',
     },
 }
---vim.g.bubbly_inactive_color = vim.g.bubbly_colors
+vim.g.bubbly_inactive_color = vim.g.bubbly_colors
