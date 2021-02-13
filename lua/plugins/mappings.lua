@@ -45,7 +45,7 @@ map('i', '<F2>', '<Esc><cmd>NERDTreeToggle<CR>')
 map('n', '<leader>s', '<cmd>Startify<CR>')
 
 -- Fuzzy search
-map('n', '<C-y>', "<cmd>FzfBuffers<CR>")
+map('n', '<C-y>', "<cmd>FzfWindows<CR>")
 map('n', '<C-p>', "<cmd>FzfFiles<CR>")
 --[[
 nnoremap <F12> :TagbarToggle<CR>

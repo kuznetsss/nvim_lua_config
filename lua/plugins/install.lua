@@ -121,6 +121,47 @@ require('packer').startup( function()
             })
         end
     }
+-- Status line
+    use {'datwaft/bubbly.nvim',
+        config = function()
+            vim.g.bubbly_statusline = {
+                'mode',
+                'path',
+                'signify',
+
+                'divisor',
+
+                'builtinlsp.diagnostic_count',
+                'filetype',
+                'progress'
+            }
+            vim.g.bubbly_symbols = {
+               default = 'PANIC!',
+
+               path = {
+                  readonly = 'RO',
+                  unmodifiable = '',
+                  modified = '+',
+               },
+               signify = {
+                  added = '+%s', -- requires 1 '%s'
+                  modified = ' %s', -- requires 1 '%s'
+                  removed = '-%s', -- requires 1 '%s'
+               },
+               coc = {
+                  error = ' %s', -- requires 1 '%s'
+                  warning = ' %s', -- requires 1 '%s'
+               },
+               builtinlsp = {
+                  diagnostic_count = {
+                     error = ' %s', -- requires 1 '%s'
+                     warning = ' %s', --requires 1 '%s'
+                  },
+               },
+               branch = ' %s' -- requires 1 '%s'
+            }
+        end
+    }
 -- Vim script plugins ------------------
 -- Fuzzy finder
    use { 'junegunn/fzf.vim',
@@ -137,18 +178,6 @@ require('packer').startup( function()
         end
     }
 -- -----------------Haven't refactored yet
-    use 'ryanoasis/vim-devicons'
-    use { 'vim-airline/vim-airline',
-        requires = { 'vim-airline/vim-airline-themes' },
-        config = { function()
-            vim.g.airline_theme = 'powerlineish'
-            vim.cmd 'let g:airline#extensions#tabline#enabled = 1'
-            vim.cmd 'let g:airline#extensions#keymap#enabled = 0'
-            vim.cmd 'let g:airline#extensions#whitespace#enabled = 0'
-            vim.cmd 'let g:airline_detect_spell = 0'
-            vim.cmd 'let g:airline#extensions#nvimlsp#enabled = 1'
-        end }
-    }
     use { 'scrooloose/nerdtree',
         config = { function()
             vim.g.NERDTreeShowHidden = 1
