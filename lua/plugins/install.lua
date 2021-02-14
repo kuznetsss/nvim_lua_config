@@ -38,10 +38,11 @@ require('packer').startup( function()
                 code_action_keys = { quit = 'q',exec = '<CR>' },
                 finder_definition_icon = '  ',
                 finder_reference_icon = '  ',
-                max_finder_preview_lines = 10,
+                max_preview_lines = 10,
                 finder_action_keys = {
                     open = '<CR>', vsplit = 's', split = 'i',
-                    quit = 'q', scroll_down = '<C-f>', scroll_up = '<C-b>'
+                    quit = 'q', scroll_down = '<C-f>',
+                    scroll_up = '<C-b>' -- quit can be a table
                 },
                 definition_preview_icon = '  ',
                 -- 1: thin border | 2: rounded border | 3: thick border
