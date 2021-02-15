@@ -27,7 +27,7 @@ lspconfig.sumneko_lua.setup{
     on_attach = custom_attach
 }
 lspconfig.clangd.setup {
-    cmd = defaults['lsp_cmd']['clangd_lua'],
+    cmd = defaults['lsp_cmd']['clangd'],
     log_level =  vim.lsp.protocol.MessageType.Log,
     highlight = {
         enable = true,
