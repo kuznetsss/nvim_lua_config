@@ -47,6 +47,11 @@ require('packer').startup( function()
             }
         end
     }
+    use { 'nvim-lua/lsp-status.nvim',
+        config = function()
+            require('lsp-status').register_progress()
+        end
+    }
     -- Syntax hightlight
     use { 'nvim-treesitter/nvim-treesitter',
         run = function() vim.cmd('TSUpdate') end,

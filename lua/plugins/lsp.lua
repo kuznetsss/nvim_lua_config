@@ -1,6 +1,11 @@
-local custom_attach = require('completion').on_attach
 local lspconfig = require('lspconfig')
 local defaults = require('plugins.defaults')
+local lsp_status = require('lsp-status')
+
+local custom_attach = function(client)
+    require('completion').on_attach(client)
+    lsp_status.on_attach(client)
+end
 
 lspconfig.sumneko_lua.setup{
     cmd = defaults['lsp_cmd']['sumneko_lua'],
@@ -24,7 +29,8 @@ lspconfig.sumneko_lua.setup{
             }
         }
     },
-    on_attach = custom_attach
+    on_attach = custom_attach,
+    capabilities = lsp_status.capabilities
 }
 lspconfig.clangd.setup {
     cmd = defaults['lsp_cmd']['clangd'],
@@ -36,8 +42,12 @@ lspconfig.clangd.setup {
     filetypes = { 'h', 'hh', 'c', 'cc', 'cpp', 'objc', 'objcpp' },
     -- on_init = function to handle changing offsetEncoding
     -- root_dir = root_pattern('compile_commands.json', 'compile_flags.txt', '.git') or dirname
-    on_attach = custom_attach
+    on_attach = custom_attach,
+    handlers = lsp_status.extensions.clangd.setup(),
+    init_options = { clangdFileStatus = true },
+    capabilities = lsp_status.capabilities
 }
 lspconfig.pyls.setup{
-    on_attach = custom_attach
+    on_attach = custom_attach,
+    capabilities = lsp_status.capabilities
 }
