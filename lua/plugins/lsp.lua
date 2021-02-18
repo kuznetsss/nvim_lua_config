@@ -3,7 +3,7 @@ local defaults = require('plugins.defaults')
 local lsp_status = require('lsp-status')
 
 local custom_attach = function(client)
-    require('completion').on_attach(client)
+    --require('completion').on_attach(client)
     lsp_status.on_attach(client)
 end
 

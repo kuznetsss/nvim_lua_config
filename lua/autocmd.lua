@@ -7,6 +7,9 @@ autocmd TermOpen * startinsert
 autocmd TermOpen * setlocal nobuflisted
 autocmd TermOpen * setlocal bufhidden=hide
 
+" SignatureHelp
+autocmd CursorHoldI * silent! lua require('lspsaga.signaturehelp').signature_help()
+
 " Enable colorcolumn for programming languages
 let colorcolumn_enabled_for = 'lua,h,hh,c,cc,cpp,py,sh'
 exe 'autocmd FileType ' . colorcolumn_enabled_for . ' set colorcolumn=' . join(range(81,200), ",")

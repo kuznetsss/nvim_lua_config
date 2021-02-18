@@ -3,23 +3,45 @@ require('packer').startup( function()
     use { 'wbthomason/packer.nvim', opt = true }
     -- LSP
     use 'neovim/nvim-lspconfig'
-    use { 'nvim-lua/completion-nvim',
-        config = function()
-            vim.g.completion_matching_strategy_list = {'exact', 'substring', 'fuzzy'}
+    -- use { 'nvim-lua/completion-nvim',
+    --     config = function()
+    --         vim.g.completion_matching_strategy_list = {'exact', 'substring', 'fuzzy'}
+    --         vim.o.completeopt = "menuone,noinsert,noselect"
+    --         vim.o.shortmess = vim.o.shortmess .. 'c'
+    --         vim.g.completion_auto_change_source = 1
+    --         vim.g.completion_chain_complete_list = {
+    --           default = {
+    --             default = {
+    --               { complete_items = {'lsp'} },
+    --               { complete_items = { 'path', 'buffer' } },
+    --               { complete_items = { 'buffers' } },
+    --             }
+    --           }
+    --         }
+    --     end,
+    --     requires = { 'steelsojka/completion-buffers' }
+    -- }
+    use { 'hrsh7th/nvim-compe',
+        config = function() 
             vim.o.completeopt = "menuone,noinsert,noselect"
             vim.o.shortmess = vim.o.shortmess .. 'c'
-            vim.g.completion_auto_change_source = 1
-            vim.g.completion_chain_complete_list = {
-              default = {
-                default = {
-                  { complete_items = {'lsp'} },
-                  { complete_items = { 'path', 'buffer' } },
-                  { complete_items = { 'buffers' } },
+            require'compe'.setup {
+                documentation = true,
+                autocomplete = true,
+                    source = {
+                    path = true;
+                    buffer = true;
+                    calc = false;
+                    vsnip = false;
+                    nvim_lsp = true;
+                    nvim_lua = true;
+                    spell = true;
+                    tags = true;
+                    snippets_nvim = true;
+                    treesitter = true;
                 }
-              }
             }
-        end,
-        requires = { 'steelsojka/completion-buffers' }
+        end
     }
     use { 'glepnir/lspsaga.nvim',
         config = function()
@@ -112,7 +134,7 @@ require('packer').startup( function()
             require('indent_guides').setup({
                 exclude_filetypes = {
                     'help', 'dashboard', 'dashpreview',
-                    'NvimTree','vista','sagahover', 'lspsaga'
+                    'NvimTree','vista','sagahover', 'sagahover'
                 };
                 even_colors = { fg ='#2E323A',bg='#34383F' };
                 odd_colors = {fg='#34383F',bg='#2E323A'};
