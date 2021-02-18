@@ -130,6 +130,7 @@ require('packer').startup( function()
                 'divisor',
 
                 'builtinlsp.diagnostic_count',
+                'total_buffer_number',
                 'filetype',
                 'progress'
             }

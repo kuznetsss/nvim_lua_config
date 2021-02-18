@@ -107,5 +107,6 @@ vim.g.bubbly_colors = {
         active = 'blue',
         inactive = 'white',
     },
+    total_buffer_number = { background = 'background', foreground = 'light_blue'}
 }
 vim.g.bubbly_inactive_color = vim.g.bubbly_colors

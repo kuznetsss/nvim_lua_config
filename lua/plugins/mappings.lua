@@ -47,6 +47,7 @@ map('n', '<leader>s', '<cmd>Startify<CR>')
 -- Fuzzy search
 map('n', '<C-y>', "<cmd>FzfBuffers<CR>")
 map('n', '<C-p>', "<cmd>FzfFiles<CR>")
+map('n', '<A-p>', "<cmd>FzfRg<CR>")
 --[[
 nnoremap <F12> :TagbarToggle<CR>
 nnoremap <space><space> :call FzfFindProjectFiles()<CR>
