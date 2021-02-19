@@ -29,17 +29,17 @@ require('packer').startup( function()
                 documentation = true,
                 autocomplete = true,
                     source = {
-                    path = true;
-                    buffer = true;
-                    calc = false;
-                    vsnip = false;
-                    nvim_lsp = true;
-                    nvim_lua = true;
-                    spell = true;
-                    tags = true;
-                    snippets_nvim = true;
-                    treesitter = true;
-                }
+                        path = true;
+                        buffer = true;
+                        calc = false;
+                        vsnip = false;
+                        nvim_lsp = true;
+                        nvim_lua = true;
+                        spell = true;
+                        tags = true;
+                        snippets_nvim = true;
+                        treesitter = true;
+                    }
             }
         end
     }
@@ -117,6 +117,7 @@ require('packer').startup( function()
     use { 'Th3Whit3Wolf/onebuddy',
     	requires = { 'tjdevries/colorbuddy.nvim' }
     }
+    use 'glepnir/zephyr-nvim'
 
 -- Draw colors of codes
     use { 'norcalli/nvim-colorizer.lua',

@@ -5,14 +5,14 @@ set_option('o', 'termguicolors', true)
 set_option('o', 'background', 'dark')
 vim.cmd('syntax on')
 
-vim.cmd('colorscheme wombat256mod')
+vim.cmd('colorscheme zephyr')
 
 -- Color right part in different color
-vim.cmd('highlight ColorColumn guibg=#313233')
+--vim.cmd('highlight ColorColumn guibg=#313233')
 
 local signcolumn_color = '#282828'
 -- Adjust background of column left of line numbers
-vim.cmd('highlight SignColumn guibg=' .. signcolumn_color)
+--vim.cmd('highlight SignColumn guibg=' .. signcolumn_color)
 
 -- Adjust LspSaga colors
 local lspsaga_colors = "highlight DiagnosticError guifg='#9f0000' guibg='"
