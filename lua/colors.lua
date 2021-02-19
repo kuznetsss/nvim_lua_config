@@ -107,6 +107,14 @@ vim.g.bubbly_colors = {
         active = 'blue',
         inactive = 'white',
     },
-    total_buffer_number = { background = 'background', foreground = 'light_blue'}
+    total_buffer_number = { background = 'background', foreground = 'light_blue'},
+    lsp_status = {
+        diagnostics = {
+            error = { background = 'background', foreground = 'red' },
+            warning = { background = 'background', foreground = 'orange' },
+            hint = { background = 'background', foreground = 'white' },
+            info = { background = 'background', foreground = 'blue' }
+        }
+    }
 }
 vim.g.bubbly_inactive_color = vim.g.bubbly_colors

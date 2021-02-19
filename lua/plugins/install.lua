@@ -151,7 +151,7 @@ require('packer').startup( function()
 
                 'divisor',
 
-                'builtinlsp.diagnostic_count',
+                'lsp_status.diagnostics',
                 'total_buffer_number',
                 'filetype',
                 'progress'
