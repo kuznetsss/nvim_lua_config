@@ -188,10 +188,11 @@ require('packer').startup( function()
    use { 'junegunn/fzf.vim',
         config = { function()
             vim.g.fzf_command_prefix = 'Fzf'
-        end }
+        end },
+        requires = { 'junegunn/fzf' }
     }
 -- Highliht VCS changes
-    use { 'mhinz/vim-signify',
+    use { require'plugins.defaults'['plugins']['signify'],
         config = function()
             vim.g.signify_sign_add = '+'
             vim.g.signify_sign_delete = '-'

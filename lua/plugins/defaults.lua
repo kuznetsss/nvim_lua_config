@@ -14,7 +14,12 @@ local lsp_cmd = {
     }
 }
 
+local plugins = {
+    signify = 'mhinz/vim-signify'
+}
+
 default['lsp_cmd'] = lsp_cmd
+default['plugins'] = plugins
 local local_patch = require('plugins.local')
 default = local_patch(default)
 
