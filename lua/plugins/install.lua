@@ -22,7 +22,7 @@ require('packer').startup( function()
     --     requires = { 'steelsojka/completion-buffers' }
     -- }
     use { 'hrsh7th/nvim-compe',
-        config = function() 
+        config = function()
             vim.o.completeopt = "menuone,noinsert,noselect"
             vim.o.shortmess = vim.o.shortmess .. 'c'
             require'compe'.setup {
@@ -77,20 +77,20 @@ require('packer').startup( function()
     -- Syntax hightlight
     use { 'nvim-treesitter/nvim-treesitter',
         run = function() vim.cmd('TSUpdate') end,
-        config = { function()
+        config = function()
             require'nvim-treesitter.configs'.setup {
                 ensure_installed = "maintained",
                 highlight = { enable = true }
             }
-        end }
+        end
     }
     -- Vim wiki
     use { 'vimwiki/vimwiki',
-        config = { function()
+        config = function()
             vim.g.vimwiki_list = {
                 {path = '~/Documents/vimwiki/', syntax = 'markdown', ext = '.md'}
             }
-        end },
+        end,
         enable = true
     }
 -- TODO use this plugin
@@ -143,6 +143,7 @@ require('packer').startup( function()
     }
 -- Status line
     use {'datwaft/bubbly.nvim',
+        branch = 'development',
         config = function()
             vim.g.bubbly_statusline = {
                 'mode',
@@ -151,6 +152,7 @@ require('packer').startup( function()
 
                 'divisor',
 
+                'lsp_status.messages',
                 'lsp_status.diagnostics',
                 'total_buffer_number',
                 'filetype',
@@ -186,9 +188,9 @@ require('packer').startup( function()
 -- Vim script plugins ------------------
 -- Fuzzy finder
    use { 'junegunn/fzf.vim',
-        config = { function()
+        config = function()
             vim.g.fzf_command_prefix = 'Fzf'
-        end },
+        end,
         requires = { 'junegunn/fzf' }
     }
 -- Highliht VCS changes
