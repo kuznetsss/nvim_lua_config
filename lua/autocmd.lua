@@ -21,7 +21,7 @@ exe 'autocmd FileType ' . colorcolumn_enabled_for . ' set colorcolumn=' . join(r
 autocmd BufWritePost install.lua PackerCompile
 
 " Save buffer on leave
-autocmd BufLeave * update
+autocmd BufLeave * lua require'common'.save_file()
 
 ]], false)
 --[[
