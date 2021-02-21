@@ -3,24 +3,6 @@ require('packer').startup( function()
     use { 'wbthomason/packer.nvim', opt = true }
     -- LSP
     use 'neovim/nvim-lspconfig'
-    -- use { 'nvim-lua/completion-nvim',
-    --     config = function()
-    --         vim.g.completion_matching_strategy_list = {'exact', 'substring', 'fuzzy'}
-    --         vim.o.completeopt = "menuone,noinsert,noselect"
-    --         vim.o.shortmess = vim.o.shortmess .. 'c'
-    --         vim.g.completion_auto_change_source = 1
-    --         vim.g.completion_chain_complete_list = {
-    --           default = {
-    --             default = {
-    --               { complete_items = {'lsp'} },
-    --               { complete_items = { 'path', 'buffer' } },
-    --               { complete_items = { 'buffers' } },
-    --             }
-    --           }
-    --         }
-    --     end,
-    --     requires = { 'steelsojka/completion-buffers' }
-    -- }
     use { 'hrsh7th/nvim-compe',
         config = function()
             vim.o.completeopt = "menuone,noinsert,noselect"
@@ -38,7 +20,7 @@ require('packer').startup( function()
                         spell = true;
                         tags = true;
                         snippets_nvim = true;
-                        treesitter = true;
+                        treesitter = false;
                     }
             }
         end
@@ -143,8 +125,9 @@ require('packer').startup( function()
         end
     }
 -- Status line
-    use {'datwaft/bubbly.nvim',
-        branch = 'development',
+    use {--'datwaft/bubbly.nvim',
+        'kuznetsss/bubbly.nvim',
+        branch = 'Fix_lsp_status_messages',
         config = function()
             vim.g.bubbly_statusline = {
                 'mode',
@@ -152,16 +135,15 @@ require('packer').startup( function()
                 'signify',
 
                 'divisor',
-
                 'lsp_status.messages',
+                'divisor',
+
                 'lsp_status.diagnostics',
                 'total_buffer_number',
                 'filetype',
                 'progress'
             }
             vim.g.bubbly_symbols = {
-               default = 'PANIC!',
-
                path = {
                   readonly = 'RO',
                   unmodifiable = '',
@@ -171,18 +153,7 @@ require('packer').startup( function()
                   added = '+%s', -- requires 1 '%s'
                   modified = ' %s', -- requires 1 '%s'
                   removed = '-%s', -- requires 1 '%s'
-               },
-               coc = {
-                  error = ' %s', -- requires 1 '%s'
-                  warning = ' %s', -- requires 1 '%s'
-               },
-               builtinlsp = {
-                  diagnostic_count = {
-                     error = ' %s', -- requires 1 '%s'
-                     warning = ' %s', --requires 1 '%s'
-                  },
-               },
-               branch = ' %s' -- requires 1 '%s'
+               }
             }
         end
     }

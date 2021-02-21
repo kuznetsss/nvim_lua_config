@@ -109,6 +109,7 @@ vim.g.bubbly_colors = {
     },
     total_buffer_number = { background = 'background', foreground = 'light_blue'},
     lsp_status = {
+        messages = { background = 'background', foreground = 'white' },
         diagnostics = {
             error = { background = 'background', foreground = 'red' },
             warning = { background = 'background', foreground = 'orange' },
