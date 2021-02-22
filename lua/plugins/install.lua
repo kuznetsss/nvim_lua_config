@@ -120,9 +120,7 @@ require('packer').startup( function()
         end
     }
 -- Status line
-    use {--'datwaft/bubbly.nvim',
-        'kuznetsss/bubbly.nvim',
-        branch = 'Fix_lsp_status_messages',
+    use { 'datwaft/bubbly.nvim',
         config = function()
             vim.g.bubbly_statusline = {
                 'mode',
