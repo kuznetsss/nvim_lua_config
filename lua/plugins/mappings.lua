@@ -40,9 +40,9 @@ map('i', '<C-Space>', 'compe#complete()', true)
 map('i', '<CR>', "compe#confirm('<CR>')", true)
 map('i', '<C-e>', "compe#close('<C-e>')", true)
 
------- NERDTree
-map('n', '<F2>', '<cmd>NERDTreeToggle<CR>')
-map('i', '<F2>', '<Esc><cmd>NERDTreeToggle<CR>')
+------ nvim-tree
+map('n', '<F2>', '<cmd>NvimTreeToggle<CR>')
+map('i', '<F2>', '<Esc><cmd>NvimTreeToggle<CR>')
 
 -- Startify
 map('n', '<leader>s', '<cmd>Startify<CR>')

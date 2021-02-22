@@ -150,6 +150,8 @@ require('packer').startup( function()
             }
         end
     }
+-- File explorer
+    use 'kyazdani42/nvim-tree.lua'
 -- Vim script plugins ------------------
 -- Fuzzy finder
    use { 'junegunn/fzf.vim',
@@ -167,11 +169,6 @@ require('packer').startup( function()
         end
     }
 -- -----------------Haven't refactored yet
-    use { 'scrooloose/nerdtree',
-        config = { function()
-            vim.g.NERDTreeShowHidden = 1
-        end }
-    }
     use 'preservim/nerdcommenter'
     use 'mhinz/vim-startify'
     -- Git plugin
