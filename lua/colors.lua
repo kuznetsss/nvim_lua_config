@@ -15,8 +15,10 @@ local signcolumn_color = '#282828'
 vim.cmd('highlight SignColumn guibg=' .. signcolumn_color)
 
 -- Indent
+vim.cmd("highlight CustomIndentBlank guifg='#6E6E6E'")
 vim.g.indent_blankline_space_char_blankline_highlight = 'Normal'
 vim.g.indent_blankline_space_char_highlight = 'Normal'
+vim.g.indent_blankline_char_highlight = 'CustomIndentBlank'
 
 -- Adjust LspSaga colors
 local lspsaga_colors = "highlight DiagnosticError guifg='#9f0000' guibg='"
