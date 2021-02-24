@@ -1,5 +1,5 @@
 require('settings')
-require('plugins')
 require('colors')
+require('plugins')
 require('mappings')
 require('autocmd')

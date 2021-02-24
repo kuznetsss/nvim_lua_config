@@ -149,7 +149,16 @@ require('packer').startup( function()
                   added = '+%s', -- requires 1 '%s'
                   modified = ' %s', -- requires 1 '%s'
                   removed = '-%s', -- requires 1 '%s'
-               }
+               },
+               lsp_status = {
+                 diagnostics = {
+                    error = '%d',
+                    warning = '%d',
+                    hint = '%d',
+                    info = '%d',
+                 },
+              },
+
             }
         end
     }
