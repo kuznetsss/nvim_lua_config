@@ -8,11 +8,15 @@ vim.cmd('syntax on')
 vim.cmd('colorscheme wombat256mod')
 
 -- Color right part in different color
---vim.cmd('highlight ColorColumn guibg=#313233')
+vim.cmd('highlight ColorColumn guibg=#313233')
 
 local signcolumn_color = '#282828'
 -- Adjust background of column left of line numbers
---vim.cmd('highlight SignColumn guibg=' .. signcolumn_color)
+vim.cmd('highlight SignColumn guibg=' .. signcolumn_color)
+
+-- Indent
+vim.g.indent_blankline_space_char_blankline_highlight = 'Normal'
+vim.g.indent_blankline_space_char_highlight = 'Normal'
 
 -- Adjust LspSaga colors
 local lspsaga_colors = "highlight DiagnosticError guifg='#9f0000' guibg='"

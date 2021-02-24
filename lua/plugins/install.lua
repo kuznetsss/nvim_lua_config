@@ -121,9 +121,6 @@ require('packer').startup( function()
     --}
     use { 'lukas-reineke/indent-blankline.nvim',
         branch = 'lua',
-        config = function() 
-            vim.g.indent_blankline_space_char_blankline_highlight = 'Normal'
-        end
     }
 -- Status line
     use { 'datwaft/bubbly.nvim',
