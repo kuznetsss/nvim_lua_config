@@ -1,3 +1,4 @@
+local try_require = require('common').try_require
 local default = {}
 
 local lsp_cmd = {
@@ -20,7 +21,9 @@ local plugins = {
 
 default['lsp_cmd'] = lsp_cmd
 default['plugins'] = plugins
-local local_patch = require('plugins.local')
-default = local_patch(default)
+local local_patch = try_require('plugins.local')
+if local_patch then
+    default = local_patch(default)
+end
 
 return default

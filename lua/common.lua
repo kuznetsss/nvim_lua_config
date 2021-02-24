@@ -13,4 +13,13 @@ function M.save_file()
     end
 end
 
+function M.try_require(module_name)
+    local status, module = pcall(require, module_name)
+    if status then
+        return module
+    end
+    return nil
+end
+
+
 return M

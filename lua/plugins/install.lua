@@ -152,10 +152,10 @@ require('packer').startup( function()
                },
                lsp_status = {
                  diagnostics = {
-                    error = '%d',
-                    warning = '%d',
-                    hint = '%d',
-                    info = '%d',
+                    error = ' %d',
+                    warning = ' %d',
+                    hint = ' %d',
+                    info = ' %d',
                  },
               },
 
