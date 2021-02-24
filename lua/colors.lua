@@ -5,7 +5,7 @@ set_option('o', 'termguicolors', true)
 set_option('o', 'background', 'dark')
 vim.cmd('syntax on')
 
-vim.cmd('colorscheme zephyr')
+vim.cmd('colorscheme wombat256mod')
 
 -- Color right part in different color
 --vim.cmd('highlight ColorColumn guibg=#313233')

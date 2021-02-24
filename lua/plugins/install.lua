@@ -107,16 +107,22 @@ require('packer').startup( function()
 
 -- Indent draw
     --use 'Yggdroot/indentLine'
-    use { 'glepnir/indent-guides.nvim',
-        config = function()
-            require('indent_guides').setup({
-                exclude_filetypes = {
-                    'help', 'dashboard', 'dashpreview',
-                    'NvimTree','vista','sagahover', 'sagahover'
-                };
-                even_colors = { fg ='#2E323A',bg='#34383F' };
-                odd_colors = {fg='#34383F',bg='#2E323A'};
-            })
+    --use { 'glepnir/indent-guides.nvim',
+    --    config = function()
+    --        require('indent_guides').setup({
+    --            exclude_filetypes = {
+    --                'help', 'dashboard', 'dashpreview',
+    --                'NvimTree','vista','sagahover', 'sagahover'
+    --            };
+    --            even_colors = { fg ='#2E323A',bg='#34383F' };
+    --            odd_colors = {fg='#34383F',bg='#2E323A'};
+    --        })
+    --    end
+    --}
+    use { 'lukas-reineke/indent-blankline.nvim',
+        branch = 'lua',
+        config = function() 
+            vim.g.indent_blankline_space_char_blankline_highlight = 'Normal'
         end
     }
 -- Status line
