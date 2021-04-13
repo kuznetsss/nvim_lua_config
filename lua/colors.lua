@@ -1,11 +1,14 @@
 local set_option = require'common'.set_option
+local try_run = require'common'.try_run
 -- Support true color
 set_option('o', 'termguicolors', true)
 
 set_option('o', 'background', 'dark')
 vim.cmd('syntax on')
 
-vim.cmd('colorscheme wombat256mod')
+try_run(function()
+    vim.cmd('colorscheme wombat256mod')
+end)
 
 -- Color right part in different color
 vim.cmd('highlight ColorColumn guibg=#313233')

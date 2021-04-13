@@ -21,5 +21,13 @@ function M.try_require(module_name)
     return nil
 end
 
+function M.try_run(f)
+    local status, result = pcall(f)
+    if not status then
+        print('Something went wrong')
+        return nil
+    end
+    return result
+end
 
 return M
