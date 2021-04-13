@@ -157,7 +157,11 @@ require('packer').startup( function()
         end
     }
 -- File explorer
-    use 'kyazdani42/nvim-tree.lua'
+    use { 'kyazdani42/nvim-tree.lua',
+        config = function()
+            vim.g.nvim_tree_auto_open = 1
+        end
+    }
 -- Vim script plugins ------------------
 -- Fuzzy finder
    use { 'junegunn/fzf.vim',
