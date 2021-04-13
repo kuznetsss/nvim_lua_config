@@ -95,6 +95,13 @@ require('packer').startup( function()
     	requires = { 'tjdevries/colorbuddy.nvim' }
     }
     use 'glepnir/zephyr-nvim'
+    use { 'marko-cerovac/material.nvim',
+    	requires = { 'tjdevries/colorbuddy.nvim' },
+        config = function()
+            vim.g.material_style = "darker"
+            require('colorbuddy').colorscheme('material')
+        end
+    }
 
 -- Draw colors of codes
     use { 'norcalli/nvim-colorizer.lua',
@@ -106,19 +113,6 @@ require('packer').startup( function()
     use 'kyazdani42/nvim-web-devicons'
 
 -- Indent draw
-    --use 'Yggdroot/indentLine'
-    --use { 'glepnir/indent-guides.nvim',
-    --    config = function()
-    --        require('indent_guides').setup({
-    --            exclude_filetypes = {
-    --                'help', 'dashboard', 'dashpreview',
-    --                'NvimTree','vista','sagahover', 'sagahover'
-    --            };
-    --            even_colors = { fg ='#2E323A',bg='#34383F' };
-    --            odd_colors = {fg='#34383F',bg='#2E323A'};
-    --        })
-    --    end
-    --}
     use { 'lukas-reineke/indent-blankline.nvim',
         branch = 'lua',
     }
