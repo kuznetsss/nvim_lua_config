@@ -99,7 +99,7 @@ require('packer').startup( function()
     	requires = { 'tjdevries/colorbuddy.nvim' },
         config = function()
             vim.g.material_style = "darker"
-            require('colorbuddy').colorscheme('material')
+            --require('colorbuddy').colorscheme('material')
         end
     }
 

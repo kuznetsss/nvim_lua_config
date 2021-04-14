@@ -7,7 +7,7 @@ set_option('o', 'background', 'dark')
 vim.cmd('syntax on')
 
 try_run(function()
--- vim.cmd('colorscheme wombat256mod')
+  vim.cmd('colorscheme wombat256mod')
 end)
 
 -- Color right part in different color
