@@ -48,7 +48,14 @@ map('i', '<F2>', '<Esc><cmd>NvimTreeToggle<CR>')
 map('n', '<leader>s', '<cmd>Startify<CR>')
 
 -- Fuzzy search
-map('n', '<C-y>', "<cmd>FzfBuffers<CR>")
+map('n', '<C-y>', "<cmd>lua require'telescope.builtin'.buffers{ show_all_buffers = true }<CR>")
+map('n', '<leader>tc', "<cmd> lua require'telescope.builtin'.commands{}<CR>")
+map('n', '<leader>th', "<cmd> lua require'telescope.builtin'.command_history{}<CR>")
+map('n', '<leader>tr', "<cmd> lua require'telescope.builtin'.registers{}<CR>")
+map('n', '<leader>to', "<cmd> lua require'telescope.builtin'.vim_options{}<CR>")
+map('n', '<leader>tm', "<cmd> lua require'telescope.builtin'.help_tags{}<CR>")
+map('n', '<leader>ti', "<cmd> lua require'telescope.builtin'.highlights{}<CR>")
+map('n', '<leader>tg', "<cmd> lua require'telescope.builtin'.grep_string{}<CR>")
 map('n', '<C-p>', "<cmd>FzfFiles<CR>")
 map('n', '<A-p>', "<cmd>FzfRg<CR>")
 --[[

@@ -34,17 +34,20 @@ require('packer').startup( function()
                 hint_sign = '',
                 infor_sign = '',
                 code_action_icon = ' ',
-                code_action_keys = { quit = 'q',exec = '<CR>' },
+                code_action_keys = { quit = '<Esc>',exec = '<CR>' },
                 finder_action_keys = {
                     open = '<CR>', vsplit = 's', split = 'i',
-                    quit = 'q', scroll_down = '<C-f>',
+                    quit = '<Esc>', scroll_down = '<C-f>',
                     scroll_up = '<C-b>' -- quit can be a table
                 },
+                rename_action_keys = {
+                    quit = '<Esc>', exec = '<CR>'  -- quit can be a table
+                },
+                max_preview_lines = 16,
                 definition_preview_icon = '  ',
-                -- 1: thin border | 2: rounded border | 3: thick border
-                border_style = 1
+                border_style = 'round'
             }
-        end
+        end,
     }
     use { 'nvim-lua/lsp-status.nvim',
         config = function()
@@ -67,8 +70,7 @@ require('packer').startup( function()
             vim.g.vimwiki_list = {
                 {path = '~/Documents/vimwiki/', syntax = 'markdown', ext = '.md'}
             }
-        end,
-        enable = true
+        end
     }
 -- TODO use this plugin
 --        use {'lervag/wiki.vim',
@@ -85,28 +87,42 @@ require('packer').startup( function()
 
 -- colorschemes
     use 'michalbachowski/vim-wombat256mod'
-    use 'NLKNguyen/papercolor-theme'
-    use 'drewtempelmeyer/palenight.vim'
-    use 'ayu-theme/ayu-vim'
     use { 'tjdevries/gruvbuddy.nvim',
     	requires = { 'tjdevries/colorbuddy.nvim' }
     }
-    use { 'Th3Whit3Wolf/onebuddy',
-    	requires = { 'tjdevries/colorbuddy.nvim' }
-    }
     use 'glepnir/zephyr-nvim'
-    use { 'marko-cerovac/material.nvim',
-    	requires = { 'tjdevries/colorbuddy.nvim' },
+    use 'kuznetsss/meadow-nvim'
+
+    use { 'nvim-treesitter/playground',
         config = function()
-            vim.g.material_style = "darker"
-            --require('colorbuddy').colorscheme('material')
+            require "nvim-treesitter.configs".setup {
+              playground = {
+                enable = true,
+                disable = {},
+                updatetime = 25, -- Debounced time for highlighting nodes in the playground from source code
+                persist_queries = false, -- Whether the query persists across vim sessions
+                keybindings = {
+                  toggle_query_editor = 'o',
+                  toggle_hl_groups = 'i',
+                  toggle_injected_languages = 't',
+                  toggle_anonymous_nodes = 'a',
+                  toggle_language_display = 'I',
+                  focus_language = 'f',
+                  unfocus_language = 'F',
+                  update = 'R',
+                  goto_node = '<cr>',
+                  show_help = '?',
+                },
+              }
+            }
         end
     }
+
 
 -- Draw colors of codes
     use { 'norcalli/nvim-colorizer.lua',
         config = function()
-            require'colorizer'.setup()
+            require'colorizer'.setup({'*'}, { names = false })
         end
     }
 -- Icons
@@ -162,7 +178,16 @@ require('packer').startup( function()
             --vim.g.nvim_tree_auto_open = 1
         end
     }
+    use { 'nvim-telescope/telescope.nvim',
+        requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}}
+    }
 -- Vim script plugins ------------------
+-- Spell checker
+    use { 'kamykn/spelunker.vim', 
+        config = function()
+            vim.cmd('set nospell')
+        end
+    }
 -- Fuzzy finder
    use { 'junegunn/fzf.vim',
         config = function()

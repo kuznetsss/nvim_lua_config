@@ -12,7 +12,7 @@ autocmd CursorHoldI * silent! lua require('lspsaga.signaturehelp').signature_hel
 
 " Enable colorcolumn for programming languages
 let colorcolumn_enabled_for = 'lua,h,hh,c,cc,cpp,py,sh'
-exe 'autocmd FileType ' . colorcolumn_enabled_for . ' set colorcolumn=' . join(range(81,200), ",")
+exe 'autocmd FileType ' . colorcolumn_enabled_for . ' set colorcolumn=' . join(range(81,83), ",")
 
 " Change current directory to file directory
 " autocmd BufEnter * if expand("%:p:h") !~ '^/tmp' | silent! lcd %:p:h | endif
