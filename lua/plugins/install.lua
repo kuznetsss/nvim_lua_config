@@ -60,6 +60,8 @@ require('packer').startup( function()
         config = function()
             require'nvim-treesitter.configs'.setup {
                 ensure_installed = "maintained",
+                ignore_install = { "ocamllex", 'devicetree',
+                    'gdscript', 'elixir'},
                 highlight = { enable = true }
             }
         end
