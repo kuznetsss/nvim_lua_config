@@ -1,10 +1,12 @@
 local set_option = require'common'.set_option
-local try_run = require'common'.try_run
 -- Support true color
 set_option('o', 'termguicolors', true)
 
 set_option('o', 'background', 'dark')
 vim.cmd('syntax on')
+
+-- Highlight trailing spaces
+vim.cmd([[match WarningMsg /\s\+$/]])
 
 -- Adjust statusline colors
 vim.g.bubbly_palette = {
