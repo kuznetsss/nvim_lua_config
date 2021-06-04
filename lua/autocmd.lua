@@ -11,7 +11,7 @@ autocmd TermOpen * setlocal bufhidden=hide
 autocmd CursorHoldI * silent! lua require('lspsaga.signaturehelp').signature_help()
 
 " Enable colorcolumn for programming languages
-let colorcolumn_enabled_for = 'lua,h,hh,c,cc,cpp,py,sh'
+let colorcolumn_enabled_for = 'lua,c,cpp,python,bash'
 exe 'autocmd FileType ' . colorcolumn_enabled_for . ' set colorcolumn=' . join(range(81,83), ",")
 
 " Change current directory to file directory
@@ -21,7 +21,7 @@ exe 'autocmd FileType ' . colorcolumn_enabled_for . ' set colorcolumn=' . join(r
 autocmd BufWritePost install.lua PackerCompile
 
 " Save buffer on leave
-autocmd BufLeave * lua require'common'.save_file()
+autocmd BufLeave,FocusLost * lua require'common'.save_file()
 
 ]], false)
 --[[

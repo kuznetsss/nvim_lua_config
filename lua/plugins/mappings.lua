@@ -56,7 +56,8 @@ map('n', '<leader>to', "<cmd> lua require'telescope.builtin'.vim_options{}<CR>")
 map('n', '<leader>tm', "<cmd> lua require'telescope.builtin'.help_tags{}<CR>")
 map('n', '<leader>ti', "<cmd> lua require'telescope.builtin'.highlights{}<CR>")
 map('n', '<leader>tg', "<cmd> lua require'telescope.builtin'.grep_string{}<CR>")
-map('n', '<C-p>', "<cmd>FzfFiles<CR>")
+--map('n', '<C-p>', "<cmd>FzfFiles<CR>")
+map('n', '<C-p>', "<cmd> lua require'telescope.builtin'.find_files()<CR>")
 map('n', '<A-p>', "<cmd>FzfRg<CR>")
 --[[
 nnoremap <F12> :TagbarToggle<CR>

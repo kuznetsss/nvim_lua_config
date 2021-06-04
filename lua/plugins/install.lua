@@ -88,12 +88,20 @@ require('packer').startup( function()
     use 'ojroques/nvim-bufdel'
 
 -- colorschemes
+    use 'dracula/vim'
     use 'michalbachowski/vim-wombat256mod'
     use { 'tjdevries/gruvbuddy.nvim',
     	requires = { 'tjdevries/colorbuddy.nvim' }
     }
     use 'glepnir/zephyr-nvim'
-    use 'kuznetsss/meadow-nvim'
+    use { 'kuznetsss/meadow-nvim',
+        config = function()
+            require'meadow'.setup {
+                color_value = 80,
+                color_saturation = 80
+            }
+        end
+        }
 
     use { 'nvim-treesitter/playground',
         config = function()

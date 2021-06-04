@@ -10,7 +10,7 @@ local lsp_cmd = {
     clangd = {
         "clangd",
         "--background-index",
-        "-j=2",
+        "-j=8",
         "--header-insertion=never"
     }
 }
