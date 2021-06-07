@@ -25,9 +25,12 @@ set_option('o', 'incsearch', true)
 set_option('o', 'splitbelow', true)
 -- highlight current line
 set_option('wo', 'cursorline', true)
+
 set_option('bo', 'autoread', true)
 set_option('o', 'autowrite', true)
-set_option('o', 'fsync', true)
+vim.opt.autowriteall = true
+--set_option('o', 'fsync', true)
+
 set_option('o', 'backspace', 'indent,eol,start')
 
 set_option('o', 'updatetime', 300)
