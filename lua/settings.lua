@@ -49,4 +49,8 @@ set_option('o', 'foldlevelstart', 999)
 -- Don't fold text
 set_option('wo', 'conceallevel', 0)
 
+-- show trailing whitespaces
+vim.opt.list = true
+vim.opt.listchars = { trail = '' }
+
 
