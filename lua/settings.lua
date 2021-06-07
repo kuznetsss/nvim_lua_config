@@ -51,6 +51,6 @@ set_option('wo', 'conceallevel', 0)
 
 -- show trailing whitespaces
 vim.opt.list = true
-vim.opt.listchars = { trail = '' }
+vim.opt.listchars = { trail = ' ' }
 
 
