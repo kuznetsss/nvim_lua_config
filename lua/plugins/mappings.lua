@@ -41,8 +41,16 @@ map('i', '<CR>', "compe#confirm('<CR>')", true)
 map('i', '<C-e>', "compe#close('<C-e>')", true)
 
 ------ nvim-tree
-map('n', '<F2>', '<cmd>NvimTreeToggle<CR>')
-map('i', '<F2>', '<Esc><cmd>NvimTreeToggle<CR>')
+map(
+    'n',
+    '<F2>',
+    "<cmd>lua require'plugins.commands'.nvim_tree_find_toggle()<CR>"
+)
+map(
+    'i',
+    '<F2>',
+    "<Esc><cmd>lua require'plugins.commands'.nvim_tree_find_toggle()<CR>"
+)
 
 -- Startify
 map('n', '<leader>s', '<cmd>Startify<CR>')
