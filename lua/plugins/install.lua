@@ -139,9 +139,7 @@ require('packer').startup( function()
     use 'kyazdani42/nvim-web-devicons'
 
 -- Indent draw
-    use { 'lukas-reineke/indent-blankline.nvim',
-        branch = 'lua',
-    }
+    use 'lukas-reineke/indent-blankline.nvim'
 -- Status line
     use { 'datwaft/bubbly.nvim',
         config = function()
