@@ -72,7 +72,7 @@ lspconfig.clangd.setup {
     init_options = { clangdFileStatus = true },
     capabilities = lsp_status.capabilities
 }
-lspconfig.pyls.setup{
+lspconfig.pylsp.setup{
     on_attach = custom_attach,
     capabilities = lsp_status.capabilities
 }
