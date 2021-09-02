@@ -74,5 +74,6 @@ lspconfig.clangd.setup {
 }
 lspconfig.pylsp.setup{
     on_attach = custom_attach,
-    capabilities = lsp_status.capabilities
+    capabilities = lsp_status.capabilities,
+    settings = defaults.lsp_settings.pylsp
 }

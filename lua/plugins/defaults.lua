@@ -19,6 +19,10 @@ local plugins = {
     signify = 'mhinz/vim-signify'
 }
 
+default['lsp_settings'] = {
+    pylsp = {}
+}
+
 default['lsp_cmd'] = lsp_cmd
 default['plugins'] = plugins
 local local_patch = try_require('plugins.local')
