@@ -3,7 +3,6 @@ local defaults = require('plugins.defaults')
 local lsp_status = require('lsp-status')
 
 local custom_attach = function(client)
-    --require('completion').on_attach(client)
     lsp_status.on_attach(client)
 end
 
@@ -32,6 +31,28 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
   }
 )
 
+-- Add additional capabilities supported by nvim-cmp
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities.textDocument.completion.completionItem.documentationFormat =
+    { 'markdown', 'plaintext' }
+capabilities.textDocument.completion.completionItem.snippetSupport = true
+capabilities.textDocument.completion.completionItem.preselectSupport = true
+capabilities.textDocument.completion.completionItem.insertReplaceSupport = true
+capabilities.textDocument.completion.completionItem.labelDetailsSupport = true
+capabilities.textDocument.completion.completionItem.deprecatedSupport = true
+capabilities.textDocument.completion.completionItem.commitCharactersSupport = true
+capabilities.textDocument.completion.completionItem.tagSupport = { valueSet = { 1 } }
+capabilities.textDocument.completion.completionItem.resolveSupport = {
+  properties = {
+    'documentation',
+    'detail',
+    'additionalTextEdits',
+  },
+}
+-- from lsp_status
+capabilities = vim.tbl_extend('keep', capabilities, lsp_status.capabilities)
+
+
 lspconfig.sumneko_lua.setup{
     cmd = defaults['lsp_cmd']['sumneko_lua'],
     settings = {
@@ -55,7 +76,7 @@ lspconfig.sumneko_lua.setup{
         }
     },
     on_attach = custom_attach,
-    capabilities = lsp_status.capabilities
+    capabilities = capabilities
 }
 lspconfig.clangd.setup {
     cmd = defaults['lsp_cmd']['clangd'],
@@ -70,10 +91,10 @@ lspconfig.clangd.setup {
     on_attach = custom_attach,
     handlers = lsp_status.extensions.clangd.setup(),
     init_options = { clangdFileStatus = true },
-    capabilities = lsp_status.capabilities
+    capabilities = capabilities
 }
 lspconfig.pylsp.setup{
     on_attach = custom_attach,
-    capabilities = lsp_status.capabilities,
+    capabilities = capabilities,
     settings = defaults.lsp_settings.pylsp
 }

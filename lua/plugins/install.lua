@@ -3,26 +3,90 @@ require('packer').startup( function()
     use { 'wbthomason/packer.nvim', opt = true }
     -- LSP
     use 'neovim/nvim-lspconfig'
-    use { 'hrsh7th/nvim-compe',
+    use { 'hrsh7th/nvim-cmp',
+        requires = {
+            'hrsh7th/vim-vsnip',
+            'hrsh7th/cmp-buffer',
+            'hrsh7th/cmp-nvim-lsp',
+            'hrsh7th/cmp-path',
+            'onsails/lspkind-nvim',
+            'windwp/nvim-autopairs',
+            'saadparwaiz1/cmp_luasnip', -- Snippets source for nvim-cmp
+            'L3MON4D3/LuaSnip' -- Snippets plugin
+        },
         config = function()
-            vim.o.completeopt = "menuone,noinsert,noselect"
-            vim.o.shortmess = vim.o.shortmess .. 'c'
-            require'compe'.setup {
-                documentation = true,
-                autocomplete = true,
-                    source = {
-                        path = true;
-                        buffer = true;
-                        calc = false;
-                        vsnip = false;
-                        nvim_lsp = true;
-                        nvim_lua = true;
-                        spell = true;
-                        tags = true;
-                        snippets_nvim = false;
-                        treesitter = false;
-                    }
+            local cmp = require 'cmp'
+            local luasnip = require 'luasnip'
+            local compare = require('cmp.config.compare')
+            cmp.setup{
+                mapping = {
+                    ['<C-d>'] = cmp.mapping.scroll_docs(-4),
+                    ['<C-f>'] = cmp.mapping.scroll_docs(4),
+                    ['<C-Space>'] = cmp.mapping.complete(),
+                    ['<C-e>'] = cmp.mapping.close(),
+                    ['<Tab>'] = function(fallback)
+                        if vim.fn.pumvisible() == 1 then
+                            vim.fn.feedkeys(
+                                vim.api.nvim_replace_termcodes(
+                                    '<C-n>', true,
+                                    true, true
+                                ),
+                                'n'
+                            )
+                        elseif luasnip.expand_or_jumpable() then
+                            vim.fn.feedkeys(
+                                vim.api.nvim_replace_termcodes(
+                                '<Plug>luasnip-expand-or-jump', true,
+                                true, true),
+                                ''
+                            )
+                        else
+                            fallback()
+                        end
+                    end,
+                    ['<S-Tab>'] = cmp.mapping.select_prev_item(),
+                    --['<CR>'] = cmp.mapping.confirm()
+                },
+                snippet = {
+                    expand = function(args)
+                        require('luasnip').lsp_expand(args.body)
+                    end
+                },
+                sources = {
+                    { name = 'nvim_lsp' },
+                    --{ name = 'nvim_lua' },
+                    { name = 'luasnip' },
+                    { name = 'buffer' },
+                    { name = 'path' },
+                },
+                formatting = {
+                    format = function(entry, vim_item)
+                        -- fancy icons and a name of kind
+                        vim_item.kind =
+                            require("lspkind").presets.default[vim_item.kind]
+                            .. " " .. vim_item.kind
+                        return vim_item
+                    end
+                },
+                sorting = {
+                 comparators = {
+                        compare.offset,
+                        compare.exact,
+                        compare.score,
+                        compare.kind,
+                        compare.length,
+                        compare.sort_text,
+                        compare.order,
+                      }
+                }
+
             }
+            require('nvim-autopairs').setup()
+            require("nvim-autopairs.completion.cmp").setup({
+                map_cr = true, --  map <CR> on insert mode
+                map_complete = true, -- it will auto insert `(` after select function or method item
+                auto_select = true -- automatically select the first item
+            })
         end
     }
     use { 'glepnir/lspsaga.nvim',
@@ -139,7 +203,14 @@ require('packer').startup( function()
     use 'kyazdani42/nvim-web-devicons'
 
 -- Indent draw
-    use 'lukas-reineke/indent-blankline.nvim'
+    use { 'lukas-reineke/indent-blankline.nvim',
+        config = function()
+            require('indent_blankline').setup {
+                char = '|',
+                buftype_exclude = {'terminal'}
+            }
+        end
+    }
 -- Status line
     use { 'datwaft/bubbly.nvim',
         config = function()

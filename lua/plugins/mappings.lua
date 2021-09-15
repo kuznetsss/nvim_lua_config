@@ -34,11 +34,11 @@ map('n', '<leader>ao', '<cmd>lua vim.lsp.buf.outgoing_calls()<CR>')
 --     'i', '<C-Space>', '<Plug>(completion_trigger)',
 --     {silent = true}
 -- )
-map('i', '<Tab>', 'pumvisible() ? "\\<C-n>" : "\\<Tab>"', true)
-map('i', '<S-Tab>', 'pumvisible() ? "\\<C-p>" : "\\<S-Tab>"', true)
-map('i', '<C-Space>', 'compe#complete()', true)
-map('i', '<CR>', "compe#confirm('<CR>')", true)
-map('i', '<C-e>', "compe#close('<C-e>')", true)
+--map('i', '<Tab>', 'pumvisible() ? "\\<C-n>" : "\\<Tab>"', true)
+--map('i', '<S-Tab>', 'pumvisible() ? "\\<C-p>" : "\\<S-Tab>"', true)
+--map('i', '<C-Space>', 'compe#complete()', true)
+--map('i', '<CR>', "compe#confirm('<CR>')", true)
+--map('i', '<C-e>', "compe#close('<C-e>')", true)
 
 ------ nvim-tree
 map(
