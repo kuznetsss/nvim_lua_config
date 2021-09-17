@@ -98,3 +98,4 @@ lspconfig.pylsp.setup{
     capabilities = capabilities,
     settings = defaults.lsp_settings.pylsp
 }
+require'lspconfig'.yamlls.setup{}
