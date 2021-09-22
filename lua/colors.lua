@@ -1,8 +1,7 @@
-local set_option = require'common'.set_option
 -- Support true color
-set_option('o', 'termguicolors', true)
+vim.opt.termguicolors = true
 
-set_option('o', 'background', 'dark')
+vim.opt.background = 'dark'
 vim.cmd('syntax on')
 
 -- Adjust statusline colors
