@@ -254,6 +254,7 @@ require('packer').startup( function()
 -- File explorer
     use { 'kyazdani42/nvim-tree.lua',
         config = function()
+            require('nvim-tree').setup()
             --vim.g.nvim_tree_auto_open = 1
         end
     }
