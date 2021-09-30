@@ -263,17 +263,10 @@ require('packer').startup( function()
     }
 -- Vim script plugins ------------------
 -- Spell checker
-    use { 'kamykn/spelunker.vim', 
+    use { 'kamykn/spelunker.vim',
         config = function()
             vim.cmd('set nospell')
         end
-    }
--- Fuzzy finder
-   use { 'junegunn/fzf.vim',
-        config = function()
-            vim.g.fzf_command_prefix = 'Fzf'
-        end,
-        requires = { 'junegunn/fzf' }
     }
 -- Highliht VCS changes
     use { require'plugins.defaults'['plugins']['signify'],
@@ -284,7 +277,6 @@ require('packer').startup( function()
         end
     }
 -- -----------------Haven't refactored yet
-    use 'preservim/nerdcommenter'
     use 'mhinz/vim-startify'
     -- Git plugin
     use 'tpope/vim-fugitive'
