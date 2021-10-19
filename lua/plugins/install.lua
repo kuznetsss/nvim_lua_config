@@ -18,6 +18,7 @@ require('packer').startup( function()
             local cmp = require 'cmp'
             local luasnip = require 'luasnip'
             local compare = require('cmp.config.compare')
+            local lspkind = require 'lspkind'
             cmp.setup{
                 mapping = {
                     ['<C-d>'] = cmp.mapping.scroll_docs(-4),
@@ -25,27 +26,13 @@ require('packer').startup( function()
                     ['<C-Space>'] = cmp.mapping.complete(),
                     ['<C-e>'] = cmp.mapping.close(),
                     ['<Tab>'] = function(fallback)
-                        if vim.fn.pumvisible() == 1 then
-                            vim.fn.feedkeys(
-                                vim.api.nvim_replace_termcodes(
-                                    '<C-n>', true,
-                                    true, true
-                                ),
-                                'n'
-                            )
-                        elseif luasnip.expand_or_jumpable() then
-                            vim.fn.feedkeys(
-                                vim.api.nvim_replace_termcodes(
-                                '<Plug>luasnip-expand-or-jump', true,
-                                true, true),
-                                ''
-                            )
+                        if cmp.visible() then
+                            cmp.select_next_item()
                         else
                             fallback()
                         end
                     end,
                     ['<S-Tab>'] = cmp.mapping.select_prev_item(),
-                    --['<CR>'] = cmp.mapping.confirm()
                 },
                 snippet = {
                     expand = function(args)
@@ -60,16 +47,10 @@ require('packer').startup( function()
                     { name = 'path' },
                 },
                 formatting = {
-                    format = function(entry, vim_item)
-                        -- fancy icons and a name of kind
-                        vim_item.kind =
-                            require("lspkind").presets.default[vim_item.kind]
-                            .. " " .. vim_item.kind
-                        return vim_item
-                    end
+                    format = lspkind.cmp_format(),
                 },
                 sorting = {
-                 comparators = {
+                    comparators = {
                         compare.offset,
                         compare.exact,
                         compare.score,
@@ -77,15 +58,19 @@ require('packer').startup( function()
                         compare.length,
                         compare.sort_text,
                         compare.order,
-                      }
+                    }
                 }
-
             }
             require('nvim-autopairs').setup()
             require("nvim-autopairs.completion.cmp").setup({
                 map_cr = true, --  map <CR> on insert mode
-                map_complete = true, -- it will auto insert `(` after select function or method item
-                auto_select = true -- automatically select the first item
+                map_complete = true, -- it will auto insert `(` (map_char) after select function or method item
+                auto_select = true, -- automatically select the first item
+                insert = false, -- use insert confirm behavior instead of replace
+                map_char = { -- modifies the function or method delimiter by filetypes
+                    all = '(',
+                    tex = '{'
+                }
             })
         end
     }
@@ -120,13 +105,14 @@ require('packer').startup( function()
     }
     -- Syntax hightlight
     use { 'nvim-treesitter/nvim-treesitter',
+        branch = '0.5-compat',
         run = function() vim.cmd('TSUpdate') end,
         config = function()
             require'nvim-treesitter.configs'.setup {
                 ensure_installed = "maintained",
-                ignore_install = { "ocamllex", 'devicetree',
-                    'gdscript', 'elixir'},
-                highlight = { enable = true }
+                ignore_install = { "ocamllex", 'devicetree', 'gdscript', 'elixir'},
+                highlight = { enable = true },
+                indent = { enable = true }
             }
         end
     }

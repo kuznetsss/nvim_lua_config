@@ -43,9 +43,10 @@ vim.opt.undofile = true
 vim.opt.undodir = vim.fn.stdpath('cache') .. '/undo_file'
 vim.opt.undolevels = 5000
 
--- set folding by syntax
-vim.opt.foldmethod = 'syntax'
+-- set folding by TreeSitter
+vim.opt.foldmethod = 'expr'
 vim.opt.foldlevelstart = 999
+vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'
 
 -- Don't fold text
 vim.opt.conceallevel = 0
