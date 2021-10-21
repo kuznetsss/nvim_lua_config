@@ -25,4 +25,6 @@ function M.try_run(f)
     return result
 end
 
+M.signs = { Error = " ", Warning = " ", Hint = " ", Information = " " }
+
 return M

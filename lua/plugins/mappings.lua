@@ -29,6 +29,9 @@ map('n', '<leader>=', '<cmd>lua vim.lsp.buf.formatting()<CR>')
 map('n', '<leader>ai', '<cmd>lua vim.lsp.buf.incoming_calls()<CR>')
 map('n', '<leader>ao', '<cmd>lua vim.lsp.buf.outgoing_calls()<CR>')
 
+-- Trouble
+map('n', '<F1>', '<cmd>TroubleToggle<CR>')
+
 ------ Completion
 -- vim.api.nvim_set_keymap(
 --     'i', '<C-Space>', '<Plug>(completion_trigger)',

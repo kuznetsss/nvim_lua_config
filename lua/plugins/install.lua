@@ -16,7 +16,6 @@ require('packer').startup( function()
         },
         config = function()
             local cmp = require 'cmp'
-            local luasnip = require 'luasnip'
             local compare = require('cmp.config.compare')
             local lspkind = require 'lspkind'
             cmp.setup{
@@ -74,14 +73,16 @@ require('packer').startup( function()
             })
         end
     }
-    use { 'glepnir/lspsaga.nvim',
+    use { 'tami5/lspsaga.nvim',
+        branch = 'nvim51',
         config = function()
+            local signs = require"common".signs
             require 'lspsaga'.init_lsp_saga {
                 use_saga_diagnostic_sign = true,
-                error_sign = '',
-                warn_sign = '',
-                hint_sign = '',
-                infor_sign = '',
+                error_sign = signs.Error,
+                warn_sign = signs.Warning,
+                hint_sign = signs.Hint,
+                infor_sign = signs.Information,
                 code_action_icon = ' ',
                 code_action_keys = { quit = '<Esc>',exec = '<CR>' },
                 finder_action_keys = {
@@ -97,6 +98,22 @@ require('packer').startup( function()
                 border_style = 'round'
             }
         end,
+    }
+    use { 'folke/trouble.nvim',
+        requires = "kyazdani42/nvim-web-devicons",
+        config = function()
+            local signs = require"common".signs
+            require("trouble").setup {
+                signs = {
+                    -- icons / text used for a diagnostic
+                    error = signs.Error,
+                    warning = signs.Warning,
+                    hint = signs.Hint,
+                    information = signs.Information,
+                    other = " "
+                }
+            }
+        end
     }
     use { 'nvim-lua/lsp-status.nvim',
         config = function()
@@ -187,7 +204,6 @@ require('packer').startup( function()
     }
 -- Icons
     use 'kyazdani42/nvim-web-devicons'
-
 -- Indent draw
     use { 'lukas-reineke/indent-blankline.nvim',
         config = function()
