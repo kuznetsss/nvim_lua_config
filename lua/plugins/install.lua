@@ -5,7 +5,6 @@ require('packer').startup( function()
     use 'neovim/nvim-lspconfig'
     use { 'hrsh7th/nvim-cmp',
         requires = {
-            'hrsh7th/vim-vsnip',
             'hrsh7th/cmp-buffer',
             'hrsh7th/cmp-nvim-lsp',
             'hrsh7th/cmp-path',
@@ -20,19 +19,29 @@ require('packer').startup( function()
             local lspkind = require 'lspkind'
             cmp.setup{
                 mapping = {
-                    ['<C-d>'] = cmp.mapping.scroll_docs(-4),
-                    ['<C-f>'] = cmp.mapping.scroll_docs(4),
-                    ['<C-Space>'] = cmp.mapping.complete(),
-                    ['<C-e>'] = cmp.mapping.close(),
-                    ['<Tab>'] = function(fallback)
-                        if cmp.visible() then
-                            cmp.select_next_item()
-                        else
-                            fallback()
-                        end
-                    end,
-                    ['<S-Tab>'] = cmp.mapping.select_prev_item(),
+                    ['<C-d>'] = cmp.mapping(
+                        cmp.mapping.scroll_docs(-4),
+                        { 'i', 'c' }
+                    ),
+                    ['<C-f>'] = cmp.mapping(
+                        cmp.mapping.scroll_docs(4),
+                        { 'i', 'c' }
+                    ),
+                    ['<C-Space>'] = cmp.mapping(
+                        cmp.mapping.complete(),
+                        { 'i', 'c' }
+                    ),
+                    ['<C-e>'] = cmp.mapping({
+                      i = cmp.mapping.abort(),
+                      c = cmp.mapping.close(),
+                    }),
                     ['<CR>'] = cmp.mapping.confirm({ select = true }),
+                    ['<Tab>'] = cmp.mapping(
+                        cmp.mapping.select_next_item(), { 'i', 's' }
+                    ),
+                    ['<S-Tab>'] = cmp.mapping(
+                        cmp.mapping.select_prev_item(), { 'i', 's' }
+                    ),
                 },
                 snippet = {
                     expand = function(args)
@@ -41,7 +50,6 @@ require('packer').startup( function()
                 },
                 sources = {
                     { name = 'nvim_lsp' },
-                    --{ name = 'nvim_lua' },
                     { name = 'luasnip' },
                     { name = 'buffer' },
                     { name = 'path' },
@@ -54,12 +62,14 @@ require('packer').startup( function()
                         compare.offset,
                         compare.exact,
                         compare.score,
+                        compare.recently_used,
                         compare.kind,
                         compare.length,
                         compare.sort_text,
                         compare.order,
                     }
-                }
+                },
+                experimental = { ghost_text = true },
             }
             require('nvim-autopairs').setup()
             local cmp_autopairs = require('nvim-autopairs.completion.cmp')
@@ -148,12 +158,6 @@ require('packer').startup( function()
     use 'ojroques/nvim-bufdel'
 
 -- colorschemes
-    use 'dracula/vim'
-    use 'michalbachowski/vim-wombat256mod'
-    use { 'tjdevries/gruvbuddy.nvim',
-    	requires = { 'tjdevries/colorbuddy.nvim' }
-    }
-    use 'glepnir/zephyr-nvim'
     use { 'kuznetsss/meadow-nvim',
         config = function()
             require'meadow'.setup {
@@ -161,7 +165,7 @@ require('packer').startup( function()
                 color_saturation = 80
             }
         end
-        }
+    }
 
     use { 'nvim-treesitter/playground',
         config = function()
@@ -275,7 +279,6 @@ require('packer').startup( function()
     use 'mhinz/vim-startify'
     -- Git plugin
     use 'tpope/vim-fugitive'
-    -- Indent line display
     use 'iamcco/markdown-preview.vim'
 end
 )
