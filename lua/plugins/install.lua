@@ -77,7 +77,6 @@ require('packer').startup( function()
         end
     }
     use { 'tami5/lspsaga.nvim',
-        branch = 'nvim51',
         config = function()
             local signs = require"common".signs
             require 'lspsaga'.init_lsp_saga {
@@ -125,7 +124,6 @@ require('packer').startup( function()
     }
     -- Syntax hightlight
     use { 'nvim-treesitter/nvim-treesitter',
-        branch = '0.5-compat',
         run = function() vim.cmd('TSUpdate') end,
         config = function()
             require'nvim-treesitter.configs'.setup {
