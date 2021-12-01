@@ -263,6 +263,7 @@ require('packer').startup( function()
     use { 'kamykn/spelunker.vim',
         config = function()
             vim.cmd('set nospell')
+            vim.g.spelunker_check_type = 2
         end
     }
 -- Highliht VCS changes
