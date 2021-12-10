@@ -101,6 +101,11 @@ require('packer').startup( function()
             }
         end,
     }
+    use { 'numToStr/Comment.nvim',
+        config = function()
+            require('Comment').setup()
+        end
+    }
     use { 'folke/trouble.nvim',
         requires = "kyazdani42/nvim-web-devicons",
         config = function()
