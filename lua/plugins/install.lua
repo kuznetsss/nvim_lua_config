@@ -225,45 +225,7 @@ require('packer').startup( function()
         end
     }
 -- Status line
-    use { 'datwaft/bubbly.nvim',
-        config = function()
-            vim.g.bubbly_statusline = {
-                'mode',
-                'path',
-                'signify',
 
-                'divisor',
-                'lsp_status.messages',
-                'divisor',
-
-                'lsp_status.diagnostics',
-                'total_buffer_number',
-                'filetype',
-                'progress'
-            }
-            vim.g.bubbly_symbols = {
-               path = {
-                  readonly = 'RO',
-                  unmodifiable = '',
-                  modified = '+',
-               },
-               signify = {
-                  added = '+%s', -- requires 1 '%s'
-                  modified = ' %s', -- requires 1 '%s'
-                  removed = '-%s', -- requires 1 '%s'
-               },
-               lsp_status = {
-                 diagnostics = {
-                    error = ' %d',
-                    warning = ' %d',
-                    hint = ' %d',
-                    info = ' %d',
-                 },
-              },
-
-            }
-        end
-    }
 -- File explorer
     use { 'kyazdani42/nvim-tree.lua',
         config = function()
@@ -282,7 +244,7 @@ require('packer').startup( function()
             vim.g.spelunker_check_type = 2
         end
     }
--- Highliht VCS changes
+-- Highliht git changes
     use { 'lewis6991/gitsigns.nvim',
         requires = {'nvim-lua/plenary.nvim'},
         config = function()
