@@ -3,6 +3,17 @@ require('packer').startup( function()
     use { 'wbthomason/packer.nvim', opt = true }
     -- LSP
     use 'neovim/nvim-lspconfig'
+    use { 'jose-elias-alvarez/null-ls.nvim',
+        requires = {'nvim-lua/plenary.nvim'},
+        config = function()
+            local null_ls = require("null-ls")
+            null_ls.setup({
+                sources = {
+                    null_ls.builtins.diagnostics.teal
+                }
+            })
+        end
+    }
     use { 'hrsh7th/nvim-cmp',
         requires = {
             'hrsh7th/cmp-buffer',
@@ -272,13 +283,19 @@ require('packer').startup( function()
         end
     }
 -- Highliht VCS changes
-    use { require'plugins.defaults'['plugins']['signify'],
+    use { 'lewis6991/gitsigns.nvim',
+        requires = {'nvim-lua/plenary.nvim'},
+        config = function()
+            require('gitsigns').setup()
+        end
+    }
+    --[[ use { require'plugins.defaults'['plugins']['signify'],
         config = function()
             vim.g.signify_sign_add = '+'
             vim.g.signify_sign_delete = '-'
             vim.g.signify_sign_change = ''
         end
-    }
+    } ]]
 -- -----------------Haven't refactored yet
     use 'mhinz/vim-startify'
     -- Git plugin
