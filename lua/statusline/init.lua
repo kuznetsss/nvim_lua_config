@@ -1,6 +1,7 @@
 -- MODE [RO] [NM] FILENAME [+] [VCS STATUS]     [LSP_CLIENT + MESSAGES]    [LSP_DIAGNOSTICS] OPENED_BUFFERS  FILETYPE PROGRESS
 
--- local lsp_status = require('lsp-status')
+local lsp = require('statusline.lsp')
+local format = require('statusline.common').format
 
 local modes = setmetatable(
     {
@@ -15,13 +16,6 @@ local modes = setmetatable(
     { __index = function(key) return {key, 'Normal'} end }
 )
 
-local format = function(text, hl)
-    return string.format(
-        '%%#%s#%s',
-        hl,
-        text
-    )
-end
 
 local get_mode = function()
     local mode = vim.fn.mode()
@@ -37,7 +31,7 @@ local get_file_name = function()
     if not vim.opt_local.modifiable:get() then
         result = result .. format('NM ', 'FixedLineModifiable')
     end
-    result = result .. format('%f', 'FixedLineBackground')
+    result = result .. format('%t', 'FixedLineBackground')
 
     if vim.opt_local.modified:get() then
         result = result .. format(' +', 'FixedLineModified')
@@ -82,21 +76,20 @@ local get_filetype = function()
     return format(vim.opt_local.filetype:get(), 'FixedLineFileType')
 end
 
-local get_progress = function()
-    return format(' %l : %c    %p%% ', 'FixedLineProgress')
-end
+local progress = format(' %l : %c    %p%% ', 'FixedLineProgress')
 
 function _G.make_fixedline()
     return string.format(
-        '%s%s %s    %s %s %s    %s %s',
+        '%s%s %s    %s %s %s   %s    %s %s',
         format('', 'FixedLineBackground'),
         get_mode(),
         get_file_name(),
         get_vcs_status(),
         '%=',
+        lsp.get_diagnostics(),
         get_buffers_number(),
         get_filetype(),
-        get_progress()
+        progress
     )
 end
 
