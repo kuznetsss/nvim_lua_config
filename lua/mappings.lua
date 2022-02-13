@@ -24,4 +24,4 @@ vim.api.nvim_set_keymap('t', '<Esc>', '(&filetype == "fzf") ? "<Esc>" : "<C-\\><
 
 vim.cmd("command LspLog :lua vim.cmd('e'..vim.lsp.get_log_path())")
 
-nnoremap('<Esc><Esc>', ':noh<CR>')
+-- nnoremap('<Esc><Esc>', ':noh<CR>')

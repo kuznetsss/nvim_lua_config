@@ -27,4 +27,13 @@ end
 
 M.signs = { Error = " ", Warning = " ", Hint = " ", Information = " " }
 
+M.map = function(mode, mapping, command, expr, noremap)
+    local options = {
+        expr = expr or false,
+        noremap = noremap or true,
+        silent = true
+    }
+    vim.api.nvim_set_keymap(mode, mapping, command, options)
+end
+
 return M

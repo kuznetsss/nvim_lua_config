@@ -1,11 +1,4 @@
-local function map(mode, mapping, command, expr, noremap)
-    local options = {
-        expr = expr or false,
-        noremap = noremap or true,
-        silent = true
-    }
-    vim.api.nvim_set_keymap(mode, mapping, command, options)
-end
+local map = require('common').map
 ------ BufDel
 map('n', '<C-x>', '<cmd>BufDel<CR>')
 
@@ -57,10 +50,8 @@ map('n', '<leader>tm', "<cmd> lua require'telescope.builtin'.help_tags{}<CR>")
 map('n', '<leader>ti', "<cmd> lua require'telescope.builtin'.highlights{}<CR>")
 map('n', '<leader>tg', "<cmd> lua require'telescope.builtin'.grep_string{}<CR>")
 map('n', '<C-p>', "<cmd> lua require'telescope.builtin'.find_files()<CR>")
-map('n', '<A-p>', "<cmd>FzfRg<CR>")
---[[
-nnoremap <F12> :TagbarToggle<CR>
-nnoremap <space><space> :call FzfFindProjectFiles()<CR>
-nnoremap <C-p> :execute "FzfFiles " . expand("%:p:h")<CR>
-nnoremap <C-y> :FzfBuffers<CR>
-]]--
+
+-- zk mappings
+--see filetype/markdown.md for more mappings
+map('n', '<leader>zk', '<cmd>cd ~/Documents/zk | e main.md<CR>')
+
