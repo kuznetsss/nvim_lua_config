@@ -32,17 +32,6 @@ map('n', '<leader>ao', '<cmd>lua vim.lsp.buf.outgoing_calls()<CR>')
 -- Trouble
 map('n', '<F1>', '<cmd>TroubleToggle<CR>')
 
------- Completion
--- vim.api.nvim_set_keymap(
---     'i', '<C-Space>', '<Plug>(completion_trigger)',
---     {silent = true}
--- )
---map('i', '<Tab>', 'pumvisible() ? "\\<C-n>" : "\\<Tab>"', true)
---map('i', '<S-Tab>', 'pumvisible() ? "\\<C-p>" : "\\<S-Tab>"', true)
---map('i', '<C-Space>', 'compe#complete()', true)
---map('i', '<CR>', "compe#confirm('<CR>')", true)
---map('i', '<C-e>', "compe#close('<C-e>')", true)
-
 ------ nvim-tree
 map(
     'n',
@@ -67,7 +56,6 @@ map('n', '<leader>to', "<cmd> lua require'telescope.builtin'.vim_options{}<CR>")
 map('n', '<leader>tm', "<cmd> lua require'telescope.builtin'.help_tags{}<CR>")
 map('n', '<leader>ti', "<cmd> lua require'telescope.builtin'.highlights{}<CR>")
 map('n', '<leader>tg', "<cmd> lua require'telescope.builtin'.grep_string{}<CR>")
---map('n', '<C-p>', "<cmd>FzfFiles<CR>")
 map('n', '<C-p>', "<cmd> lua require'telescope.builtin'.find_files()<CR>")
 map('n', '<A-p>', "<cmd>FzfRg<CR>")
 --[[

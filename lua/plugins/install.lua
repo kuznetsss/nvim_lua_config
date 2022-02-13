@@ -150,22 +150,10 @@ require('packer').startup( function()
             }
         end
     }
-    -- Vim wiki
-    use { 'vimwiki/vimwiki',
-        config = function()
-            vim.g.vimwiki_list = {
-                {path = '~/Documents/vimwiki/', syntax = 'markdown', ext = '.md'}
-            }
-        end
+    -- ZettelKasten
+    use { "mickael-menu/zk-nvim",
+        -- config is in lsp.lua
     }
--- TODO use this plugin
---        use {'lervag/wiki.vim',
---           config = {function()
---              vim.g.wiki_root = '~/Documents/vimwiki/'
---             vim.g.wiki_extension = '.md'
---        end }
---   }
-
     -- Improve quickfix
     use 'kevinhwang91/nvim-bqf'
     -- Close buffer
@@ -229,8 +217,10 @@ require('packer').startup( function()
 -- File explorer
     use { 'kyazdani42/nvim-tree.lua',
         config = function()
-            require('nvim-tree').setup()
-            --vim.g.nvim_tree_auto_open = 1
+            require('nvim-tree').setup{
+                --vim.g.nvim_tree_auto_open = 1
+                disable_netrw = false,
+            }
         end
     }
     use { 'nvim-telescope/telescope.nvim',

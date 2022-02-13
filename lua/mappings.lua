@@ -23,3 +23,5 @@ inoremap('<C-t>', '<Esc>:exe \'split | resize 20 | terminal bash -c "cd \' . exp
 vim.api.nvim_set_keymap('t', '<Esc>', '(&filetype == "fzf") ? "<Esc>" : "<C-\\><C-n>"', {noremap=true, expr=true, silent=true})
 
 vim.cmd("command LspLog :lua vim.cmd('e'..vim.lsp.get_log_path())")
+
+nnoremap('<Esc><Esc>', ':noh<CR>')

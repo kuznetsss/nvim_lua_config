@@ -74,3 +74,19 @@ lspconfig.pylsp.setup{
     settings = defaults.lsp_settings.pylsp
 }
 require'lspconfig'.yamlls.setup{}
+
+require("zk").setup{
+picker = "telescope",
+    lsp = {
+    -- `config` is passed to `vim.lsp.start_client(config)`
+        config = {
+            cmd = { "zk", "lsp" },
+            name = "zk",
+            on_attach = custom_attach
+        },
+        auto_attach = {
+            enabled = true,
+            filetypes = { "markdown" },
+        },
+    },
+}
