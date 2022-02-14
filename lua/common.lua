@@ -35,5 +35,14 @@ M.map = function(mode, mapping, command, expr, noremap)
     }
     vim.api.nvim_set_keymap(mode, mapping, command, options)
 end
+M.local_map = function(buffer, mode, mapping, command, expr, noremap)
+    local options = {
+        expr = expr or false,
+        noremap = noremap or true,
+        silent = true
+    }
+    vim.api.nvim_buf_set_keymap(buffer, mode, mapping, command, options)
+end
+
 
 return M
