@@ -22,6 +22,12 @@ map('n', '<leader>=', '<cmd>lua vim.lsp.buf.formatting()<CR>')
 map('n', '<leader>ai', '<cmd>lua vim.lsp.buf.incoming_calls()<CR>')
 map('n', '<leader>ao', '<cmd>lua vim.lsp.buf.outgoing_calls()<CR>')
 
+-- Gitsigns
+map('n', ']c', '<cmd>Gitsigns next_hunk<CR>')
+map('n', '[c', '<cmd>Gitsigns prev_hunk<CR>')
+map('n', '<leader>gp', '<cmd>Gitsigns preview_hunk<CR>')
+map('n', '<leader>gr', '<cmd>Gitsigns reset_hunk<CR>')
+
 -- Trouble
 map('n', '<F1>', '<cmd>TroubleToggle<CR>')
 
