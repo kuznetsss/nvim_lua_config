@@ -224,7 +224,7 @@ require('packer').startup( function()
         end
     }
     use { 'nvim-telescope/telescope.nvim',
-        requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}}
+        requires = {'nvim-lua/plenary.nvim'}
     }
 -- Vim script plugins ------------------
 -- Spell checker
