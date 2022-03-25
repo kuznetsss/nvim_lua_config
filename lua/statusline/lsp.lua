@@ -43,4 +43,50 @@ M.get_diagnostics = function()
     return result
 end
 
+local spinner_frames = { "⣷", "⣯", "⣟", "⡿", "⢿", "⣻", "⣾", "⣽" }
+local timer = vim.loop.new_timer()
+local show_new_messages_allowed = true
+local last_messages = nil
+
+M.get_status = function()
+    local messages = lsp_status.messages()
+    if not show_new_messages_allowed then
+        return last_messages
+    end
+    local contents = {}
+    for _, msg in ipairs(messages) do
+        local parsed_message = ""
+        if msg.progress then
+            parsed_message = parsed_message .. msg.title
+            if msg.message then
+                parsed_message = parsed_message .. " " .. msg.message
+            end
+
+            if msg.percentage then
+                parsed_message =
+                    parsed_message .. " (" .. math.floor(msg.percentage + 0.5) .. "%%)"
+            end
+
+            if msg.spinner then
+                parsed_message = spinner_frames[(msg.spinner % #spinner_frames) + 1] .. " " .. parsed_message
+            end
+        elseif msg.status then
+            parsed_message = parsed_message .. msg.content
+        else
+            parsed_message = parsed_message .. msg.content
+        end
+        if contents[msg.name] == nil then
+            contents[msg.name] = parsed_message
+        else
+            contents[msg.name] = contents[msg.name] .. ", " .. parsed_message
+        end
+    end
+    local result_str = ""
+    for name, msg in pairs(contents) do
+        result_str = result_str .. name .. ": " .. msg .. " | "
+    end
+    result_str = result_str:sub(1, -4)
+    return format(result_str, 'FixedLineBackground')
+end
+
 return M
