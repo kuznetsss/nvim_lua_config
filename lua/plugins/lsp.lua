@@ -90,3 +90,4 @@ picker = "telescope",
         },
     },
 }
+require'lspconfig'.texlab.setup{}

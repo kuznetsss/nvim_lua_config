@@ -212,8 +212,6 @@ require('packer').startup( function()
             }
         end
     }
--- Status line
-
 -- File explorer
     use { 'kyazdani42/nvim-tree.lua',
         config = function()
@@ -226,6 +224,16 @@ require('packer').startup( function()
     use { 'nvim-telescope/telescope.nvim',
         requires = {'nvim-lua/plenary.nvim'}
     }
+-- Highliht git changes
+    use { 'lewis6991/gitsigns.nvim',
+        requires = {'nvim-lua/plenary.nvim'},
+        config = function()
+            require('gitsigns').setup()
+        end
+    }
+-- Latex
+    use 'lervag/vimtex'
+
 -- Vim script plugins ------------------
 -- Spell checker
     use { 'kamykn/spelunker.vim',
@@ -234,24 +242,10 @@ require('packer').startup( function()
             vim.g.spelunker_check_type = 2
         end
     }
--- Highliht git changes
-    use { 'lewis6991/gitsigns.nvim',
-        requires = {'nvim-lua/plenary.nvim'},
-        config = function()
-            require('gitsigns').setup()
-        end
-    }
-    --[[ use { require'plugins.defaults'['plugins']['signify'],
-        config = function()
-            vim.g.signify_sign_add = '+'
-            vim.g.signify_sign_delete = '-'
-            vim.g.signify_sign_change = ''
-        end
-    } ]]
+    use 'iamcco/markdown-preview.vim'
 -- -----------------Haven't refactored yet
     use 'mhinz/vim-startify'
     -- Git plugin
     use 'tpope/vim-fugitive'
-    use 'iamcco/markdown-preview.vim'
 end
 )
