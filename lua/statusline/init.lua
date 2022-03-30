@@ -78,21 +78,25 @@ end
 
 local progress = format(' %l : %c    %p%% ', 'FixedLineProgress')
 
+local line = nil
 function _G.make_fixedline()
-    return string.format(
-        '%s%s %s  %s%s%s %s %s   %s    %s %s',
-        format('', 'FixedLineBackground'),
-        get_mode(),
-        get_file_name(),
-        get_vcs_status(),
-        '%=',
-        lsp.get_status(),
-        '%=',
-        lsp.get_diagnostics(),
-        get_buffers_number(),
-        get_filetype(),
-        progress
-    )
+    vim.schedule(function()
+        line = string.format(
+            '%s%s %s  %s%s%s %s %s   %s    %s %s',
+            format('', 'FixedLineBackground'),
+            get_mode(),
+            get_file_name(),
+            get_vcs_status(),
+            '%=',
+            lsp.get_status(),
+            '%=',
+            lsp.get_diagnostics(),
+            get_buffers_number(),
+            get_filetype(),
+            progress
+        )
+    end)
+    return line
 end
 
 local M = {}
