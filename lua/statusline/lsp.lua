@@ -85,8 +85,10 @@ M.get_status = function()
     for name, msg in pairs(contents) do
         result_str = result_str .. name .. ": " .. msg .. " | "
     end
-    result_str = result_str:sub(1, -4)
-    return format(result_str, 'FixedLineBackground')
+    last_messages = format(result_str:sub(1, -4) , 'FixedLineBackground')
+    show_new_messages_allowed = false
+    timer:start(500, 0, function() show_new_messages_allowed = true end)
+    return last_messages
 end
 
 return M
