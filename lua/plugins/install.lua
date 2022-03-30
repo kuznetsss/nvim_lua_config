@@ -155,7 +155,13 @@ require('packer').startup( function()
         -- config is in lsp.lua
     }
     -- Improve quickfix
-    use 'kevinhwang91/nvim-bqf'
+    use { 'kevinhwang91/nvim-bqf',
+        config = function()
+            require('bqf').setup({
+                preview = {auto_preview = false}
+            })
+        end
+    }
     -- Close buffer
     use 'ojroques/nvim-bufdel'
 
@@ -225,7 +231,8 @@ require('packer').startup( function()
         requires = {'nvim-lua/plenary.nvim'}
     }
 -- Highliht git changes
-    use { 'lewis6991/gitsigns.nvim',
+    use { --'lewis6991/gitsigns.nvim',
+        '/home/kuzns/software/gitsigns.nvim_with_arc_support',
         requires = {'nvim-lua/plenary.nvim'},
         config = function()
             require('gitsigns').setup()

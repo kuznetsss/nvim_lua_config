@@ -54,3 +54,5 @@ vim.opt.conceallevel = 0
 -- show trailing whitespaces
 vim.opt.list = true
 vim.opt.listchars = { trail = '_', tab = '>-' }
+
+vim.opt.grepprg = 'rg --vimgrep'
