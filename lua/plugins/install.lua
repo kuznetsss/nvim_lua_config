@@ -231,8 +231,7 @@ require('packer').startup( function()
         requires = {'nvim-lua/plenary.nvim'}
     }
 -- Highliht git changes
-    use { --'lewis6991/gitsigns.nvim',
-        '/home/kuzns/software/gitsigns.nvim_with_arc_support',
+    use { 'lewis6991/gitsigns.nvim',
         requires = {'nvim-lua/plenary.nvim'},
         config = function()
             require('gitsigns').setup()

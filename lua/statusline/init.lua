@@ -79,23 +79,31 @@ end
 local progress = format(' %l : %c    %p%% ', 'FixedLineProgress')
 
 local line = nil
+local timer = vim.loop.new_timer()
+local allow_update = true
+local MINIMUM_UPDATE_TIME = 200 -- ms
+
 function _G.make_fixedline()
-    vim.schedule(function()
-        line = string.format(
-            '%s%s %s  %s%s%s %s %s   %s    %s %s',
-            format('', 'FixedLineBackground'),
-            get_mode(),
-            get_file_name(),
-            get_vcs_status(),
-            '%=',
-            lsp.get_status(),
-            '%=',
-            lsp.get_diagnostics(),
-            get_buffers_number(),
-            get_filetype(),
-            progress
-        )
-    end)
+    if not allow_update then
+        return line
+    end
+
+    line = string.format(
+        '%s%s %s  %s%s%s %s %s   %s    %s %s',
+        format('', 'FixedLineBackground'),
+        get_mode(),
+        get_file_name(),
+        get_vcs_status(),
+        '%=',
+        lsp.get_status(),
+        '%=',
+        lsp.get_diagnostics(),
+        get_buffers_number(),
+        get_filetype(),
+        progress
+    )
+    allow_update = false;
+    timer:start(MINIMUM_UPDATE_TIME, 0, function() allow_update = true end)
     return line
 end
 

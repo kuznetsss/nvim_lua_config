@@ -44,15 +44,9 @@ M.get_diagnostics = function()
 end
 
 local spinner_frames = { "⣷", "⣯", "⣟", "⡿", "⢿", "⣻", "⣾", "⣽" }
-local timer = vim.loop.new_timer()
-local show_new_messages_allowed = true
-local last_messages = nil
 
 M.get_status = function()
     local messages = lsp_status.messages()
-    if not show_new_messages_allowed then
-        return last_messages
-    end
     local contents = {}
     for _, msg in ipairs(messages) do
         local parsed_message = ""
@@ -85,10 +79,7 @@ M.get_status = function()
     for name, msg in pairs(contents) do
         result_str = result_str .. name .. ": " .. msg .. " | "
     end
-    last_messages = format(result_str:sub(1, -4) , 'FixedLineBackground')
-    show_new_messages_allowed = false
-    timer:start(500, 0, function() show_new_messages_allowed = true end)
-    return last_messages
+    return format(result_str:sub(1, -4) , 'FixedLineBackground')
 end
 
 return M
