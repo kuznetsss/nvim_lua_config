@@ -24,4 +24,9 @@ vim.api.nvim_set_keymap('t', '<Esc>', '"<C-\\><C-n>"', {noremap=true, expr=true,
 
 vim.cmd("command LspLog :lua vim.cmd('e'..vim.lsp.get_log_path())")
 
+nnoremap('<F5>', ':RunCommand<CR>')
+inoremap('<F5>', '<Esc>:RunCommand<CR>')
+nnoremap('<F6>', ':RunCommandToggleWindow<CR>')
+inoremap('<F6>', '<Esc>:RunCommandToggleWindow<CR>')
+
 -- nnoremap('<Esc><Esc>', ':noh<CR>')
