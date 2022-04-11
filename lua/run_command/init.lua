@@ -47,6 +47,7 @@ function M.toggle_window()
 end
 
 local function run_command(cmd, args, dir)
+    print('run_command', dir)
     buffer = create_buffer()
     window = open_window()
     local cmdStr = 'Running ' .. cmd
@@ -127,8 +128,11 @@ function M.run(fargs)
             table.insert(args, a)
         end
     end
-    cwd = vim.fn.expand(cwd)
-    cwd = cwd or vim.loop.cwd()
+    if cwd then
+        cwd = vim.fn.expand(cwd)
+    else
+        cwd = vim.loop.cwd()
+    end
     previousArgs = {cmd, args, cwd}
 
     run_command(cmd, args, cwd)
