@@ -171,10 +171,9 @@ require('packer').startup( function()
         run = function() vim.cmd('TSUpdate') end,
         config = function()
             require'nvim-treesitter.configs'.setup {
-                ensure_installed = "maintained",
                 ignore_install = { "ocamllex", 'devicetree', 'gdscript', 'elixir'},
                 highlight = { enable = true },
-                indent = { enable = true }
+                indent = { enable = false }
             }
         end
     }
@@ -250,8 +249,7 @@ require('packer').startup( function()
     use { 'kyazdani42/nvim-tree.lua',
         config = function()
             require('nvim-tree').setup{
-                --vim.g.nvim_tree_auto_open = 1
-                disable_netrw = false,
+                view = {preserve_window_proportions = true}
             }
         end
     }
