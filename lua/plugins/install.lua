@@ -1,6 +1,15 @@
-local use = require('packer').use
-require('packer').startup( function()
-    use { 'wbthomason/packer.nvim', opt = true }
+local packer_bootstrapped = require('plugins.packer_bootstrap')
+local packer = require'packer'
+packer.init{
+    compile_path = vim.fn.stdpath 'data' .. '/site/pack/loader/start/packer.nvim/plugin/packer.lua'
+}
+
+require'packer'.startup(function(use)
+    use { 'wbthomason/packer.nvim',
+        config = function()
+
+        end
+    }
     -- LSP
     use 'neovim/nvim-lspconfig'
     use { 'jose-elias-alvarez/null-ls.nvim',
@@ -279,5 +288,11 @@ require('packer').startup( function()
     use 'mhinz/vim-startify'
     -- Git plugin
     use 'tpope/vim-fugitive'
+
+    if packer_bootstrapped then
+        packer.sync()
+    end
 end
 )
+
+return packer_bootstrapped

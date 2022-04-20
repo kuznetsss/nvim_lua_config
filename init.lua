@@ -1,6 +1,10 @@
 require('settings')
 require('colors')
-require('plugins')
+local bootstrapped = require('plugins')
+if bootstrapped then
+    print("bootstrapped mode: not full config have been loaded")
+    return
+end
 require('run_command')
 require('mappings')
 require('autocmd')
