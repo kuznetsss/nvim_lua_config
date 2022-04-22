@@ -21,6 +21,7 @@ map('n', '<leader>rn', "<cmd>Lspsaga rename<CR>")
 map('n', '<leader>=', '<cmd>lua vim.lsp.buf.formatting()<CR>')
 map('n', '<leader>ai', '<cmd>lua vim.lsp.buf.incoming_calls()<CR>')
 map('n', '<leader>ao', '<cmd>lua vim.lsp.buf.outgoing_calls()<CR>')
+map('n', '<leader>cf', '<cmd>lua vim.lsp.buf.formatting()<CR>')
 
 -- Gitsigns
 map('n', ']c', '<cmd>Gitsigns next_hunk<CR>')
@@ -63,4 +64,5 @@ map('n', '<leader>zk', '<cmd>cd ~/Documents/zk | e main.md<CR>')
 
 -- Packer mapping 
 map('n', '<leader>ps', '<cmd>PackerSync<CR>')
+
 
