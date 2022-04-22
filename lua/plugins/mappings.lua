@@ -61,3 +61,6 @@ map('n', '<C-p>', "<cmd> lua require'telescope.builtin'.find_files()<CR>")
 --see filetype/markdown.md for more mappings
 map('n', '<leader>zk', '<cmd>cd ~/Documents/zk | e main.md<CR>')
 
+-- Packer mapping 
+map('n', '<leader>ps', '<cmd>PackerSync<CR>')
+
