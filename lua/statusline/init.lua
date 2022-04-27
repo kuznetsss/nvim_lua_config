@@ -1,21 +1,21 @@
 -- MODE [RO] [NM] FILENAME [+] [VCS STATUS]     [LSP_CLIENT + MESSAGES]    [LSP_DIAGNOSTICS] OPENED_BUFFERS  FILETYPE PROGRESS
 
-local lsp = require('statusline.lsp')
+local lsp = require 'statusline.lsp'
 local format = require('statusline.common').format
 
-local modes = setmetatable(
-    {
-        n = {' NORMAL ', 'FixedLineNormalMode'},
-        v = {' VISUAL ', 'FixedLineVisualMode'},
-        i = {' INSERT ', 'FixedLineInsertMode'},
-        R = {' REPLACE ', 'FixedLineReplaceMode'},
-        t = {' TERMINAL ', 'FixedLineTerminalMode'},
-        c = {' COMMAND ', 'FixedLineCommandMode'},
-        ['!'] = {' SHELL ', 'FixedLineShellMode'},
-    },
-    { __index = function(key) return {key, 'Normal'} end }
-)
-
+local modes = setmetatable({
+    n = { ' NORMAL ', 'FixedLineNormalMode' },
+    v = { ' VISUAL ', 'FixedLineVisualMode' },
+    i = { ' INSERT ', 'FixedLineInsertMode' },
+    R = { ' REPLACE ', 'FixedLineReplaceMode' },
+    t = { ' TERMINAL ', 'FixedLineTerminalMode' },
+    c = { ' COMMAND ', 'FixedLineCommandMode' },
+    ['!'] = { ' SHELL ', 'FixedLineShellMode' },
+}, {
+    __index = function(key)
+        return { key, 'Normal' }
+    end,
+})
 
 local get_mode = function()
     local mode = vim.fn.mode()
@@ -69,7 +69,10 @@ local get_lsp_messages = function()
 end ]]
 
 local get_buffers_number = function()
-    return format(' ' .. #vim.fn.getbufinfo({buflisted = 1}), 'FixedLineBufNum')
+    return format(
+        ' ' .. #vim.fn.getbufinfo { buflisted = 1 },
+        'FixedLineBufNum'
+    )
 end
 
 local get_filetype = function()
@@ -102,18 +105,19 @@ function _G.make_fixedline()
         get_filetype(),
         progress
     )
-    allow_update = false;
-    timer:start(MINIMUM_UPDATE_TIME, 0, function() allow_update = true end)
+    allow_update = false
+    timer:start(MINIMUM_UPDATE_TIME, 0, function()
+        allow_update = true
+    end)
     return line
 end
 
 local M = {}
 
 M.set_statusline = function()
-    vim.cmd([[autocmd BufWinEnter,WinEnter * setlocal statusline=%!v:lua.make_fixedline()]])
+    vim.cmd [[autocmd BufWinEnter,WinEnter * setlocal statusline=%!v:lua.make_fixedline()]]
 end
 
 M.set_statusline()
 
 return M
-

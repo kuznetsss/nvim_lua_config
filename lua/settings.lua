@@ -40,7 +40,7 @@ vim.opt.expandtab = true
 vim.opt.smarttab = true
 
 vim.opt.undofile = true
-vim.opt.undodir = vim.fn.stdpath('cache') .. '/undo_file'
+vim.opt.undodir = vim.fn.stdpath 'cache' .. '/undo_file'
 vim.opt.undolevels = 5000
 
 -- set folding by TreeSitter
