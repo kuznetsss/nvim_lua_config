@@ -5,7 +5,7 @@ on: [push, pull_request]
 jobs:
   stylua:
     name: stylua
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - name: check
@@ -13,7 +13,4 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           args: --color always --check lua/
-      - name: fix
-        if: ${{ failure() }}
-        run: echo 'Fixing failure'
 
