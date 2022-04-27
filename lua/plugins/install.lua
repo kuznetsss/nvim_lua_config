@@ -276,6 +276,13 @@ require'packer'.startup(function(use)
 -- Latex
     use 'lervag/vimtex'
 
+-- Startup screen
+    use {
+        'goolord/alpha-nvim',
+        config = function ()
+            require'alpha'.setup(require'alpha.themes.startify'.config)
+        end
+    }
 -- Vim script plugins ------------------
 -- Spell checker
     use { 'kamykn/spelunker.vim',
@@ -286,7 +293,6 @@ require'packer'.startup(function(use)
     }
     use 'iamcco/markdown-preview.vim'
 -- -----------------Haven't refactored yet
-    use 'mhinz/vim-startify'
     -- Git plugin
     use 'tpope/vim-fugitive'
 
