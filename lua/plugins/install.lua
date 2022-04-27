@@ -146,7 +146,7 @@ require('packer').startup(function(use)
                 },
                 rename_action_keys = {
                     quit = '<Esc>',
-                    exec = '<CR>',  -- quit can be a table
+                    exec = '<CR>', -- quit can be a table
                 },
                 max_preview_lines = 16,
                 definition_preview_icon = '  ',
