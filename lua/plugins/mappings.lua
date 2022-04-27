@@ -27,6 +27,7 @@ map('n', ']c', '<cmd>Gitsigns next_hunk<CR>')
 map('n', '[c', '<cmd>Gitsigns prev_hunk<CR>')
 map('n', '<leader>gp', '<cmd>Gitsigns preview_hunk<CR>')
 map('n', '<leader>gr', '<cmd>Gitsigns reset_hunk<CR>')
+map('n', '<leader>ga', '<cmd>Gitsigns stage_hunk<CR>')
 
 -- Trouble
 map('n', '<F1>', '<cmd>TroubleToggle<CR>')
@@ -43,9 +44,6 @@ map(
     "<Esc><cmd>lua require'plugins.commands'.nvim_tree_find_toggle()<CR>"
 )
 
--- Startify
-map('n', '<leader>s', '<cmd>Startify<CR>')
-
 -- Fuzzy search
 map('n', '<C-y>', "<cmd>lua require'telescope.builtin'.buffers{ show_all_buffers = true }<CR>")
 map('n', '<leader>tc', "<cmd> lua require'telescope.builtin'.commands{}<CR>")
@@ -61,6 +59,6 @@ map('n', '<C-p>', "<cmd> lua require'telescope.builtin'.find_files()<CR>")
 --see filetype/markdown.md for more mappings
 map('n', '<leader>zk', '<cmd>cd ~/Documents/zk | e main.md<CR>')
 
--- Packer mapping 
+-- Packer mapping
 map('n', '<leader>ps', '<cmd>PackerSync<CR>')
 
