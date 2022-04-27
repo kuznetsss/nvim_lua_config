@@ -1,4 +1,5 @@
-vim.api.nvim_exec([[
+vim.api.nvim_exec(
+    [[
 " Disable auto comment symbols insert
 autocmd BufEnter * setlocal formatoptions-=cro
 
@@ -23,7 +24,9 @@ autocmd BufWritePost install.lua PackerCompile
 " Save buffer on leave
 autocmd BufLeave,FocusLost * lua require'common'.save_file()
 
-]], false)
+]],
+    false
+)
 --[[
 " Turn on wrap for quickfix
 au BufReadPost quickfix setlocal wrap

@@ -27,7 +27,7 @@ local function open_window()
         return window
     end
 
-    vim.cmd([[botright split]])
+    vim.cmd [[botright split]]
     window = vim.api.nvim_get_current_win()
     vim.api.nvim_win_set_height(window, DEFAULT_HEIGHT)
     if not buffer then
@@ -56,10 +56,16 @@ local function run_command(cmd, args, dir)
     end
 
     vim.api.nvim_buf_set_option(buffer, 'modifiable', true)
-    vim.api.nvim_buf_set_lines(buffer, 0, -1, false, {cmdStr, 'In '..dir, ''})
+    vim.api.nvim_buf_set_lines(
+        buffer,
+        0,
+        -1,
+        false,
+        { cmdStr, 'In ' .. dir, '' }
+    )
     vim.api.nvim_buf_set_option(buffer, 'modifiable', false)
     local linesNumber = vim.api.nvim_buf_line_count(buffer)
-    vim.api.nvim_win_set_cursor(window, {linesNumber, 1})
+    vim.api.nvim_win_set_cursor(window, { linesNumber, 1 })
     local out = vim.loop.new_pipe(false)
     local cerr = vim.loop.new_pipe(false)
     local handle = nil
@@ -68,7 +74,7 @@ local function run_command(cmd, args, dir)
         {
             args = args,
             cwd = dir,
-            stdio = {nil, out, cerr}
+            stdio = { nil, out, cerr },
         },
         vim.schedule_wrap(function()
             out:read_stop()
@@ -78,10 +84,16 @@ local function run_command(cmd, args, dir)
             handle:close()
 
             vim.api.nvim_buf_set_option(buffer, 'modifiable', true)
-            vim.api.nvim_buf_set_lines(buffer, -1, -1, false, {'Done '..cmd})
+            vim.api.nvim_buf_set_lines(
+                buffer,
+                -1,
+                -1,
+                false,
+                { 'Done ' .. cmd }
+            )
             vim.api.nvim_buf_set_option(buffer, 'modifiable', false)
             local linesNumber = vim.api.nvim_buf_line_count(buffer)
-            vim.api.nvim_win_set_cursor(window, {linesNumber, 1})
+            vim.api.nvim_win_set_cursor(window, { linesNumber, 1 })
         end)
     )
     local on_read = function(err, data)
@@ -89,13 +101,13 @@ local function run_command(cmd, args, dir)
             print('Error', error)
         end
         if data then
-            local lines = vim.split(data, "\n")
+            local lines = vim.split(data, '\n')
             vim.schedule(function()
                 vim.api.nvim_buf_set_option(buffer, 'modifiable', true)
                 vim.api.nvim_buf_set_lines(buffer, -1, -1, false, lines)
                 vim.api.nvim_buf_set_option(buffer, 'modifiable', false)
                 local linesNumber = vim.api.nvim_buf_line_count(buffer)
-                vim.api.nvim_win_set_cursor(window, {linesNumber, 1})
+                vim.api.nvim_win_set_cursor(window, { linesNumber, 1 })
             end)
         end
     end
@@ -106,13 +118,13 @@ end
 local previousArgs = {}
 
 function M.run(fargs)
-    vim.cmd([[silent! wall]])
+    vim.cmd [[silent! wall]]
     if not fargs or #fargs == 0 then
         if #previousArgs ~= 0 then
             run_command(unpack(previousArgs))
             return
         end
-        print('RunCommand no args provided')
+        print 'RunCommand no args provided'
         return
     end
     local cmd = nil
@@ -133,30 +145,26 @@ function M.run(fargs)
     else
         cwd = vim.loop.cwd()
     end
-    previousArgs = {cmd, args, cwd}
+    previousArgs = { cmd, args, cwd }
 
     run_command(cmd, args, cwd)
 end
 
 function M.kill()
     pid = tonumber(pid)
-    if not pid then return end
+    if not pid then
+        return
+    end
     vim.loop.kill(pid, 'SIGKILL')
     vim.api.nvim_buf_set_option(buffer, 'modifiable', true)
-    vim.api.nvim_buf_set_lines(buffer, -1, -1, false, {'Killed'})
+    vim.api.nvim_buf_set_lines(buffer, -1, -1, false, { 'Killed' })
     vim.api.nvim_buf_set_option(buffer, 'modifiable', false)
 end
 
 local function init()
-    vim.api.nvim_command(
-        [[command! -nargs=* -complete=shellcmd RunCommand lua require'run_command'.run({<f-args>})]]
-    )
-    vim.api.nvim_command(
-        [[command! -nargs=0 RunCommandKill lua require'run_command'.kill()]]
-    )
-    vim.api.nvim_command(
-        [[command! -nargs=0 RunCommandToggleWindow lua require'run_command'.toggle_window()]]
-    )
+    vim.api.nvim_command [[command! -nargs=* -complete=shellcmd RunCommand lua require'run_command'.run({<f-args>})]]
+    vim.api.nvim_command [[command! -nargs=0 RunCommandKill lua require'run_command'.kill()]]
+    vim.api.nvim_command [[command! -nargs=0 RunCommandToggleWindow lua require'run_command'.toggle_window()]]
 end
 
 init()
