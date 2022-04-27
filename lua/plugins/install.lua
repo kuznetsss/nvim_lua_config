@@ -310,12 +310,14 @@ require('packer').startup(function(use)
     -- Spell checker
     use {
         'kamykn/spelunker.vim',
+
         config = function()
             vim.cmd 'set nospell'
             vim.g.spelunker_check_type = 2
         end,
     }
     use 'iamcco/markdown-preview.vim'
+
     -- -----------------Haven't refactored yet
     -- Git plugin
     use 'tpope/vim-fugitive'
