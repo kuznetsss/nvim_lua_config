@@ -68,8 +68,6 @@ lspconfig.clangd.setup {
         lsRanges = true,
     },
     filetypes = { 'h', 'hh', 'c', 'cc', 'cpp', 'objc', 'objcpp' },
-    -- on_init = function to handle changing offsetEncoding
-    -- root_dir = root_pattern('compile_commands.json', 'compile_flags.txt', '.git') or dirname
     on_attach = custom_attach,
     handlers = lsp_status.extensions.clangd.setup(),
     init_options = { clangdFileStatus = true },
