@@ -8,11 +8,14 @@ if require('zk.util').notebook_root(vim.fn.expand '%:p') ~= nil then
     map('n', '<CR>', '<cmd>lua vim.lsp.buf.definition()<CR>')
 
     -- Create a new note after asking for its title.
-    -- This overrides the global `<leader>zn` mapping to create the note in the same directory as the current buffer.
+    -- This overrides the global `<leader>zn` mapping
+    -- to create the note in the same directory as the current buffer.
     map('n', '<leader>zn', '<Cmd>ZkNew<CR>')
-    -- Create a new note in the same directory as the current buffer, using the current selection for title.
+    -- Create a new note in the same directory as the current buffer,
+    -- using the current selection for title.
     map('v', '<leader>znt', ":'<,'>ZkNewFromTitleSelection<CR>")
-    -- Create a new note in the same directory as the current buffer, using the current selection for note content and asking for its title.
+    -- Create a new note in the same directory as the current buffer,
+    -- using the current selection for note content and asking for its title.
     map(
         'v',
         '<leader>znc',

@@ -20,6 +20,7 @@ require('packer').startup(function(use)
             null_ls.setup {
                 sources = {
                     null_ls.builtins.diagnostics.teal,
+                    null_ls.builtins.diagnostics.luacheck,
                     null_ls.builtins.formatting.stylua,
                 },
             }

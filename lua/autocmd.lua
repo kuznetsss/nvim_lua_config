@@ -1,33 +1,47 @@
-vim.api.nvim_exec(
-    [[
-" Disable auto comment symbols insert
-autocmd BufEnter * setlocal formatoptions-=cro
+-- Disable auto comment symbols insert
+vim.api.nvim_create_autocmd({ 'BufEnter' }, {
+    pattern = { '*' },
+    command = 'setlocal formatoptions-=cro',
+})
 
-" Terminal setup
-autocmd TermOpen * startinsert
-autocmd TermOpen * setlocal nobuflisted
-autocmd TermOpen * setlocal bufhidden=hide
+-- Terminal setup
+vim.api.nvim_create_autocmd({ 'TermOpen' }, {
+    pattern = { '*' },
+    callback = function()
+        vim.cmd 'startinsert'
+        vim.opt_local.buflisted = false
+        vim.opt_local.bufhidden = 'hide'
+    end,
+})
 
-" SignatureHelp
-autocmd CursorHoldI * silent! lua require('lspsaga.signaturehelp').signature_help()
+-- SignatureHelp
+vim.api.nvim_create_autocmd({ 'CursorHoldI' }, {
+    pattern = { '*' },
+    callback = function()
+        require('lspsaga.signaturehelp').signature_help()
+    end,
+})
 
-" Enable colorcolumn for programming languages
-let colorcolumn_enabled_for = 'lua,c,cpp,python,bash'
-exe 'autocmd FileType ' . colorcolumn_enabled_for . ' set colorcolumn=' . join(range(81,83), ",")
+vim.api.nvim_create_autocmd({ 'FileType' }, {
+    pattern = { 'lua,c,cpp,python,bash' },
+    callback = function()
+        vim.opt_local.colorcolumn = '81,82,83'
+    end,
+})
 
-" Change current directory to file directory
-" autocmd BufEnter * if expand("%:p:h") !~ '^/tmp' | silent! lcd %:p:h | endif
+vim.api.nvim_create_autocmd({ 'BufWritePost' }, {
+    pattern = '*/lua/plugins/install.lua',
+    callback = function()
+        package.loaded['plugins.install'] = nil
+        require 'plugins.install'
+        require('packer').compile()
+        print 'Recompiled'
+    end,
+})
 
-" Run PackerCompile on every saving plugins.lua
-autocmd BufWritePost install.lua PackerCompile
-
-" Save buffer on leave
-autocmd BufLeave,FocusLost * lua require'common'.save_file()
-
-]],
-    false
-)
---[[
-" Turn on wrap for quickfix
-au BufReadPost quickfix setlocal wrap
---]]
+vim.api.nvim_create_autocmd({ 'BufLeave', 'FocusLost' }, {
+    pattern = '*',
+    callback = function()
+        require('common').save_file()
+    end,
+})
