@@ -96,3 +96,4 @@ require('zk').setup {
     },
 }
 require('lspconfig').texlab.setup {}
+require('lspconfig').cmake.setup {}

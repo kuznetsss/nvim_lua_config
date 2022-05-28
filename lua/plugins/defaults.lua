@@ -20,7 +20,18 @@ local plugins = {
 }
 
 default['lsp_settings'] = {
-    pylsp = {},
+    pylsp = {
+        configurationSources = { 'flake8', 'yapf' },
+        plugins = {
+            flake8 = { enabled = true },
+            mccabe = { enabled = false },
+            pycodestyle = { enabled = false },
+            pyflakes = { enabled = false },
+            pylint = { enabled = false },
+            rope_completion = { enabled = false },
+            yapf = { enabled = true },
+        },
+    },
 }
 
 default['lsp_cmd'] = lsp_cmd
