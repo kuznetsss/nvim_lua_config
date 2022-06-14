@@ -36,6 +36,9 @@ default['lsp_settings'] = {
 
 default['lsp_cmd'] = lsp_cmd
 default['plugins'] = plugins
+default.dap = {
+    ['lldb-vscode'] = '/usr/bin/lldb-vscode'
+}
 local local_patch = try_require 'plugins.local'
 if local_patch then
     default = local_patch(default)

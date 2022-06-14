@@ -23,6 +23,12 @@ map('n', '<leader>ai', '<cmd>lua vim.lsp.buf.incoming_calls()<CR>')
 map('n', '<leader>ao', '<cmd>lua vim.lsp.buf.outgoing_calls()<CR>')
 map('n', '<leader>cf', '<cmd>lua vim.lsp.buf.formatting()<CR>')
 
+-- DAP and debug
+map('n', '<F10>', "<cmd>lua require'dap'.continue()<CR>")
+map('n', '<F11>', "<cmd>lua require'dap'.step_over()<CR>")
+map('n', '<F12>', "<cmd>lua require'dap'.step_into()<CR>")
+map('n', '<leader>db', "<cmd>lua require'dap'.toggle_breakpoint()<CR>")
+
 -- Gitsigns
 map('n', ']c', '<cmd>Gitsigns next_hunk<CR>')
 map('n', '[c', '<cmd>Gitsigns prev_hunk<CR>')

@@ -4,4 +4,5 @@ if bootstrapped then
 end
 require 'plugins.lsp'
 require 'plugins.mappings'
+require 'plugins.dap'
 return false
