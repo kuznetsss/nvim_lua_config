@@ -56,3 +56,4 @@ vim.opt.list = true
 vim.opt.listchars = { trail = '_', tab = '>-' }
 
 vim.opt.grepprg = 'rg --vimgrep'
+vim.g.mapleader = ' '

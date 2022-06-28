@@ -1,28 +1,28 @@
 --[[
 nnoremap <leader>r :source ~/.vim/vimrc<CR>
 --]]
-local nnoremap = function(lhs, rhs)
-    vim.api.nvim_set_keymap('n', lhs, rhs, { noremap = true, silent = true })
+local nmap = function(lhs, rhs)
+    vim.keymap.set('n', lhs, rhs, { noremap = false, silent = true })
 end
-local inoremap = function(lhs, rhs)
-    vim.api.nvim_set_keymap('i', lhs, rhs, { noremap = true, silent = true })
+local imap = function(lhs, rhs)
+    vim.keymap.set('i', lhs, rhs, { noremap = false, silent = true })
 end
 
-nnoremap('<C-k>', ':bnext<CR>')
-nnoremap('<C-j>', ':bprev<CR>')
+nmap('<C-k>', ':bnext<CR>')
+nmap('<C-j>', ':bprev<CR>')
 
-nnoremap('<A-t>', ':split | resize 20 | terminal<CR>')
-nnoremap(
+nmap('<A-t>', ':split | resize 20 | terminal<CR>')
+nmap(
     '<C-t>',
     '<Esc>:exe \'split | resize 20 | terminal bash -c "cd \' . expand("%:p:h") . \' && bash"\'<CR>'
 )
 
-nnoremap('<C-h>', '<C-o>')
-nnoremap('<C-l>', '<C-i>')
+nmap('<C-h>', '<C-o>')
+nmap('<C-l>', '<C-i>')
 
-inoremap('<C-l>', '<C-^>')
-inoremap('<A-t>', '<Esc>:split | resize 20 | terminal<CR>')
-inoremap(
+imap('<C-l>', '<C-^>')
+imap('<A-t>', '<Esc>:split | resize 20 | terminal<CR>')
+imap(
     '<C-t>',
     '<Esc>:exe \'split | resize 20 | terminal bash -c "cd \' . expand("%:p:h") . \' && bash"\'<CR>'
 )
@@ -35,9 +35,9 @@ vim.api.nvim_set_keymap(
 
 vim.cmd "command LspLog :lua vim.cmd('e'..vim.lsp.get_log_path())"
 
-nnoremap('<F5>', ':RunCommand<CR>')
-inoremap('<F5>', '<Esc>:RunCommand<CR>')
-nnoremap('<F6>', ':RunCommandToggleWindow<CR>')
-inoremap('<F6>', '<Esc>:RunCommandToggleWindow<CR>')
+nmap('<F5>', ':RunCommand<CR>')
+imap('<F5>', '<Esc>:RunCommand<CR>')
+nmap('<F6>', ':RunCommandToggleWindow<CR>')
+imap('<F6>', '<Esc>:RunCommandToggleWindow<CR>')
 
 -- nnoremap('<Esc><Esc>', ':noh<CR>')

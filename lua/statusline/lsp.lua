@@ -10,7 +10,7 @@ M.get_diagnostics = function()
     if diagnostics.warnings ~= 0 then
         result = result
             .. format(
-                lsp_signs.Warning .. diagnostics.warnings .. ' ',
+                lsp_signs.Warn .. diagnostics.warnings .. ' ',
                 'FixedLineLspWarning'
             )
     else
@@ -28,7 +28,7 @@ M.get_diagnostics = function()
     if diagnostics.info ~= 0 then
         result = result
             .. format(
-                lsp_signs.Information .. diagnostics.info .. ' ',
+                lsp_signs.Info .. diagnostics.info .. ' ',
                 'FixedLineLspInfo'
             )
     else

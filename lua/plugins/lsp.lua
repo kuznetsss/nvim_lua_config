@@ -2,6 +2,11 @@ local lspconfig = require 'lspconfig'
 local defaults = require 'plugins.defaults'
 local lsp_status = require 'lsp-status'
 
+for k, v in pairs(require'common'.signs) do
+    local hl = 'DiagnosticSign'..k
+    vim.fn.sign_define(hl, {text = v, texthl= hl, numhl = hl})
+end
+
 local custom_attach = function(client)
     lsp_status.on_attach(client)
 end

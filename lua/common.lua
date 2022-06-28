@@ -27,9 +27,9 @@ end
 
 M.signs = {
     Error = ' ',
-    Warning = ' ',
+    Warn = ' ',
     Hint = ' ',
-    Information = ' ',
+    Info = ' ',
 }
 
 M.map = function(mode, mapping, command, expr, noremap)
