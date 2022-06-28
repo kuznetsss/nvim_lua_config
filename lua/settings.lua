@@ -11,7 +11,7 @@ vim.opt.smartindent = true
 
 vim.opt.number = true
 vim.opt.relativenumber = true
-vim.opt.signcolumn = 'yes:2'
+vim.opt.signcolumn = 'yes:1'
 -- Ignore letter size (capitalize or not while search (for searching using
 -- capitalize insert \C in search request
 vim.opt.ignorecase = true

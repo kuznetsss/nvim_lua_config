@@ -123,40 +123,6 @@ require('packer').startup(function(use)
         end,
     }
     use {
-        'glepnir/lspsaga.nvim',
-        config = function()
-            local signs = require('common').signs
-            require('lspsaga').init_lsp_saga {
-                border_style = 'rounded',
-                diagnostic_header = {signs.Error, signs.Warning, signs.Information, signs.Hint},
-                show_diagnostic_source = true,
-                diagnostic_source_bracket = {},
-                code_action_icon = ' ',
-                code_action_num_shortcut = true,
-                code_action_lightbulb = {
-                    enable = false,
-                    sign = true,
-                    sign_priority = 20,
-                    virtual_text = false,
-                },
-                finder_separator = "  ",
-                max_preview_lines = 10,
-                code_action_keys = { quit = '<Esc>', exec = '<CR>' },
-                finder_action_keys = {
-                    open = '<CR>',
-                    vsplit = 's',
-                    split = 'i',
-                    tabe = 't',
-                    quit = '<Esc>',
-                    scroll_down = '<C-f>',
-                    scroll_up = '<C-b>', -- quit can be a table
-                },
-                rename_action_quit = '<Esc>',
-                definition_preview_icon = '  ',
-            }
-        end,
-    }
-    use {
         'numToStr/Comment.nvim',
         config = function()
             require('Comment').setup()

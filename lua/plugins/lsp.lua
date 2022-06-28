@@ -6,26 +6,21 @@ for k, v in pairs(require'common'.signs) do
     local hl = 'DiagnosticSign'..k
     vim.fn.sign_define(hl, {text = v, texthl= hl, numhl = hl})
 end
+vim.diagnostic.config({
+    signs = false,
+    underline = true,
+    update_in_insert = false,
+    severity_sort = true,
+    virtual_text = {
+        spacing = 4,
+        source = 'if_many',
+        prefix = ' ',
+    },
+})
 
 local custom_attach = function(client)
     lsp_status.on_attach(client)
 end
-
-vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(
-    vim.lsp.diagnostic.on_publish_diagnostics,
-    {
-        -- Enable underline, use default values
-        underline = true,
-        -- Enable virtual text, override spacing to 4
-        virtual_text = {
-            spacing = 4,
-            prefix = ' ',
-        },
-        signs = true,
-        -- Disable a feature
-        update_in_insert = false,
-    }
-)
 
 -- Add additional capabilities supported by nvim-cmp
 local capabilities = vim.lsp.protocol.make_client_capabilities()
