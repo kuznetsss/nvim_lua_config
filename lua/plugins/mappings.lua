@@ -47,7 +47,7 @@ map(
     "<Esc><cmd>lua require'plugins.commands'.nvim_tree_find_toggle()<CR>"
 )
 
--- Fuzzy search
+-- Telescope search
 map(
     'n',
     '<C-y>',
@@ -65,6 +65,7 @@ map('n', '<leader>tm', "<cmd> lua require'telescope.builtin'.help_tags{}<CR>")
 map('n', '<leader>ti', "<cmd> lua require'telescope.builtin'.highlights{}<CR>")
 map('n', '<leader>tg', "<cmd> lua require'telescope.builtin'.grep_string{}<CR>")
 map('n', '<leader>ts', "<cmd>Telescope spell_suggest <CR>")
+map('n', '<leader>tq', "<cmd>Telescope quickfix <CR>")
 map('n', '<C-p>', "<cmd> lua require'telescope.builtin'.find_files()<CR>")
 
 -- zk mappings

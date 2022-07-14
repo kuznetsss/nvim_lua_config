@@ -18,7 +18,6 @@ vim.api.nvim_create_autocmd({ 'TermOpen' }, {
 vim.api.nvim_create_autocmd({ 'CursorHoldI' }, {
     pattern = { '*' },
     callback = function()
-        require('lspsaga.signaturehelp').signature_help()
     end,
 })
 
