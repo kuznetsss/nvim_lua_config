@@ -2,11 +2,11 @@ local lspconfig = require 'lspconfig'
 local defaults = require 'plugins.defaults'
 local lsp_status = require 'lsp-status'
 
-for k, v in pairs(require'common'.signs) do
-    local hl = 'DiagnosticSign'..k
-    vim.fn.sign_define(hl, {text = v, texthl= hl, numhl = hl})
+for k, v in pairs(require('common').signs) do
+    local hl = 'DiagnosticSign' .. k
+    vim.fn.sign_define(hl, { text = v, texthl = hl, numhl = hl })
 end
-vim.diagnostic.config({
+vim.diagnostic.config {
     signs = false,
     underline = true,
     update_in_insert = false,
@@ -16,7 +16,7 @@ vim.diagnostic.config({
         source = 'if_many',
         prefix = ' ',
     },
-})
+}
 
 local custom_attach = function(client)
     lsp_status.on_attach(client)
@@ -97,3 +97,5 @@ require('zk').setup {
 }
 require('lspconfig').texlab.setup {}
 require('lspconfig').cmake.setup {}
+
+require('lspconfig').gopls.setup {}
