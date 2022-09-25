@@ -1,9 +1,12 @@
 local M = {}
 
 function M.save_file()
-    local current_buffer = vim.api.nvim_get_current_buf()
-    local buftype = vim.api.nvim_buf_get_option(current_buffer, 'buftype')
-    if buftype == '' then
+    local filename = vim.api.nvim_buf_get_name(0)
+    if
+        not vim.bo.readonly
+        and vim.bo.buftype == ''
+        and string.len(filename) > 0
+    then
         vim.cmd 'update'
     end
 end
