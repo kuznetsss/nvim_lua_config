@@ -44,7 +44,8 @@ require('packer').startup(function(use)
             local has_words_before = function()
                 local line, col = unpack(vim.api.nvim_win_get_cursor(0))
                 return col ~= 0
-                    and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]
+                    and vim.api
+                            .nvim_buf_get_lines(0, line - 1, line, true)[1]
                             :sub(col, col)
                             :match '%s'
                         == nil
@@ -175,24 +176,27 @@ require('packer').startup(function(use)
     -- Debugging
     use {
         'mfussenegger/nvim-dap',
-        requires = {'rcarriga/nvim-dap-ui', 'nvim-telescope/telescope-dap.nvim'}
+        requires = {
+            'rcarriga/nvim-dap-ui',
+            'nvim-telescope/telescope-dap.nvim',
+        },
     }
     use {
-        "rcarriga/nvim-dap-ui",
-        requires = {"mfussenegger/nvim-dap"},
+        'rcarriga/nvim-dap-ui',
+        requires = { 'mfussenegger/nvim-dap' },
         config = function()
-            local dap, dapui = require("dap"), require("dapui")
+            local dap, dapui = require 'dap', require 'dapui'
             dapui.setup()
-            dap.listeners.after.event_initialized["dapui_config"] = function()
-              dapui.open()
+            dap.listeners.after.event_initialized['dapui_config'] = function()
+                dapui.open()
             end
-            dap.listeners.before.event_terminated["dapui_config"] = function()
-              dapui.close()
+            dap.listeners.before.event_terminated['dapui_config'] = function()
+                dapui.close()
             end
-            dap.listeners.before.event_exited["dapui_config"] = function()
-              dapui.close()
+            dap.listeners.before.event_exited['dapui_config'] = function()
+                dapui.close()
             end
-        end
+        end,
     }
     -- ZettelKasten
     use {
@@ -278,10 +282,13 @@ require('packer').startup(function(use)
     }
     use {
         'nvim-telescope/telescope.nvim',
-        requires = { 'nvim-lua/plenary.nvim', 'nvim-telescope/telescope-dap.nvim' },
+        requires = {
+            'nvim-lua/plenary.nvim',
+            'nvim-telescope/telescope-dap.nvim',
+        },
         config = function()
-            require('telescope').load_extension('dap')
-        end
+            require('telescope').load_extension 'dap'
+        end,
     }
     -- Highliht git changes
     use {

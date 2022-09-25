@@ -15,11 +15,10 @@ vim.api.nvim_create_autocmd({ 'TermOpen' }, {
 })
 
 -- SignatureHelp
-vim.api.nvim_create_autocmd({ 'CursorHoldI' }, {
-    pattern = { '*' },
-    callback = function()
-    end,
-})
+-- vim.api.nvim_create_autocmd({ 'CursorHoldI' }, {
+--     pattern = { '*' },
+--     callback = function() end,
+-- })
 
 vim.api.nvim_create_autocmd({ 'FileType' }, {
     pattern = { 'lua,c,cpp,python,bash' },
