@@ -23,8 +23,7 @@ local custom_attach = function(client)
 end
 
 -- Add additional capabilities supported by nvim-cmp
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-require('cmp_nvim_lsp').update_capabilities(capabilities)
+local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
 -- from lsp_status
 capabilities = vim.tbl_extend('keep', capabilities, lsp_status.capabilities)
