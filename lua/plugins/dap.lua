@@ -33,5 +33,22 @@ dap.configurations.cpp = {
         pid = require('dap.utils').pick_process,
         args = {},
     },
+    {
+        name = 'Load core file',
+        type = 'lldb',
+        request = 'attach',
+        program = function()
+            return vim.fn.input(
+                'Path to executable: ',
+                vim.fn.getcwd() .. '/',
+                'file'
+            )
+        end,
+        cwd = '${workspaceFolder}',
+        stopOnEntry = false,
+        coreFile = function()
+            return vim.fn.input('Corefile: ', vim.fn.getcwd() .. '/', 'file')
+        end,
+    }
 }
 dap.configurations.c = dap.configurations.cpp

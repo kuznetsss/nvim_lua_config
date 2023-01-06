@@ -3,6 +3,7 @@ local packer = require 'packer'
 packer.init {
     compile_path = vim.fn.stdpath 'data'
         .. '/site/pack/loader/start/packer.nvim/plugin/packer.lua',
+    git = {cmd = '/usr/bin/git'}
 }
 
 require('packer').startup(function(use)
@@ -297,6 +298,10 @@ require('packer').startup(function(use)
         config = function()
             require('gitsigns').setup()
         end,
+    }
+    use {
+        'sindrets/diffview.nvim',
+        requires = 'nvim-lua/plenary.nvim'
     }
     -- Latex
     use 'lervag/vimtex'

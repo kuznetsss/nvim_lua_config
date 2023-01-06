@@ -19,25 +19,29 @@ local plugins = {
     signify = 'mhinz/vim-signify',
 }
 
-default['lsp_settings'] = {
+default.lsp_settings = {
     pylsp = {
-        configurationSources = { 'flake8', 'yapf' },
-        plugins = {
-            flake8 = { enabled = true },
-            mccabe = { enabled = false },
-            pycodestyle = { enabled = false },
-            pyflakes = { enabled = false },
-            pylint = { enabled = false },
-            rope_completion = { enabled = false },
-            yapf = { enabled = true },
-        },
+        pylsp = {
+            configurationSources = { 'flake8' },
+            plugins = {
+                autopep8 = { enabled = false },
+                black = { enabled = true },
+                flake8 = { enabled = true },
+                mccabe = { enabled = true },
+                pycodestyle = { enabled = false },
+                pyflakes = { enabled = false },
+                pylint = { enabled = false },
+                rope_completion = { enabled = false },
+                yapf = { enabled = false },
+            },
+        }
     },
 }
 
 default['lsp_cmd'] = lsp_cmd
 default['plugins'] = plugins
 default.dap = {
-    ['lldb-vscode'] = '/usr/bin/lldb-vscode',
+    ['lldb-vscode'] = 'lldb-vscode',
 }
 local local_patch = try_require 'plugins.local'
 if local_patch then
