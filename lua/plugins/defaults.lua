@@ -3,9 +3,7 @@ local default = {}
 
 local lsp_cmd = {
     sumneko_lua = {
-        '/usr/bin/lua-language-server',
-        '-E',
-        '/usr/share/lua-language-server/main.lua',
+        'lua-language-server',
     },
     clangd = {
         'clangd',
