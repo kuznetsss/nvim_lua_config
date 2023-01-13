@@ -35,9 +35,4 @@ vim.api.nvim_set_keymap(
 
 vim.cmd "command LspLog :lua vim.cmd('e'..vim.lsp.get_log_path())"
 
-nmap('<F5>', ':RunCommand<CR>')
-imap('<F5>', '<Esc>:RunCommand<CR>')
-nmap('<F6>', ':RunCommandToggleWindow<CR>')
-imap('<F6>', '<Esc>:RunCommandToggleWindow<CR>')
-
 -- nnoremap('<Esc><Esc>', ':noh<CR>')

@@ -2,8 +2,7 @@ local packer_bootstrapped = require 'plugins.packer_bootstrap'
 local packer = require 'packer'
 packer.init {
     compile_path = vim.fn.stdpath 'data'
-        .. '/site/pack/loader/start/packer.nvim/plugin/packer.lua',
-    git = {cmd = '/usr/bin/git'}
+        .. '/site/pack/loader/start/packer.nvim/plugin/packer.lua'
 }
 
 require('packer').startup(function(use)
@@ -345,9 +344,13 @@ require('packer').startup(function(use)
     -- Git plugin
     use 'tpope/vim-fugitive'
 
+    use(vim.fn.stdpath('config') .. '/lua/run_command')
+
     if packer_bootstrapped then
         packer.sync()
     end
 end)
+
+
 
 return packer_bootstrapped
