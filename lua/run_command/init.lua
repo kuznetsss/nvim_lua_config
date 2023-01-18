@@ -1,9 +1,10 @@
 -- DONE: Run one command and populate its output to quickfix, be able to kill it
--- Toggle quickfix
+-- DONE: Toggle quickfix
 -- Save history and allow telescope to look through history
 -- Save history into a shada (or some right file) to save it between sessions
 -- Run multiple commands simultaneously
 -- Read commands from some file and be able to choose from it or run something new
+-- Implement custom buffer instead of quickfix
 -- Thanks to @ii14 and @ooesili
 local M = {}
 
