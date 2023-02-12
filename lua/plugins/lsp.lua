@@ -94,7 +94,22 @@ require('zk').setup {
         },
     },
 }
-require('lspconfig').texlab.setup {}
-require('lspconfig').cmake.setup {}
+require('lspconfig').texlab.setup {
+    on_attach = custom_attach,
+    capabilities = capabilities,
+}
 
-require('lspconfig').gopls.setup {}
+require('lspconfig').cmake.setup {
+    on_attach = custom_attach,
+    capabilities = capabilities,
+}
+
+require('lspconfig').gopls.setup {
+    on_attach = custom_attach,
+    capabilities = capabilities,
+}
+
+require('lspconfig').rust_analyzer.setup {
+    on_attach = custom_attach,
+    capabilities = capabilities,
+}
