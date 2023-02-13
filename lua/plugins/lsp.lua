@@ -28,7 +28,7 @@ local capabilities = require('cmp_nvim_lsp').default_capabilities()
 -- from lsp_status
 capabilities = vim.tbl_extend('keep', capabilities, lsp_status.capabilities)
 
-lspconfig.sumneko_lua.setup {
+lspconfig.lua_ls.setup {
     cmd = defaults['lsp_cmd']['sumneko_lua'],
     settings = {
         Lua = {
