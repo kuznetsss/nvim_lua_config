@@ -41,14 +41,18 @@ require('packer').startup(function(use)
             local compare = require 'cmp.config.compare'
             local lspkind = require 'lspkind'
             local luasnip = require 'luasnip'
+            luasnip.config.set_config({
+                region_check_events = 'InsertEnter',
+                delete_check_events = 'InsertLeave'
+            })
             local has_words_before = function()
                 local line, col = unpack(vim.api.nvim_win_get_cursor(0))
                 return col ~= 0
                     and vim.api
-                            .nvim_buf_get_lines(0, line - 1, line, true)[1]
-                            :sub(col, col)
-                            :match '%s'
-                        == nil
+                    .nvim_buf_get_lines(0, line - 1, line, true)[1]
+                    :sub(col, col)
+                    :match '%s'
+                    == nil
             end
             cmp.setup {
                 mapping = {
@@ -328,16 +332,28 @@ require('packer').startup(function(use)
             'rcarriga/nvim-notify',
         },
     }
+
+    use { 'echasnovski/mini.align',
+        config = function()
+            require 'mini.align'.setup({
+                mappings = {
+                    start = '<leader>ma',
+                    start_with_preview = '<leader>mA'
+                }
+            })
+        end
+    }
+
     -- Vim script plugins ------------------
     -- Spell checker
-    use {
-        'kamykn/spelunker.vim',
-
-        config = function()
-            vim.cmd 'set nospell'
-            vim.g.spelunker_check_type = 2
-        end,
-    }
+    -- use {
+    --     'kamykn/spelunker.vim',
+    --
+    --     config = function()
+    --         vim.cmd 'set nospell'
+    --         vim.g.spelunker_check_type = 2
+    --     end,
+    -- }
     use 'iamcco/markdown-preview.vim'
 
     -- -----------------Haven't refactored yet

@@ -23,6 +23,11 @@ local settings = {
     shell = 'bash',
 }
 
+local function is_directory(path)
+    local dir_stat = vim.loop.fs_stat(path)
+    return dir_stat and dir_stat.type == 'directory'
+end
+
 local function askForCmd()
     local cmd = nil
     vim.ui.input({
@@ -75,6 +80,7 @@ end
 
 local function writeToQf(data)
     vim.schedule(function()
+        -- TODO: move cursor to bottom only if it is now at the bottom
         vim.fn.setqflist({}, 'a', { lines = { data } })
         vim.cmd.cbottom()
     end)
@@ -93,7 +99,17 @@ function M.run_command(cmd, dir)
     end
 
     cmd = cmd or askForCmd()
+    if not cmd then
+        vim.notify('Empty command provided', vim.log.levels.WARN)
+        return
+    end
+
     dir = dir or askForDir()
+    if not dir or not is_directory(dir) then
+        vim.notify('Directory '..dir..' doesn\'t exist', vim.log.levels.WARN)
+        return
+    end
+
 
     runningJob = Job:new {
         command = settings.shell,
@@ -139,7 +155,11 @@ function M.stop_command()
         vim.notify("No running command")
         return
     end
-    runningJob:shutdown(1, 9)
+    if runningJob.pid then
+        runningJob:shutdown(1, 9)
+    else
+        runningJob = nil
+    end
 end
 
 vim.keymap.set('n', '<F5>', function() M.repeat_command() end)
