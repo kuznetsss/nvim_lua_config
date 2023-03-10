@@ -52,19 +52,26 @@ local function askForDir()
     return dir
 end
 
+local function isQfWindowVisible()
+    return qfWindow and vim.api.nvim_win_is_valid(qfWindow)
+end
+
 function M.showQfWindow(activate)
+    activate = activate or true
     local previousWindowId = vim.api.nvim_get_current_win()
-    vim.cmd.copen()
-    vim.cmd.wincmd('J')
-    qfWindow = vim.api.nvim_get_current_win()
-    vim.api.nvim_win_set_height(qfWindow, settings.window_height)
+    if not isQfWindowVisible() then
+        vim.cmd.copen()
+        vim.cmd.wincmd('J')
+        qfWindow = vim.api.nvim_get_current_win()
+        vim.api.nvim_win_set_height(qfWindow, settings.window_height)
+    end
     if not activate then
         vim.api.nvim_set_current_win(previousWindowId)
     end
 end
 
 function M.closeQfWindow()
-    if qfWindow and vim.api.nvim_win_is_valid(qfWindow) then
+    if  isQfWindowVisible() then
         vim.api.nvim_win_close(qfWindow, false)
         qfWindow = nil
     end
@@ -116,6 +123,7 @@ function M.run_command(cmd, dir)
         args = { '-c', cmd },
         cwd = dir,
         on_start = function()
+            vim.cmd.update()
             clearQf()
             writeToQf('Running ' .. cmd)
             M.showQfWindow()
