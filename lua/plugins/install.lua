@@ -2,7 +2,7 @@ local packer_bootstrapped = require 'plugins.packer_bootstrap'
 local packer = require 'packer'
 packer.init {
     compile_path = vim.fn.stdpath 'data'
-        .. '/site/pack/loader/start/packer.nvim/plugin/packer.lua'
+        .. '/site/pack/loader/start/packer.nvim/plugin/packer.lua',
 }
 
 require('packer').startup(function(use)
@@ -41,18 +41,18 @@ require('packer').startup(function(use)
             local compare = require 'cmp.config.compare'
             local lspkind = require 'lspkind'
             local luasnip = require 'luasnip'
-            luasnip.config.set_config({
+            luasnip.config.set_config {
                 region_check_events = 'InsertEnter',
-                delete_check_events = 'InsertLeave'
-            })
+                delete_check_events = 'InsertLeave',
+            }
             local has_words_before = function()
                 local line, col = unpack(vim.api.nvim_win_get_cursor(0))
                 return col ~= 0
                     and vim.api
-                    .nvim_buf_get_lines(0, line - 1, line, true)[1]
-                    :sub(col, col)
-                    :match '%s'
-                    == nil
+                            .nvim_buf_get_lines(0, line - 1, line, true)[1]
+                            :sub(col, col)
+                            :match '%s'
+                        == nil
             end
             cmp.setup {
                 mapping = {
@@ -304,7 +304,7 @@ require('packer').startup(function(use)
     }
     use {
         'sindrets/diffview.nvim',
-        requires = 'nvim-lua/plenary.nvim'
+        requires = 'nvim-lua/plenary.nvim',
     }
     -- Latex
     use 'lervag/vimtex'
@@ -333,15 +333,30 @@ require('packer').startup(function(use)
         },
     }
 
-    use { 'echasnovski/mini.align',
+    use {
+        'echasnovski/mini.align',
         config = function()
-            require 'mini.align'.setup({
+            require('mini.align').setup {
                 mappings = {
                     start = '<leader>ma',
-                    start_with_preview = '<leader>mA'
-                }
-            })
-        end
+                    start_with_preview = '<leader>mA',
+                },
+            }
+        end,
+    }
+
+    use {
+        'jackMort/ChatGPT.nvim',
+        config = function()
+            require('chatgpt').setup {
+                -- optional configuration
+            }
+        end,
+        requires = {
+            'MunifTanjim/nui.nvim',
+            'nvim-lua/plenary.nvim',
+            'nvim-telescope/telescope.nvim',
+        },
     }
 
     -- Vim script plugins ------------------
@@ -360,13 +375,11 @@ require('packer').startup(function(use)
     -- Git plugin
     use 'tpope/vim-fugitive'
 
-    use(vim.fn.stdpath('config') .. '/lua/run_command')
+    use(vim.fn.stdpath 'config' .. '/lua/run_command')
 
     if packer_bootstrapped then
         packer.sync()
     end
 end)
-
-
 
 return packer_bootstrapped
