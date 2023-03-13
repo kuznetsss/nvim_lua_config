@@ -78,3 +78,6 @@ map('n', '<leader>zk', '<cmd>cd ~/Documents/zk | e main.md<CR>')
 
 -- Packer mapping
 map('n', '<leader>ps', '<cmd>PackerSync<CR>')
+
+-- ChatGPT
+map('n', '<leader>cg', '<cmd>ChatGPT<CR>')
