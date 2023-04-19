@@ -334,6 +334,15 @@ require('packer').startup(function(use)
     }
 
     use {
+        "stevearc/dressing.nvim",
+        config = function()
+            require('dressing').setup({
+                input = { enabled = false }
+            })
+        end
+    }
+
+    use {
         'echasnovski/mini.align',
         config = function()
             require('mini.align').setup {
@@ -349,9 +358,13 @@ require('packer').startup(function(use)
         'jackMort/ChatGPT.nvim',
         config = function()
             require('chatgpt').setup {
-                keymaps = {
+                chat = {
+                    keymaps = {
+                        close = { '<C-q>' }
+                    },
+                },
+                popup_input = {
                     submit = '<C-s>',
-                    close = { '<C-q>' }
                 }
             }
         end,

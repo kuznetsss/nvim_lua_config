@@ -39,12 +39,12 @@ map('n', '<F1>', '<cmd>TroubleToggle<CR>')
 map(
     'n',
     '<F2>',
-    "<cmd>lua require'plugins.commands'.nvim_tree_find_toggle()<CR>"
+    "<cmd>NvimTreeFindFileToggle<CR>"
 )
 map(
     'i',
     '<F2>',
-    "<Esc><cmd>lua require'plugins.commands'.nvim_tree_find_toggle()<CR>"
+    "<Esc><cmd>NvimTreeFindFileToggle<CR>"
 )
 
 -- Telescope
