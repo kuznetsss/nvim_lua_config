@@ -306,8 +306,6 @@ require('packer').startup(function(use)
         'sindrets/diffview.nvim',
         requires = 'nvim-lua/plenary.nvim',
     }
-    -- Latex
-    use 'lervag/vimtex'
 
     -- Startup screen
     use {

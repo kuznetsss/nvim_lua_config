@@ -19,7 +19,7 @@ local openTerminal = function(directory)
     local window = vim.api.nvim_get_current_win()
     vim.api.nvim_win_set_height(window, 20)
     vim.api.nvim_win_set_buf(window, buffer)
-    vim.fn.termopen('bash', {cwd = directory})
+    vim.fn.termopen('zsh', {cwd = directory})
 end
 
 nmap('<A-t>', function()

@@ -33,7 +33,7 @@ map('n', '<leader>gr', '<cmd>Gitsigns reset_hunk<CR>')
 map('n', '<leader>ga', '<cmd>Gitsigns stage_hunk<CR>')
 
 -- Trouble
-map('n', '<F1>', '<cmd>TroubleToggle<CR>')
+-- map('n', '<F1>', '<cmd>TroubleToggle<CR>')
 
 ------ nvim-tree
 map(
@@ -75,6 +75,7 @@ map('n', '<leader>gb', '<cmd>Telescope git_branches<CR>')
 -- zk mappings
 --see filetype/markdown.md for more mappings
 map('n', '<leader>zk', '<cmd>cd ~/Documents/zk | e main.md<CR>')
+map('n', '<leader>zc', '<cmd>cd ~/Documents/neetcode-zk | e main.md<CR>')
 
 -- Packer mapping
 map('n', '<leader>ps', '<cmd>PackerSync<CR>')

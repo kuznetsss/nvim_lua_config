@@ -112,4 +112,15 @@ require('lspconfig').gopls.setup {
 require('lspconfig').rust_analyzer.setup {
     on_attach = custom_attach,
     capabilities = capabilities,
+    settings = {
+        ['rust-analyzer'] = {
+            diagnostics = {
+                experimental = { enable = true },
+                enable = false,
+            },
+        },
+    },
 }
+
+require('lspconfig').ansiblels.setup {}
+require('lspconfig').nixd.setup {}
