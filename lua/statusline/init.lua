@@ -4,58 +4,58 @@ local lsp = require 'statusline.lsp'
 local format = require('statusline.common').format
 
 local modes = setmetatable({
-    n = { ' NORMAL ', 'FixedLineNormalMode' },
-    v = { ' VISUAL ', 'FixedLineVisualMode' },
-    i = { ' INSERT ', 'FixedLineInsertMode' },
-    R = { ' REPLACE ', 'FixedLineReplaceMode' },
-    t = { ' TERMINAL ', 'FixedLineTerminalMode' },
-    c = { ' COMMAND ', 'FixedLineCommandMode' },
-    ['!'] = { ' SHELL ', 'FixedLineShellMode' },
+  n = { ' NORMAL ', 'FixedLineNormalMode' },
+  v = { ' VISUAL ', 'FixedLineVisualMode' },
+  i = { ' INSERT ', 'FixedLineInsertMode' },
+  R = { ' REPLACE ', 'FixedLineReplaceMode' },
+  t = { ' TERMINAL ', 'FixedLineTerminalMode' },
+  c = { ' COMMAND ', 'FixedLineCommandMode' },
+  ['!'] = { ' SHELL ', 'FixedLineShellMode' },
 }, {
-    __index = function(key)
-        return { key, 'Normal' }
-    end,
+  __index = function(key)
+    return { key, 'Normal' }
+  end,
 })
 
 local get_mode = function()
-    local mode = vim.fn.mode()
-    local text, hl = unpack(modes[mode])
-    return format(text, hl) .. format('', 'FixedLineBackground')
+  local mode = vim.fn.mode()
+  local text, hl = unpack(modes[mode])
+  return format(text, hl) .. format('', 'FixedLineBackground')
 end
 
 local get_file_name = function()
-    local result = ''
-    if vim.opt_local.readonly:get() then
-        result = result .. format('RO ', 'FixedLineReadOnly')
-    end
-    if not vim.opt_local.modifiable:get() then
-        result = result .. format('NM ', 'FixedLineModifiable')
-    end
-    result = result .. format('%t', 'FixedLineBackground')
+  local result = ''
+  if vim.opt_local.readonly:get() then
+    result = result .. format('RO ', 'FixedLineReadOnly')
+  end
+  if not vim.opt_local.modifiable:get() then
+    result = result .. format('NM ', 'FixedLineModifiable')
+  end
+  result = result .. format('%t', 'FixedLineBackground')
 
-    if vim.opt_local.modified:get() then
-        result = result .. format(' +', 'FixedLineModified')
-    end
-    return result
+  if vim.opt_local.modified:get() then
+    result = result .. format(' +', 'FixedLineModified')
+  end
+  return result
 end
 
 local get_vcs_status = function()
-    local result = ''
-    local status = vim.b.gitsigns_status_dict
-    if not status then
-        return result
-    end
-    local add = function(icon, value, hi)
-        if value and value ~= 0 then
-            result = result .. format(icon .. value .. '  ', hi)
-        else
-            result = result .. '   '
-        end
-    end
-    add(' ', status.added, 'FixedLineGitAdd')
-    add(' ', status.changed, 'FixedLineGitChange')
-    add(' ', status.removed, 'FixedLineGitDelete')
+  local result = ''
+  local status = vim.b.gitsigns_status_dict
+  if not status then
     return result
+  end
+  local add = function(icon, value, hi)
+    if value and value ~= 0 then
+      result = result .. format(icon .. value .. '  ', hi)
+    else
+      result = result .. '   '
+    end
+  end
+  add(' ', status.added, 'FixedLineGitAdd')
+  add(' ', status.changed, 'FixedLineGitChange')
+  add(' ', status.removed, 'FixedLineGitDelete')
+  return result
 end
 
 --[[ local last_lsp_message = ''
@@ -69,14 +69,14 @@ local get_lsp_messages = function()
 end ]]
 
 local get_buffers_number = function()
-    return format(
-        ' ' .. #vim.fn.getbufinfo { buflisted = 1 },
-        'FixedLineBufNum'
-    )
+  return format(
+    ' ' .. #vim.fn.getbufinfo { buflisted = 1 },
+    'FixedLineBufNum'
+  )
 end
 
 local get_filetype = function()
-    return format(vim.opt_local.filetype:get(), 'FixedLineFileType')
+  return format(vim.opt_local.filetype:get(), 'FixedLineFileType')
 end
 
 local progress = format(' %l : %c    %p%% ', 'FixedLineProgress')
@@ -87,33 +87,33 @@ local allow_update = true
 local MINIMUM_UPDATE_TIME = 200 -- ms
 
 function _G.make_fixedline()
-    if not allow_update then
-        return line
-    end
-
-    line = string.format(
-        '%s%s %s  %s %s %s   %s    %s %s',
-        format('', 'FixedLineBackground'),
-        get_mode(),
-        get_file_name(),
-        get_vcs_status(),
-        '%=',
-        lsp.get_diagnostics(),
-        get_buffers_number(),
-        get_filetype(),
-        progress
-    )
-    allow_update = false
-    timer:start(MINIMUM_UPDATE_TIME, 0, function()
-        allow_update = true
-    end)
+  if not allow_update then
     return line
+  end
+
+  line = string.format(
+    '%s%s %s  %s %s %s   %s    %s %s',
+    format('', 'FixedLineBackground'),
+    get_mode(),
+    get_file_name(),
+    get_vcs_status(),
+    '%=',
+    lsp.get_diagnostics(),
+    get_buffers_number(),
+    get_filetype(),
+    progress
+  )
+  allow_update = false
+  timer:start(MINIMUM_UPDATE_TIME, 0, function()
+    allow_update = true
+  end)
+  return line
 end
 
 local M = {}
 
 M.set_statusline = function()
-    vim.cmd [[autocmd BufWinEnter,WinEnter * setlocal statusline=%!v:lua.make_fixedline()]]
+  vim.cmd [[autocmd BufWinEnter,WinEnter * setlocal statusline=%!v:lua.make_fixedline()]]
 end
 
 M.set_statusline()
