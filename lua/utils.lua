@@ -35,14 +35,15 @@ M.signs = {
     Info = ' ',
 }
 
-M.map = function(mode, mapping, command, expr, noremap)
-    local options = {
-        expr = expr or false,
-        noremap = noremap or true,
-        silent = true,
-    }
-    vim.api.nvim_set_keymap(mode, mapping, command, options)
+M.press_key = function(keys)
+     vim.api.nvim_feedkeys(keys, 'm', true)
 end
+
+M.map = function(mode, lhs, rhs, options)
+    options = vim.tbl_extend('force', { noremap = false, silent = true }, options or {})
+    vim.keymap.set(mode, lhs, rhs, options)
+end
+
 M.local_map = function(buffer, mode, mapping, command, expr, noremap)
     local options = {
         expr = expr or false,
@@ -50,6 +51,14 @@ M.local_map = function(buffer, mode, mapping, command, expr, noremap)
         silent = true,
     }
     vim.api.nvim_buf_set_keymap(buffer, mode, mapping, command, options)
+end
+
+M.nmap = function(lhs, rhs, options)
+    M.map('n', lhs, rhs, options)
+end
+
+M.imap = function(lhs, rhs, options)
+    M.map('i', lhs, rhs, options)
 end
 
 return M
