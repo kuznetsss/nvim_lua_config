@@ -92,13 +92,11 @@ function _G.make_fixedline()
     end
 
     line = string.format(
-        '%s%s %s  %s%s%s %s %s   %s    %s %s',
+        '%s%s %s  %s %s %s   %s    %s %s',
         format('', 'FixedLineBackground'),
         get_mode(),
         get_file_name(),
         get_vcs_status(),
-        '%=',
-        lsp.get_status(),
         '%=',
         lsp.get_diagnostics(),
         get_buffers_number(),

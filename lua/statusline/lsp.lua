@@ -1,43 +1,67 @@
-local lsp_status = require 'lsp-status'
 local lsp_signs = require('common').signs
 local format = require('statusline.common').format
 
 local M = {}
 
+local get_diagnostic_counts = function()
+    local diagnostics = {
+        warnings = {
+            severity = vim.diagnostic.severity.WARN,
+            count = 0,
+        },
+        errors = {
+            severity = vim.diagnostic.severity.ERROR,
+            count = 0,
+        },
+        info = {
+            severity = vim.diagnostic.severity.INFO,
+            count = 0,
+        },
+        hints = {
+            severity = vim.diagnostic.severity.HINT,
+            count = 0,
+        },
+    }
+    for _, d in pairs(diagnostics) do
+        d.count = #vim.diagnostic.get(0, {severity = d.severity})
+    end
+    return diagnostics
+end
+
 M.get_diagnostics = function()
-    local diagnostics = lsp_status.diagnostics(vim.api.nvim_get_current_buf())
+    local diagnostics = get_diagnostic_counts()
     local result = ''
-    if diagnostics.warnings ~= 0 then
+    if diagnostics.warnings.count ~= 0 then
         result = result
             .. format(
-                lsp_signs.Warn .. diagnostics.warnings .. ' ',
+                lsp_signs.Warn .. diagnostics.warnings.count .. ' ',
                 'FixedLineLspWarning'
             )
     else
         result = result .. '   '
     end
-    if diagnostics.errors ~= 0 then
+    if diagnostics.errors.count ~= 0 then
         result = result
             .. format(
-                lsp_signs.Error .. diagnostics.errors .. ' ',
+                lsp_signs.Error .. diagnostics.errors.count .. ' ',
                 'FixedLineLspError'
             )
     else
         result = result .. '   '
     end
-    if diagnostics.info ~= 0 then
+    if diagnostics.info.count ~= 0 then
         result = result
             .. format(
-                lsp_signs.Info .. diagnostics.info .. ' ',
+                lsp_signs.Info .. diagnostics.info.count .. ' ',
                 'FixedLineLspInfo'
             )
     else
         result = result .. '   '
     end
-    if diagnostics.hints ~= 0 then
+    if diagnostics.hints.count ~= 0 then
         result = result
             .. format(
-                lsp_signs.Hint .. diagnostics.hints .. ' ',
+                lsp_signs.Hint .. diagnostics.hints.count .. ' ',
                 'FixedLineLspHint'
             )
     else
@@ -45,58 +69,6 @@ M.get_diagnostics = function()
     end
 
     return result
-end
-
-local spinner_frames = {
-    '⣷',
-    '⣯',
-    '⣟',
-    '⡿',
-    '⢿',
-    '⣻',
-    '⣾',
-    '⣽',
-}
-
-M.get_status = function()
-    local messages = lsp_status.messages()
-    local contents = {}
-    for _, msg in ipairs(messages) do
-        local parsed_message = ''
-        if msg.progress then
-            parsed_message = parsed_message .. msg.title
-            if msg.message then
-                parsed_message = parsed_message .. ' ' .. msg.message
-            end
-
-            if msg.percentage then
-                parsed_message = parsed_message
-                    .. ' ('
-                    .. math.floor(msg.percentage + 0.5)
-                    .. '%%)'
-            end
-
-            if msg.spinner then
-                parsed_message = spinner_frames[(msg.spinner % #spinner_frames) + 1]
-                    .. ' '
-                    .. parsed_message
-            end
-        elseif msg.status then
-            parsed_message = parsed_message .. msg.content
-        else
-            parsed_message = parsed_message .. msg.content
-        end
-        if contents[msg.name] == nil then
-            contents[msg.name] = parsed_message
-        else
-            contents[msg.name] = contents[msg.name] .. ', ' .. parsed_message
-        end
-    end
-    local result_str = ''
-    for name, msg in pairs(contents) do
-        result_str = result_str .. name .. ': ' .. msg .. ' | '
-    end
-    return format(result_str:sub(1, -4), 'FixedLineBackground')
 end
 
 return M

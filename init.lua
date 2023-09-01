@@ -1,11 +1,9 @@
-require 'settings'
-require 'colors'
-local bootstrapped = require 'plugins'
-if bootstrapped then
-    print 'bootstrapped mode: not full config have been loaded'
-    return
-end
-require 'run_command'
+require 'options'
+require 'init_lazy'
+require 'lsp'
 require 'mappings'
+require 'setup_dap'
 require 'autocmd'
-require 'statusline'
+---
+require 'statusline.init'
+require 'run_command.init'

@@ -1,8 +1,21 @@
-local bootstrapped = require 'plugins.install'
-if bootstrapped then
-    return true
-end
-require 'plugins.lsp'
-require 'plugins.mappings'
-require 'plugins.dap'
-return false
+return {
+  'neovim/nvim-lspconfig',
+  {
+    'numToStr/Comment.nvim',
+    config = true,
+  },
+  {
+    'folke/neodev.nvim',
+    config = true,
+  },
+  'mickael-menu/zk-nvim',
+  {
+    'kuznetsss/meadow-nvim',
+    config = function()
+      require('meadow').setup {}
+    end,
+  },
+  { 'lukas-reineke/indent-blankline.nvim', config = true },
+  { 'kyazdani42/nvim-tree.lua', config = true },
+  'tpope/vim-fugitive',
+}

@@ -27,7 +27,6 @@ vim.opt.cursorline = true
 vim.opt.autoread = true
 vim.opt.autowrite = true
 vim.opt.autowriteall = true
---vim.opt.fsync = true
 
 vim.opt.backspace = 'indent,eol,start'
 
@@ -35,7 +34,6 @@ vim.opt.updatetime = 300
 
 vim.opt.shiftwidth = 4
 vim.opt.tabstop = 4
-vim.opt.expandtab = true
 vim.opt.expandtab = true
 vim.opt.smarttab = true
 
