@@ -1,7 +1,7 @@
 local lspconfig = require 'lspconfig'
 local lsp_status = require 'lsp-status'
 
-for k, v in pairs(require('common').signs) do
+for k, v in pairs(require('utils').signs) do
   local hl = 'DiagnosticSign' .. k
   vim.fn.sign_define(hl, { text = v, texthl = hl, numhl = hl })
 end

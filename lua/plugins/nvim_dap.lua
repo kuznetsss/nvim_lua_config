@@ -1,7 +1,7 @@
 return {
   {
     'mfussenegger/nvim-dap',
-    dependecies = {
+    dependencies = {
       'rcarriga/nvim-dap-ui',
       'nvim-telescope/telescope-dap.nvim',
     },

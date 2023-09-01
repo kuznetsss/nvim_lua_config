@@ -1,7 +1,7 @@
 if require('zk.util').notebook_root(vim.fn.expand '%:p') ~= nil then
     local current_buffer = vim.api.nvim_get_current_buf()
     local map = function(...)
-        require('common').local_map(current_buffer, ...)
+        require('utils').local_map(current_buffer, ...)
     end
 
     -- Open the link under the caret.

@@ -1,4 +1,4 @@
-local lsp_signs = require('common').signs
+local lsp_signs = require('utils').signs
 local format = require('statusline.common').format
 
 local M = {}

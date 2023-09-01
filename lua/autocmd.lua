@@ -40,6 +40,6 @@ vim.api.nvim_create_autocmd({ 'BufWritePost' }, {
 vim.api.nvim_create_autocmd({ 'BufLeave', 'FocusLost' }, {
     pattern = '*',
     callback = function()
-        require('common').save_file()
+        require('utils').save_file()
     end,
 })

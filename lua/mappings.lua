@@ -51,7 +51,7 @@ vim.cmd "command LspLog :lua vim.cmd('e'..vim.lsp.get_log_path())"
 
 -- Plugins
 
-local map = require('common').map
+local map = require('utils').map
 ------ LSP
 map('n', 'gd', '<cmd>lua vim.lsp.buf.declaration()<CR>')
 map('n', 'gf', '<cmd>lua vim.lsp.buf.definition()<CR>')
