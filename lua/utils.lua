@@ -7,31 +7,14 @@ function M.save_file()
     and vim.bo.buftype == ''
     and string.len(filename) > 0
   then
-    vim.cmd 'update'
+    vim.cmd.update()
   end
-end
-
-function M.try_require(module_name)
-  local status, module = pcall(require, module_name)
-  if status then
-    return module
-  end
-  return nil
-end
-
-function M.try_run(f)
-  local status, result = pcall(f)
-  if not status then
-    print 'Something went wrong'
-    return nil
-  end
-  return result
 end
 
 M.signs = {
   Error = ' ',
   Warn = ' ',
-  Hint = ' ',
+  Hint = ' ',
   Info = ' ',
 }
 

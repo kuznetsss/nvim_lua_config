@@ -1,14 +1,14 @@
 -- Disable auto comment symbols insert
 vim.api.nvim_create_autocmd({ 'BufEnter' }, {
   pattern = { '*' },
-  command = 'setlocal formatoptions-=cro',
+  callback = function() vim.opt_local.formatoptions:remove({ 'c', 'r', 'o' }) end
 })
 
 -- Terminal setup
 vim.api.nvim_create_autocmd({ 'TermOpen' }, {
   pattern = { '*' },
   callback = function()
-    vim.cmd 'startinsert'
+    vim.cmd.startinsert()
     vim.opt_local.buflisted = false
     vim.opt_local.bufhidden = 'hide'
   end,
@@ -27,19 +27,7 @@ vim.api.nvim_create_autocmd({ 'FileType' }, {
   end,
 })
 
-vim.api.nvim_create_autocmd({ 'BufWritePost' }, {
-  pattern = '*/lua/plugins/install.lua',
-  callback = function()
-    package.loaded['plugins.install'] = nil
-    require 'plugins.install'
-    require('packer').compile()
-    print 'Recompiled'
-  end,
-})
-
 vim.api.nvim_create_autocmd({ 'BufLeave', 'FocusLost' }, {
   pattern = '*',
-  callback = function()
-    require('utils').save_file()
-  end,
+  callback = require('utils').save_file,
 })
