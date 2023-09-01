@@ -84,8 +84,8 @@ nmap('<leader>gp', gs.preview_hunk)
 nmap('<leader>gr', gs.reset_hunk)
 nmap('<leader>ga', gs.stage_hunk)
 
--- Trouble
--- map('n', '<F1>', '<cmd>TroubleToggle<CR>')
+-- DiffView
+nmap('<leader>gd', require'diffview'.open)
 
 ------ nvim-tree
 local nvim_tree_toggle = function() require 'nvim-tree.api'.tree.toggle { find_file = true } end
@@ -111,8 +111,11 @@ nmap('<leader>tg', telescope.live_grep)
 nmap('<leader>tw', telescope.grep_string)
 nmap('<leader>ts', telescope.spell_suggest)
 nmap('<leader>tq', telescope.quickfix)
+nmap('<leader>tf', telescope.oldfiles)
 nmap('<C-p>', telescope.find_files)
 nmap('<leader>gb', telescope.git_branches)
+nmap('<leader>gs', telescope.git_stash)
+nmap('<leader>gc', telescope.git_commits)
 
 -- zk mappings
 --see filetype/markdown.md for more mappings
