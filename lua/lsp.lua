@@ -1,5 +1,4 @@
 local lspconfig = require 'lspconfig'
-local lsp_status = require 'lsp-status'
 
 for k, v in pairs(require('utils').signs) do
   local hl = 'DiagnosticSign' .. k
@@ -17,15 +16,8 @@ vim.diagnostic.config {
   },
 }
 
-local custom_attach = function(client)
-  lsp_status.on_attach(client)
-end
-
 -- Add additional capabilities supported by nvim-cmp
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
-
--- from lsp_status
-capabilities = vim.tbl_extend('keep', capabilities, lsp_status.capabilities)
 
 lspconfig.lua_ls.setup {
   settings = {
@@ -54,7 +46,6 @@ lspconfig.lua_ls.setup {
       },
     },
   },
-  on_attach = custom_attach,
   capabilities = capabilities,
 }
 lspconfig.clangd.setup {
@@ -70,13 +61,10 @@ lspconfig.clangd.setup {
     lsRanges = true,
   },
   filetypes = { 'h', 'hh', 'c', 'cc', 'cpp', 'objc', 'objcpp' },
-  on_attach = custom_attach,
-  handlers = lsp_status.extensions.clangd.setup(),
   init_options = { clangdFileStatus = true },
   capabilities = capabilities,
 }
 lspconfig.pylsp.setup {
-  on_attach = custom_attach,
   capabilities = capabilities,
   settings = {
     pylsp = {
@@ -95,7 +83,9 @@ lspconfig.pylsp.setup {
     },
   },
 }
-require('lspconfig').yamlls.setup {}
+require('lspconfig').yamlls.setup {
+  capabilities = capabilities,
+}
 
 require('zk').setup {
   picker = 'telescope',
@@ -104,7 +94,6 @@ require('zk').setup {
     config = {
       cmd = { 'zk', 'lsp' },
       name = 'zk',
-      on_attach = custom_attach,
     },
     auto_attach = {
       enabled = true,
@@ -114,17 +103,14 @@ require('zk').setup {
 }
 
 require('lspconfig').cmake.setup {
-  on_attach = custom_attach,
   capabilities = capabilities,
 }
 
 require('lspconfig').gopls.setup {
-  on_attach = custom_attach,
   capabilities = capabilities,
 }
 
 require('lspconfig').rust_analyzer.setup {
-  on_attach = custom_attach,
   capabilities = capabilities,
   settings = {
     ['rust-analyzer'] = {
@@ -136,5 +122,9 @@ require('lspconfig').rust_analyzer.setup {
   },
 }
 
-require('lspconfig').ansiblels.setup {}
-require('lspconfig').nixd.setup {}
+require('lspconfig').ansiblels.setup {
+  capabilities = capabilities,
+}
+require('lspconfig').nixd.setup {
+  capabilities = capabilities,
+}

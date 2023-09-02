@@ -9,7 +9,7 @@ return {
     'onsails/lspkind-nvim',
     'windwp/nvim-autopairs',
     'saadparwaiz1/cmp_luasnip', -- Snippets source for nvim-cmp
-    'L3MON4D3/LuaSnip', -- Snippets plugin
+    'L3MON4D3/LuaSnip',         -- Snippets plugin
   },
   lazy = true,
   config = function()
@@ -24,10 +24,10 @@ return {
     local has_words_before = function()
       local line, col = unpack(vim.api.nvim_win_get_cursor(0))
       return col ~= 0
-        and vim.api
-            .nvim_buf_get_lines(0, line - 1, line, true)[1]
-            :sub(col, col)
-            :match '%s'
+          and vim.api
+          .nvim_buf_get_lines(0, line - 1, line, true)[1]
+          :sub(col, col)
+          :match '%s'
           == nil
     end
     cmp.setup {
@@ -39,7 +39,7 @@ return {
           i = cmp.mapping.abort(),
           c = cmp.mapping.close(),
         },
-        ['<CR>'] = cmp.mapping.confirm { select = true },
+        ['<CR>'] = cmp.mapping.confirm { select = false },
         ['<Tab>'] = cmp.mapping(function(fallback)
           if cmp.visible() then
             cmp.select_next_item()
@@ -60,6 +60,9 @@ return {
             fallback()
           end
         end, { 'i', 's' }),
+      },
+      window = {
+        documentation = cmp.config.window.bordered()
       },
       snippet = {
         expand = function(args)

@@ -15,7 +15,5 @@ return {
       require('meadow').setup {}
     end,
   },
-  { 'lukas-reineke/indent-blankline.nvim', config = true },
   { 'kyazdani42/nvim-tree.lua', config = true },
-  'tpope/vim-fugitive',
 }

@@ -88,7 +88,7 @@ nmap('<leader>gd', require('diffview').open)
 
 ------ nvim-tree
 local nvim_tree_toggle = function()
-  require('nvim-tree.api').tree.toggle { find_file = true }
+  require('nvim-tree.api').tree.toggle { find_file = true, update_root = true }
 end
 nmap('<F2>', nvim_tree_toggle)
 imap('<F2>', function()
@@ -135,4 +135,4 @@ nmap('<leader>ll', require('lazy').log)
 nmap('<leader>lp', require('lazy').profile)
 
 -- ChatGPT
-nmap('<leader>cg', vim.cmd.ChatGPT)
+-- nmap('<leader>cg', vim.cmd.ChatGPT)

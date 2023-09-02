@@ -16,4 +16,7 @@ return {
       max_tokens = 3000,
     },
   },
+  keys = {
+    { '<leader>cg', vim.cmd.ChatGPT }
+  }
 }

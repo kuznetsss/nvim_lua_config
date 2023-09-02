@@ -34,5 +34,5 @@ if require('zk.util').notebook_root(vim.fn.expand '%:p') ~= nil then
   map('n', '<C-p>', '<cmd>ZkNotes<CR>')
   map('n', '<C-y>', '<cmd>ZkTags<CR>')
 end
-vim.wo.spell = true
-vim.bo.spelllang = 'en,ru'
+vim.opt_local.spell = true
+vim.opt_local.spelllang = 'en,ru'
