@@ -60,3 +60,5 @@ vim.opt.mouse = 'r'
 vim.opt.spell = true
 vim.opt.spelllang = 'en'
 vim.opt.spelloptions = 'camel'
+
+vim.opt.shell = 'zsh'

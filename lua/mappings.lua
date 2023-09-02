@@ -20,7 +20,7 @@ local openTerminal = function(directory)
   local window = vim.api.nvim_get_current_win()
   vim.api.nvim_win_set_height(window, 20)
   vim.api.nvim_win_set_buf(window, buffer)
-  vim.fn.termopen('zsh', { cwd = directory })
+  vim.fn.termopen(vim.opt.shell:get(), { cwd = directory })
 end
 
 nmap('<C-t>', openTerminal)
@@ -135,4 +135,10 @@ nmap('<leader>ll', require('lazy').log)
 nmap('<leader>lp', require('lazy').profile)
 
 -- ChatGPT
--- nmap('<leader>cg', vim.cmd.ChatGPT)
+nmap('<leader>cg', vim.cmd.ChatGPT)
+
+-- Restore session
+nmap('<leader>ss', require('persistence').load)
+nmap('<leader>sl', function()
+  require('persistence').load { last = true }
+end)
