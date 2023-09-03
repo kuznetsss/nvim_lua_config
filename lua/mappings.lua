@@ -83,6 +83,12 @@ nmap('<leader>gp', gs.preview_hunk)
 nmap('<leader>gr', gs.reset_hunk)
 nmap('<leader>ga', gs.stage_hunk)
 
+-- Neogit
+local neogit = require 'neogit'
+nmap('<leader>gg', function()
+  neogit.open { kind = 'split' }
+end)
+
 -- DiffView
 nmap('<leader>gd', require('diffview').open)
 
