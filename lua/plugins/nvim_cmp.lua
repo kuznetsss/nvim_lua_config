@@ -10,9 +10,10 @@ return {
     'windwp/nvim-autopairs',
     'saadparwaiz1/cmp_luasnip', -- Snippets source for nvim-cmp
     'L3MON4D3/LuaSnip',         -- Snippets plugin
+    'zbirenbaum/copilot-cmp',
   },
-  lazy = true,
   config = function()
+    require('copilot_cmp').setup()
     local cmp = require 'cmp'
     local compare = require 'cmp.config.compare'
     local lspkind = require 'lspkind'
@@ -62,7 +63,7 @@ return {
         end, { 'i', 's' }),
       },
       window = {
-        documentation = cmp.config.window.bordered()
+        documentation = cmp.config.window.bordered(),
       },
       snippet = {
         expand = function(args)
@@ -70,6 +71,7 @@ return {
         end,
       },
       sources = {
+        { name = 'copilot' },
         { name = 'nvim_lsp' },
         { name = 'luasnip' },
         { name = 'nvim_lua' },

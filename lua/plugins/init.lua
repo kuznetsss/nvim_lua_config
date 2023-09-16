@@ -17,4 +17,11 @@ return {
     end,
   },
   { 'kyazdani42/nvim-tree.lua', config = true },
+  {
+    'zbirenbaum/copilot.lua',
+    config = {
+      suggestion = { enabled = false },
+      panel = { enabled = false },
+    },
+  },
 }
