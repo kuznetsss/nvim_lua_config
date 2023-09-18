@@ -54,6 +54,7 @@ lspconfig.clangd.setup {
     '--background-index',
     '-j=6',
     '--header-insertion=never',
+    '--offset-encoding=utf-16',
   },
   log_level = vim.lsp.protocol.MessageType.Log,
   highlight = {
