@@ -24,4 +24,8 @@ return {
       panel = { enabled = false },
     },
   },
+  {
+    'rest-nvim/rest.nvim',
+    config = true,
+  },
 }

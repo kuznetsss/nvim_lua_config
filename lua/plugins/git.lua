@@ -18,4 +18,18 @@ return {
     },
     config = true,
   },
+  -- Github plugins
+  {
+    'pwntester/octo.nvim',
+    dependencies = {
+      'nvim-lua/plenary.nvim',
+      'nvim-telescope/telescope.nvim',
+      'nvim-tree/nvim-web-devicons',
+    },
+    config = true,
+  },
+  {
+    'Almo7aya/openingh.nvim',
+    config = true,
+  }
 }
