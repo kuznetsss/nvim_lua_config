@@ -51,6 +51,7 @@ lspconfig.lua_ls.setup {
 lspconfig.clangd.setup {
   cmd = {
     'clangd',
+    '--clang-tidy',
     '--background-index',
     '-j=6',
     '--header-insertion=never',

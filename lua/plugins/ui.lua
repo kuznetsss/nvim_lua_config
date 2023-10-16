@@ -22,9 +22,11 @@ return {
 
   {
     'lukas-reineke/indent-blankline.nvim',
-    -- branch = 'v3',
-    -- config = function()
-    --   require('ibl').setup {}
-    -- end,
+    config = function()
+      require('ibl').setup {
+        indent = { highlight = {'Comment'} },
+        whitespace = { highlight = { "Normal" } },
+      }
+    end,
   },
 }
