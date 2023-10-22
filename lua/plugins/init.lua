@@ -12,6 +12,7 @@ return {
   {
     'kuznetsss/meadow-nvim',
     priority = 1000,
+    branch = 'develop',
     config = function()
       require('meadow').setup {}
     end,

@@ -24,8 +24,10 @@ return {
     'lukas-reineke/indent-blankline.nvim',
     config = function()
       require('ibl').setup {
-        indent = { highlight = {'Comment'} },
-        whitespace = { highlight = { "Normal" } },
+        scope = {
+          show_start = false,
+          show_end = false,
+        }
       }
     end,
   },
