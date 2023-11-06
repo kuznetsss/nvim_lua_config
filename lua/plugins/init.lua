@@ -10,11 +10,11 @@ return {
   },
   'mickael-menu/zk-nvim',
   {
-    'kuznetsss/meadow-nvim',
+    'kuznetsss/meadow.nvim',
     priority = 1000,
-    branch = 'develop',
     config = function()
       require('meadow').setup {}
+      vim.cmd.colorscheme 'meadow'
     end,
   },
   { 'kyazdani42/nvim-tree.lua', config = true },
