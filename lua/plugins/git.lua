@@ -16,7 +16,13 @@ return {
       'nvim-telescope/telescope.nvim', -- optional
       'sindrets/diffview.nvim',        -- optional
     },
-    config = true,
+    config = function()
+      require('neogit').setup {
+        commit_editor = {
+          kind = 'split',
+        },
+      }
+    end,
   },
   -- Github plugins
   {
@@ -31,5 +37,5 @@ return {
   {
     'Almo7aya/openingh.nvim',
     config = true,
-  }
+  },
 }
