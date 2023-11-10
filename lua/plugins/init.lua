@@ -16,6 +16,7 @@ return {
       require('meadow').setup {}
       vim.cmd.colorscheme 'meadow'
     end,
+    dev = true,
   },
   { 'kyazdani42/nvim-tree.lua', config = true },
   {
@@ -23,10 +24,15 @@ return {
     config = {
       suggestion = { enabled = false },
       panel = { enabled = false },
+      filetypes = { markdown = true, help = true, gitcommit = true },
     },
   },
   {
     'rest-nvim/rest.nvim',
     config = true,
+  },
+  {
+    'MaximilianLloyd/lazy-reload.nvim',
+    opts = {},
   },
 }
