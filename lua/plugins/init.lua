@@ -35,4 +35,8 @@ return {
     'MaximilianLloyd/lazy-reload.nvim',
     opts = {},
   },
+  {
+    'ziontee113/icon-picker.nvim',
+    config = true,
+  }
 }

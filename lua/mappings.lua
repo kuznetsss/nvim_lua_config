@@ -12,18 +12,7 @@ imap('<F1>', '<Nop>')
 -- nmap('<C-k>', ':bnext<CR>')
 -- nmap('<C-j>', ':bprev<CR>')
 
-local openTerminal = function(directory)
-  directory = directory or vim.loop.cwd()
-  local buffer = vim.api.nvim_create_buf(false, false)
-  vim.cmd.vsplit()
-  vim.cmd.wincmd 'J'
-  local window = vim.api.nvim_get_current_win()
-  vim.api.nvim_win_set_height(window, 20)
-  vim.api.nvim_win_set_buf(window, buffer)
-  vim.fn.termopen(vim.opt.shell:get(), { cwd = directory })
-end
-
-nmap('<C-t>', openTerminal)
+nmap('<C-t>', ':ToggleTerm<CR>')
 nmap('<A-t>', function()
   local pathStr = vim.api.nvim_buf_get_name(0)
   local path = require('plenary.path'):new(pathStr)
@@ -31,7 +20,7 @@ nmap('<A-t>', function()
     vim.notify('Current buffer is not a file', vim.log.levels.WARN)
     return
   end
-  openTerminal(path:parent():expand())
+  vim.cmd.ToggleTerm('dir='..path:parent():expand())
 end)
 
 nmap('<C-h>', '<C-o>')
