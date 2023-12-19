@@ -9,7 +9,7 @@ return {
   opts = {
     chat = {
       keymaps = {
-        close = { '<C-q>' },
+        close = '<C-q>',
       },
     },
     openai_params = {
@@ -17,6 +17,6 @@ return {
     },
   },
   keys = {
-    { '<leader>cg', vim.cmd.ChatGPT }
-  }
+    { '<leader>cg', vim.cmd.ChatGPT },
+  },
 }
