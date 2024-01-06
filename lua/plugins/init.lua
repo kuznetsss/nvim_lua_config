@@ -9,15 +9,7 @@ return {
     config = true,
   },
   'mickael-menu/zk-nvim',
-  {
-    'kuznetsss/meadow.nvim',
-    priority = 1000,
-    config = function()
-      require('meadow').setup {}
-      vim.cmd.colorscheme 'meadow'
-    end,
-    dev = true,
-  },
+  
   { 'kyazdani42/nvim-tree.lua', config = true },
   {
     'zbirenbaum/copilot.lua',
@@ -38,5 +30,9 @@ return {
   {
     'ziontee113/icon-picker.nvim',
     config = true,
-  }
+  },
+  {
+    'stevearc/overseer.nvim',
+    opts = {},
+  },
 }

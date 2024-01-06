@@ -1,5 +1,13 @@
 return {
   {
+    'kuznetsss/meadow.nvim',
+    priority = 1000,
+    config = function()
+      require('meadow').setup {}
+      vim.cmd.colorscheme 'meadow'
+    end,
+  },
+  {
     'folke/noice.nvim',
     event = 'VimEnter',
     config = true,
@@ -27,7 +35,7 @@ return {
         scope = {
           show_start = false,
           show_end = false,
-        }
+        },
       }
     end,
   },
