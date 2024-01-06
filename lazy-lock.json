@@ -20,6 +20,7 @@
   "lazy-reload.nvim": { "branch": "main", "commit": "5b781fbd4e5eaa4002f5bd52ceb1febf07d5ecbf" },
   "lazy.nvim": { "branch": "main", "commit": "96584866b9c5e998cbae300594d0ccfd0c464627" },
   "lspkind-nvim": { "branch": "master", "commit": "7f26cf5e27e2bd910ce0ea00c514da2bf97423b8" },
+  "meadow.nvim": { "branch": "master", "commit": "946adca059d13a3c25b6c2ffd204464957dc9a7e" },
   "neodev.nvim": { "branch": "main", "commit": "be8d4d4cab6c13c6a572269c9d6a63774baba9a0" },
   "neogit": { "branch": "master", "commit": "93bf00cd5db1e88ea0ca9105e83f7e97896a7cd2" },
   "noice.nvim": { "branch": "main", "commit": "92433164e2f7118d4122c7674c3834d9511722ba" },

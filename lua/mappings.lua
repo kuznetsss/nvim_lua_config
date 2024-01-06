@@ -20,7 +20,7 @@ nmap('<A-t>', function()
     vim.notify('Current buffer is not a file', vim.log.levels.WARN)
     return
   end
-  vim.cmd.ToggleTerm('dir='..path:parent():expand())
+  vim.cmd.ToggleTerm('dir=' .. path:parent():expand())
 end)
 
 nmap('<C-h>', '<C-o>')
@@ -48,8 +48,12 @@ nmap('gf', vim.lsp.buf.definition)
 nmap('gs', vim.cmd.ClangdSwitchSourceHeader)
 nmap('K', vim.lsp.buf.hover)
 nmap('gr', telescope.lsp_references)
-nmap('[e', vim.diagnostic.goto_prev)
-nmap(']e', vim.diagnostic.goto_next)
+nmap('[e', function()
+  vim.diagnostic.goto_prev { severity = { min = vim.diagnostic.severity.WARN } }
+end)
+nmap(']e', function()
+  vim.diagnostic.goto_next { severity = { min = vim.diagnostic.severity.WARN } }
+end)
 nmap('<leader>ds', telescope.lsp_document_symbols)
 nmap('<leader>dS', telescope.lsp_workspace_symbols)
 nmap('<leader>qf', vim.lsp.buf.code_action)

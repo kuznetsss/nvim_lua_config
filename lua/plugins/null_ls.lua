@@ -14,9 +14,9 @@ return {
           diagnostics_postprocess = function(diagnostic)
             diagnostic.severity = vim.diagnostic.severity.HINT
           end,
+          disabled_filetypes = { 'markdown' },
           diagnostic_config = {
-            -- see :help vim.diagnostic.config()
-            underline = true,
+            underline = false,
             virtual_text = false,
             signs = false,
             update_in_insert = false,
