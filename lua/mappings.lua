@@ -1,6 +1,7 @@
 --[[
 nnoremap <leader>r :source ~/.vim/vimrc<CR>
---]]
+c>-]]
+local map = require('utils').map
 local nmap = require('utils').nmap
 local imap = require('utils').imap
 local press_key = require('utils').press_key
@@ -12,7 +13,13 @@ imap('<F1>', '<Nop>')
 -- nmap('<C-k>', ':bnext<CR>')
 -- nmap('<C-j>', ':bprev<CR>')
 
-nmap('<C-t>', ':ToggleTerm<CR>')
+nmap('<C-t>', function()
+  vim.cmd.ToggleTerm()
+end)
+map('t', '<C-t>', function()
+  press_key '<Esc>'
+  vim.cmd.ToggleTerm()
+end)
 nmap('<A-t>', function()
   local pathStr = vim.api.nvim_buf_get_name(0)
   local path = require('plenary.path'):new(pathStr)
@@ -48,12 +55,20 @@ nmap('gf', vim.lsp.buf.definition)
 nmap('gs', vim.cmd.ClangdSwitchSourceHeader)
 nmap('K', vim.lsp.buf.hover)
 nmap('gr', telescope.lsp_references)
+
 nmap('[e', function()
   vim.diagnostic.goto_prev { severity = { min = vim.diagnostic.severity.WARN } }
 end)
 nmap(']e', function()
   vim.diagnostic.goto_next { severity = { min = vim.diagnostic.severity.WARN } }
 end)
+nmap('[h', function()
+  vim.diagnostic.goto_prev { severity = { max = vim.diagnostic.severity.INFO } }
+end)
+nmap(']h', function()
+  vim.diagnostic.goto_next { severity = { max = vim.diagnostic.severity.INFO } }
+end)
+
 nmap('<leader>ds', telescope.lsp_document_symbols)
 nmap('<leader>dS', telescope.lsp_workspace_symbols)
 nmap('<leader>qf', vim.lsp.buf.code_action)

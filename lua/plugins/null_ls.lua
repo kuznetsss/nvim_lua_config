@@ -16,7 +16,7 @@ return {
           end,
           disabled_filetypes = { 'markdown' },
           diagnostic_config = {
-            underline = false,
+            underline = true,
             virtual_text = false,
             signs = false,
             update_in_insert = false,
