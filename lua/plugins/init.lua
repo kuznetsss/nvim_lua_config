@@ -9,7 +9,7 @@ return {
     config = true,
   },
   'mickael-menu/zk-nvim',
-  
+
   { 'kyazdani42/nvim-tree.lua', config = true },
   {
     'zbirenbaum/copilot.lua',
@@ -35,4 +35,9 @@ return {
     'stevearc/overseer.nvim',
     opts = {},
   },
+  {
+    'kuznetsss/delegate.nvim',
+    config = true,
+    -- dev = true,
+  }
 }
