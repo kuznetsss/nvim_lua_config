@@ -32,12 +32,8 @@ return {
     config = true,
   },
   {
-    'stevearc/overseer.nvim',
-    opts = {},
-  },
-  {
     'kuznetsss/delegate.nvim',
     config = true,
-    -- dev = true,
+    dev = true,
   }
 }
