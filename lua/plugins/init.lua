@@ -21,7 +21,10 @@ return {
   },
   {
     'rest-nvim/rest.nvim',
-    config = true,
+    config = function()
+      require('rest-nvim').setup {
+      }
+    end,
   },
   {
     'MaximilianLloyd/lazy-reload.nvim',
@@ -35,5 +38,5 @@ return {
     'kuznetsss/delegate.nvim',
     config = true,
     dev = true,
-  }
+  },
 }

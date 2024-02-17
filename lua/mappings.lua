@@ -18,7 +18,7 @@ nmap('<C-t>', function()
 end)
 map('t', '<C-t>', function()
   press_key '<Esc>'
-  vim.cmd.ToggleTerm()
+  vim.cmd '1ToggleTerm'
 end)
 nmap('<A-t>', function()
   local pathStr = vim.api.nvim_buf_get_name(0)
