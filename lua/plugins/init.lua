@@ -34,9 +34,4 @@ return {
     'ziontee113/icon-picker.nvim',
     config = true,
   },
-  {
-    'kuznetsss/delegate.nvim',
-    config = true,
-    dev = true,
-  },
 }
