@@ -1,0 +1,4 @@
+std = "neovim"
+# allow mixed tables
+[lints]
+mixed_table = "allow"
