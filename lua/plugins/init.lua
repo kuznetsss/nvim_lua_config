@@ -20,13 +20,6 @@ return {
     },
   },
   {
-    'rest-nvim/rest.nvim',
-    config = function()
-      require('rest-nvim').setup {
-      }
-    end,
-  },
-  {
     'MaximilianLloyd/lazy-reload.nvim',
     opts = {},
   },
