@@ -1,14 +1,8 @@
 return {
   {
-    'vhyrro/luarocks.nvim',
-    config = function()
-      require('luarocks').setup {}
-    end,
-  },
-  {
     'rest-nvim/rest.nvim',
     ft = 'http',
-    dependencies = { 'luarocks.nvim' },
+    tag = 'v1.2.1',
     config = function()
       require('rest-nvim').setup()
     end,
