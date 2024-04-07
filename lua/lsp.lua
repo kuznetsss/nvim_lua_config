@@ -120,6 +120,9 @@ require('lspconfig').rust_analyzer.setup {
         experimental = { enable = true },
         enable = false,
       },
+      checkOnSave = {
+        command = 'clippy',
+      },
     },
   },
 }
@@ -128,5 +131,11 @@ require('lspconfig').ansiblels.setup {
   capabilities = capabilities,
 }
 require('lspconfig').nixd.setup {
+  capabilities = capabilities,
+}
+require('lspconfig').html.setup {
+  capabilities = capabilities,
+}
+require('lspconfig').tsserver.setup {
   capabilities = capabilities,
 }
