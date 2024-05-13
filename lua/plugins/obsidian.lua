@@ -27,7 +27,7 @@ return {
         opts = { noremap = false, expr = true, buffer = true },
       },
       -- Toggle check-boxes.
-      ['<leader>ch'] = {
+      ['<leader> '] = {
         action = function()
           return require('obsidian').util.toggle_checkbox()
         end,
@@ -54,12 +54,13 @@ return {
       },
     },
     ui = {
+      bullets = { char = '', hl_group = 'ObsidianBullet' },
       hl_groups = {
         ObsidianTodo = { link = '@markup.list.unchecked' },
         ObsidianDone = { link = '@markup.list.checked' },
         ObsidianRigthArrow = { link = '@Constant' },
         ObsidianTilde = { bold = true, fg = '#ff5370' },
-        ObsidianBullet = { link = '@markup.list' },
+        ObsidianBullet = { link = '@markup.list', bold = true },
         ObsidianRefText = { link = '@markup.link' },
         ObsidianExtLinkIcon = { link = '@markup.link.label' },
         ObsidianTag = { link = '@markup.quote' },
@@ -67,7 +68,11 @@ return {
         ObsidianHighlightText = { bg = '#75662e' },
       },
     },
-
-    -- see below for full list of options 👇
+    picker = {
+      mappings = {
+        new = '<C-a>',
+        insert_link = '<C-l>',
+      },
+    },
   },
 }
