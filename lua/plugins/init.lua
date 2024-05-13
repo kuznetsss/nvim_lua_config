@@ -8,8 +8,6 @@ return {
     'folke/neodev.nvim',
     config = true,
   },
-  'mickael-menu/zk-nvim',
-
   { 'kyazdani42/nvim-tree.lua', config = true },
   {
     'zbirenbaum/copilot.lua',

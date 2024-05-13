@@ -135,12 +135,8 @@ nmap('<leader>gc', telescope.git_commits)
 -- zk mappings
 --see filetype/markdown.md for more mappings
 nmap('<leader>zk', function()
-  vim.cmd.cd '~/Documents/zk'
-  vim.cmd.edit 'main.md'
 end)
-nmap('<leader>zc', function()
-  vim.cmd.edit '~/Documents/neetcode-zk'
-  vim.cmd.edit 'main.md'
+nmap('<leader>zn', function()
 end)
 
 -- Lazy mapping
