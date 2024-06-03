@@ -10,6 +10,7 @@ return {
         null_ls.builtins.diagnostics.selene,
         null_ls.builtins.formatting.stylua,
         null_ls.builtins.code_actions.statix,
+        null_ls.builtins.diagnostics.golangci_lint,
         cspell.diagnostics.with {
           diagnostics_postprocess = function(diagnostic)
             diagnostic.severity = vim.diagnostic.severity.HINT
