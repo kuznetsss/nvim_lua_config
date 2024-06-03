@@ -1,10 +1,6 @@
 return {
   'neovim/nvim-lspconfig',
   {
-    'numToStr/Comment.nvim',
-    config = true,
-  },
-  {
     'folke/neodev.nvim',
     config = true,
   },

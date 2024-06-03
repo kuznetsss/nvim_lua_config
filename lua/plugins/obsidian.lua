@@ -18,6 +18,9 @@ return {
         path = '~/Documents/zk/',
       },
     },
+    daily_notes = {
+      folder = '0-Daily'
+    },
     mappings = {
       -- Overrides the 'gf' mapping to work on markdown/wiki links within your vault.
       ['gf'] = {
