@@ -16,7 +16,14 @@ return {
     require('copilot_cmp').setup()
     local cmp = require 'cmp'
     local compare = require 'cmp.config.compare'
+
     local lspkind = require 'lspkind'
+    lspkind.init {
+      symbol_map = {
+        Copilot = '',
+      },
+    }
+
     local luasnip = require 'luasnip'
     luasnip.config.set_config {
       region_check_events = 'InsertEnter',
