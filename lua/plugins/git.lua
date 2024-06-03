@@ -21,6 +21,7 @@ return {
         commit_editor = {
           kind = 'split',
         },
+        console_timeout = 10000,
       }
     end,
   },
