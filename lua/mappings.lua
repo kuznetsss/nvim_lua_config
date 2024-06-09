@@ -55,6 +55,23 @@ nmap('gf', vim.lsp.buf.definition)
 nmap('gs', vim.cmd.ClangdSwitchSourceHeader)
 nmap('K', vim.lsp.buf.hover)
 nmap('gr', telescope.lsp_references)
+nmap('<leader>lh', function()
+  vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
+end)
+nmap('<leader>ld', function()
+  local config = vim.diagnostic.config()
+  if config.virtual_text then
+    vim.diagnostic.config { virtual_text = false }
+  else
+    vim.diagnostic.config {
+      virtual_text = {
+        spacing = 4,
+        source = 'if_many',
+        prefix = ' ',
+      },
+    }
+  end
+end)
 
 nmap('[e', function()
   vim.diagnostic.goto_prev { severity = { min = vim.diagnostic.severity.WARN } }
@@ -132,18 +149,8 @@ nmap('<leader>gb', telescope.git_branches)
 nmap('<leader>gs', telescope.git_stash)
 nmap('<leader>gc', telescope.git_commits)
 
--- zk mappings
---see filetype/markdown.md for more mappings
-nmap('<leader>zk', function()
-end)
-nmap('<leader>zn', function()
-end)
-
 -- Lazy mapping
-nmap('<leader>ls', require('lazy').sync)
-nmap('<leader>lh', require('lazy').home)
 nmap('<leader>ll', require('lazy').log)
-nmap('<leader>lp', require('lazy').profile)
 
 -- ChatGPT
 nmap('<leader>cg', vim.cmd.ChatGPT)
