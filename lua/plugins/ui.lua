@@ -10,7 +10,24 @@ return {
   {
     'folke/noice.nvim',
     event = 'VimEnter',
-    config = true,
+    config = {
+      views = {
+        cmdline_input = {
+          relative = 'editor',
+          position = {
+            row = '50%',
+            col = '50%',
+          },
+          size = { min_width = 60 },
+        },
+      },
+      routes = {
+        {
+          view = 'notify',
+          filter = { event = 'msg_showmode' },
+        },
+      },
+    },
     dependencies = {
       -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
       'MunifTanjim/nui.nvim',
