@@ -53,7 +53,6 @@ vim.opt.conceallevel = 0
 vim.opt.list = true
 vim.opt.listchars = { trail = '_', tab = '>-' }
 
-vim.opt.grepprg = 'rg --vimgrep'
 vim.g.mapleader = ' '
 
 vim.opt.mouse = 'r'

@@ -21,7 +21,7 @@ vim.api.nvim_create_autocmd({ 'TermOpen' }, {
 -- })
 
 vim.api.nvim_create_autocmd({ 'FileType' }, {
-  pattern = { 'lua,c,cpp,python,bash' },
+  pattern = { 'rust,go,lua,c,cpp,python,bash' },
   callback = function()
     vim.opt_local.colorcolumn = '81,82,83'
   end,

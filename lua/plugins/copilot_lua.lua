@@ -22,7 +22,8 @@ return {
           require('copilot.command').disable()
         end
       end,
-      'Toggle copilot',
+      desc = 'Toggle copilot',
     },
   },
+  cmd = 'Copilot'
 }

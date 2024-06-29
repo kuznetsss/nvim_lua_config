@@ -6,5 +6,8 @@ return {
     config = function()
       require('rest-nvim').setup()
     end,
+    keys = {
+      {'<leader>r', function() require'rest-nvim'.run() end},
+    }
   },
 }

@@ -78,6 +78,7 @@ return {
         end,
       },
       sources = {
+        { name = 'lazydev' },
         { name = 'copilot' },
         { name = 'nvim_lsp' },
         { name = 'luasnip' },

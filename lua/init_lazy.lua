@@ -13,3 +13,4 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require('lazy').setup('plugins', { dev = { path = '~/Documents/lua' } })
+require('utils').nmap('<leader>ll', require('lazy').log)
