@@ -12,6 +12,7 @@ return {
     'L3MON4D3/LuaSnip',         -- Snippets plugin
     'zbirenbaum/copilot-cmp',
   },
+  event = {'BufReadPre', 'BufNewFile'},
   config = function()
     require('copilot_cmp').setup()
     local cmp = require 'cmp'

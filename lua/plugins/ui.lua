@@ -11,20 +11,10 @@ return {
     'folke/noice.nvim',
     event = 'VimEnter',
     config = {
-      views = {
-        cmdline_input = {
-          relative = 'editor',
-          position = {
-            row = '50%',
-            col = '50%',
-          },
-          size = { min_width = 60 },
-        },
-      },
       routes = {
         {
           view = 'notify',
-          filter = { event = 'msg_showmode' },
+          filter = { event = 'msg_showmode', find = 'recording' },
         },
       },
     },
