@@ -1,3 +1,11 @@
+local load_snippets = function()
+  local paths =
+    vim.split(vim.fn.glob(vim.fn.stdpath 'config' .. '/lua/snippets/*lua'), '\n')
+  for _, file in pairs(paths) do
+    vim.cmd.source(file)
+  end
+end
+
 local setup_luasnip = function()
   local luasnip = require 'luasnip'
 
@@ -16,11 +24,15 @@ local setup_luasnip = function()
   imap('<C-l>', function()
     return luasnip.choice_active() and luasnip.change_choice(1)
   end)
-  require'snippets.lua'
+  require('utils').nmap('<leader>ls', function()
+    vim.notify('Reloading snippets')
+    load_snippets()
+  end)
 end
 
 return {
   'L3MON4D3/LuaSnip',
   version = 'v2.*',
   config = setup_luasnip,
+  event = { 'BufReadPre', 'BufNewFile' },
 }
