@@ -7,7 +7,6 @@ return {
     local cspell = require 'cspell'
     null_ls.setup {
       sources = {
-        null_ls.builtins.diagnostics.teal,
         null_ls.builtins.diagnostics.selene,
         null_ls.builtins.formatting.stylua,
         null_ls.builtins.code_actions.statix,

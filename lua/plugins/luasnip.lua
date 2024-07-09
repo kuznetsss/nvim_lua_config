@@ -28,6 +28,7 @@ local setup_luasnip = function()
     vim.notify('Reloading snippets')
     load_snippets()
   end)
+  load_snippets()
 end
 
 return {
