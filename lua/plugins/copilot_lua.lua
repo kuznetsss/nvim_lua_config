@@ -1,13 +1,16 @@
 return {
   'zbirenbaum/copilot.lua',
-  config = {
-    suggestion = {
-      enabled = false,
-    },
-    panel = {
-      enabled = false,
-    },
-  },
+  config = function()
+    require('copilot').setup {
+      suggestion = {
+        enabled = false,
+      },
+      panel = {
+        enabled = false,
+      },
+    }
+    require('copilot.command').disable()
+  end,
   keys = {
     {
       '<leader>co',
@@ -25,5 +28,5 @@ return {
       desc = 'Toggle copilot',
     },
   },
-  cmd = 'Copilot'
+  cmd = 'Copilot',
 }
