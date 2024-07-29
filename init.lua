@@ -4,4 +4,4 @@ require 'mappings'
 require 'autocmd'
 require 'neovide'
 ---
-require 'statusline.init'
+-- require 'statusline.init'

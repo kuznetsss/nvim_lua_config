@@ -39,4 +39,9 @@ return {
       }
     end,
   },
+
+  {
+    'kuznetsss/fixedline.nvim',
+    config = true,
+  },
 }
