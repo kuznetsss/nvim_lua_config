@@ -1,8 +1,9 @@
 local setup_dap = function()
   local dap = require 'dap'
+  dap.defaults.fallback.auto_continue_if_many_stopped = false
   dap.adapters.lldb = {
     type = 'executable',
-    command = '/opt/homebrew/opt/llvm@18/bin/lldb-dap',
+    command = 'lldb-vscode',
     name = 'lldb',
   }
 
@@ -71,7 +72,7 @@ return {
         dapui.open()
       end
       dap.listeners.before.event_exited['dapui_config'] = function()
-        dapui.close()
+        -- dapui.close()
       end
       setup_dap()
       vim.api.nvim_create_user_command('DapUiToggle', function()
