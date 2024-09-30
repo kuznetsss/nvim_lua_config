@@ -14,19 +14,6 @@ vim.api.nvim_create_autocmd({ 'TermOpen' }, {
   end,
 })
 
--- SignatureHelp
--- vim.api.nvim_create_autocmd({ 'CursorHoldI' }, {
---     pattern = { '*' },
---     callback = function() end,
--- })
-
-vim.api.nvim_create_autocmd({ 'FileType' }, {
-  pattern = { 'rust,go,lua,c,cpp,python,bash' },
-  callback = function()
-    vim.opt_local.colorcolumn = '81,82,83'
-  end,
-})
-
 vim.api.nvim_create_autocmd({ 'BufLeave', 'FocusLost' }, {
   pattern = '*',
   callback = require('utils').save_file,
