@@ -7,7 +7,7 @@ return {
       require('rest-nvim').setup()
     end,
     keys = {
-      {'<leader>r', function() require'rest-nvim'.run() end},
+      {'<leader>r', function() vim.cmd[[Rest run]] end},
     }
   },
 }

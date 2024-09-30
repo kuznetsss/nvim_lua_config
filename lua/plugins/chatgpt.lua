@@ -12,10 +12,16 @@ return {
       },
     },
     openai_params = {
-      max_tokens = 10000,
+      max_tokens = 4096,
       model = 'gpt-4o-mini',
     },
   },
+  cmd = {
+    'ChatGPT',
+    'ChatGPTRun',
+    'ChatGPTActAs'
+  },
+
   keys = {
     { '<leader>cg', vim.cmd.ChatGPT },
   },
