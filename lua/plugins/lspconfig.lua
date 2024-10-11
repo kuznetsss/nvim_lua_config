@@ -122,7 +122,7 @@ local setup_ls = function()
   require('lspconfig').html.setup {
     capabilities = capabilities,
   }
-  require('lspconfig').tsserver.setup {
+  require('lspconfig').ts_ls.setup {
     capabilities = capabilities,
   }
 end

@@ -20,6 +20,10 @@ vim.api.nvim_create_user_command('LspLog', function()
   vim.cmd.edit(vim.lsp.get_log_path())
 end, {})
 
+nmap('<Space><Space>', function()
+  vim.cmd.w()
+end)
+
 ------ LSP
 nmap('gd', vim.lsp.buf.declaration)
 nmap('gf', vim.lsp.buf.definition)
