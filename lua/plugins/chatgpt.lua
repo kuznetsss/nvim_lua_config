@@ -6,11 +6,6 @@ return {
     'nvim-telescope/telescope.nvim',
   },
   opts = {
-    chat = {
-      keymaps = {
-        close = '<C-q>',
-      },
-    },
     openai_params = {
       max_tokens = 4096,
       model = 'gpt-4o-mini',
@@ -19,7 +14,8 @@ return {
   cmd = {
     'ChatGPT',
     'ChatGPTRun',
-    'ChatGPTActAs'
+    'ChatGPTActAs',
+    'ChatGPTEditWithInstructions'
   },
 
   keys = {

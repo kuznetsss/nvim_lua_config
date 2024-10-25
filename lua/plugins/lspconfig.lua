@@ -118,6 +118,21 @@ local setup_ls = function()
   }
   require('lspconfig').nixd.setup {
     capabilities = capabilities,
+    settings = {
+      nixd = {
+        nixpkgs = {
+          expr = 'import <nixpkgs> { }',
+        },
+        formatting = {
+          command = { 'nixfmt' },
+        },
+        options = {
+          home_manager = {
+            expr = '(builtins.getFlake ("~/.config/nix/)).homeConfigurations.h.options',
+          },
+        },
+      },
+    },
   }
   require('lspconfig').html.setup {
     capabilities = capabilities,
@@ -130,5 +145,5 @@ end
 return {
   'neovim/nvim-lspconfig',
   event = { 'BufReadPre', 'BufNewFile' },
-  config = setup_ls
+  config = setup_ls,
 }
