@@ -99,11 +99,13 @@ local setup_ls = function()
   }
 
   require('lspconfig').rust_analyzer.setup {
+    on_init = function(client)
+        client.config.settings['rust-analyzer'].cargo = { features= 'all' }
+    end,
     capabilities = capabilities,
     settings = {
       ['rust-analyzer'] = {
         diagnostics = {
-          experimental = { enable = true },
           enable = false,
         },
         checkOnSave = {

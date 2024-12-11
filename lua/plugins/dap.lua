@@ -3,7 +3,7 @@ local setup_dap = function()
   dap.defaults.fallback.auto_continue_if_many_stopped = false
   dap.adapters.lldb = {
     type = 'executable',
-    command = 'lldb-vscode',
+    command = 'lldb-dap',
     name = 'lldb',
   }
 
@@ -54,6 +54,7 @@ local setup_dap = function()
     },
   }
   dap.configurations.c = dap.configurations.cpp
+  dap.configurations.rust = dap.configurations.cpp
 end
 
 return {
