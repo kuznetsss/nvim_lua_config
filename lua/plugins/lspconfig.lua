@@ -141,6 +141,7 @@ local setup_ls = function()
   }
   require('lspconfig').ts_ls.setup {
     capabilities = capabilities,
+    filetypes = { 'javascript', 'typescript' },
   }
 end
 

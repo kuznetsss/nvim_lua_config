@@ -54,6 +54,7 @@ vim.opt.list = true
 vim.opt.listchars = { trail = '_', tab = '>-' }
 
 vim.g.mapleader = ' '
+vim.g.maplocalleader = ' '
 
 vim.opt.mouse = 'r'
 
