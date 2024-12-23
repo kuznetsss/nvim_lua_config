@@ -18,7 +18,8 @@ local setup_ls = function()
   }
 
   -- Add additional capabilities supported by nvim-cmp
-  local capabilities = require('cmp_nvim_lsp').default_capabilities()
+  -- local capabilities = require('cmp_nvim_lsp').default_capabilities()
+  local capabilities = require('blink.cmp').get_lsp_capabilities()
 
   lspconfig.lua_ls.setup {
     settings = {

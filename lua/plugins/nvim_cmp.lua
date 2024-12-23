@@ -91,6 +91,7 @@ return {
     'L3MON4D3/LuaSnip', -- Snippets plugin
     'zbirenbaum/copilot-cmp',
   },
+  enabled = false,
   event = { 'BufReadPre', 'BufNewFile' },
   config = setup_cmp,
 }
