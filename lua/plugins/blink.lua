@@ -24,7 +24,6 @@ return {
         selection = function(ctx)
           return ctx.mode == 'cmdline' and 'auto_insert' or 'preselect'
         end,
-        max_items = 1000000,
       },
     },
 
