@@ -21,9 +21,15 @@ return {
       },
       ghost_text = { enabled = true },
       list = {
-        selection = function(ctx)
-          return ctx.mode == 'cmdline' and 'auto_insert' or 'preselect'
-        end,
+        selection = {
+          preselect = function(ctx)
+            return ctx.mode ~= 'cmdline'
+                and not require('blink.cmp').snippet_active { direction = 1 }
+          end,
+          auto_insert = function(ctx)
+            return ctx.mode == 'cmdline'
+          end,
+        },
       },
     },
 
@@ -44,6 +50,7 @@ return {
     },
 
     snippets = {
+      preset = 'luasnip',
       expand = function(snippet)
         require('luasnip').lsp_expand(snippet)
       end,
@@ -61,7 +68,7 @@ return {
     -- Default list of enabled providers defined so that you can extend it
     -- elsewhere in your config, without redefining it, due to `opts_extend`
     sources = {
-      default = { 'lazydev', 'lsp', 'buffer', 'copilot', 'path', 'luasnip' },
+      default = { 'lazydev', 'lsp', 'buffer', 'copilot', 'path', 'snippets' },
       providers = {
         lazydev = {
           name = 'LazyDev',
