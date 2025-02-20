@@ -2,15 +2,34 @@ return {
   {
     'kuznetsss/meadow.nvim',
     priority = 1000,
+    dev = true,
     config = function()
       require('meadow').setup {}
       vim.cmd.colorscheme 'meadow'
     end,
   },
   {
+    'brenoprata10/nvim-highlight-colors',
+    config = true,
+  },
+  {
     'folke/noice.nvim',
     event = 'VimEnter',
-    config = true,
+    config = {
+      routes = {
+        {
+          filter = {
+            event = 'lsp',
+            kind = 'progress',
+            cond = function(message)
+              local client = vim.tbl_get(message.opts, 'progress', 'client')
+              return client == 'null-ls'
+            end,
+          },
+          opts = { skip = true },
+        },
+      },
+    },
     dependencies = {
       -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
       'MunifTanjim/nui.nvim',
@@ -20,26 +39,6 @@ return {
       'rcarriga/nvim-notify',
     },
   },
-
-  {
-    'stevearc/dressing.nvim',
-    opts = {
-      input = { enabled = false },
-    },
-  },
-
-  {
-    'lukas-reineke/indent-blankline.nvim',
-    config = function()
-      require('ibl').setup {
-        scope = {
-          show_start = false,
-          show_end = false,
-        },
-      }
-    end,
-  },
-
   {
     'kuznetsss/fixedline.nvim',
     config = true,
