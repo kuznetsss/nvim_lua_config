@@ -1,14 +1,19 @@
 -- selene: allow(undefined_variable)
+
 return {
   'snacks.nvim',
-  opts = {},
+  opts = {
+    picker = {
+      enabled = true,
+    },
+  },
   keys = {
     {
       'gr',
       function()
         Snacks.picker.lsp_references()
       end,
-      'LSP references picker'
+      'LSP references picker',
     },
 
     {
@@ -16,21 +21,21 @@ return {
       function()
         Snacks.picker.lsp_symbols()
       end,
-      'LSP symbols picker'
+      'LSP symbols picker',
     },
     {
       '<leader>dS',
       function()
         Snacks.picker.lsp_workspace_symbols()
       end,
-      'LSP workplace symbols picker'
+      'LSP workplace symbols picker',
     },
     {
       '<C-y>',
       function()
         Snacks.picker.buffers()
       end,
-      'Buffers picker'
+      'Buffers picker',
     },
 
     {
@@ -38,84 +43,84 @@ return {
       function()
         Snacks.picker.commands()
       end,
-      'Vim commands picker'
+      'Vim commands picker',
     },
     {
       '<leader>th',
       function()
         Snacks.picker.command_history()
       end,
-      'Vim commands history picker'
+      'Vim commands history picker',
     },
     {
       '<leader>tH',
       function()
         Snacks.picker.highlights()
       end,
-      'Highlights picker'
+      'Highlights picker',
     },
     {
       '<leader>tk',
       function()
         Snacks.picker.keymaps()
       end,
-      'Keymaps picker'
+      'Keymaps picker',
     },
     {
       '<leader>tr',
       function()
         Snacks.picker.registers()
       end,
-      'Registers picker'
+      'Registers picker',
     },
     {
       '<leader>tm',
       function()
         Snacks.picker.help()
       end,
-      'Help picker'
+      'Help picker',
     },
     {
       '<leader>ti',
       function()
         Snacks.picker.highlights()
       end,
-      'Highlights picker'
+      'Highlights picker',
     },
     {
       '<leader>tg',
       function()
         Snacks.picker.grep()
       end,
-      'Grep picker'
+      'Grep picker',
     },
     {
       '<leader>tw',
       function()
         Snacks.picker.grep_word()
       end,
-      'Grep word picker'
+      'Grep word picker',
     },
     {
       '<leader>ts',
       function()
         Snacks.picker.spelling()
       end,
-      'Spelling picker'
+      'Spelling picker',
     },
     {
       '<leader>tq',
       function()
         Snacks.picker.qflist()
       end,
-      'Quickfix list picker'
+      'Quickfix list picker',
     },
     {
       '<leader>tf',
       function()
         Snacks.picker.oldfiles()
       end,
-      'Old files picker'
+      'Old files picker',
     },
     {
       '<C-p>',
@@ -124,14 +129,14 @@ return {
           multi = { 'buffers', 'files' },
         }
       end,
-      'Smart picker'
+      'Smart picker',
     },
     {
       '<leader>gb',
       function()
         Snacks.picker.git_branches()
       end,
-      'Git branches picker'
+      'Git branches picker',
     },
   },
 }

@@ -1,6 +1,6 @@
 return {
   'folke/snacks.nvim',
-  priority = 1000,
+  priority = 999,
   lazy = false,
   import = 'plugins.snacks',
   opts = {
@@ -8,6 +8,8 @@ return {
     bigfile = { enabled = true },
     bufdelete = { enabled = true },
     image = { enabled = true },
+    input = { enabled = true },
+    notifier = { enabled = false },
   },
   keys = {
     {
