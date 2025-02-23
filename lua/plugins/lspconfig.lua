@@ -5,6 +5,24 @@ local setup_ls = function()
     local hl = 'DiagnosticSign' .. k
     vim.fn.sign_define(hl, { text = v, texthl = hl, numhl = hl })
   end
+
+  local border = {
+    { '🭽', 'FloatBorder' },
+    { '▔', 'FloatBorder' },
+    { '🭾', 'FloatBorder' },
+    { '▕', 'FloatBorder' },
+    { '🭿', 'FloatBorder' },
+    { '▁', 'FloatBorder' },
+    { '🭼', 'FloatBorder' },
+    { '▏', 'FloatBorder' },
+  }
+  local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
+  function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
+    opts = opts or {}
+    opts.border = opts.border or border
+    return orig_util_open_floating_preview(contents, syntax, opts, ...)
+  end
+
   vim.diagnostic.config {
     signs = false,
     underline = true,
@@ -15,6 +33,7 @@ local setup_ls = function()
       source = 'if_many',
       prefix = ' ',
     },
+    float = { border = border },
   }
 
   -- Add additional capabilities supported by nvim-cmp
@@ -101,7 +120,7 @@ local setup_ls = function()
 
   require('lspconfig').rust_analyzer.setup {
     on_init = function(client)
-        client.config.settings['rust-analyzer'].cargo = { features= 'all' }
+      client.config.settings['rust-analyzer'].cargo = { features = 'all' }
     end,
     capabilities = capabilities,
     settings = {

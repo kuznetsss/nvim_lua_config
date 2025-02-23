@@ -9,6 +9,12 @@ return {
     end,
   },
   {
+    'folke/tokyonight.nvim',
+  },
+  {
+    'neanias/everforest-nvim',
+  },
+  {
     'brenoprata10/nvim-highlight-colors',
     config = true,
   },
