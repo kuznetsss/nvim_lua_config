@@ -8,7 +8,7 @@ return {
     bigfile = { enabled = true },
     bufdelete = { enabled = true },
     image = { enabled = true },
-    input = { enabled = true },
+    input = { enabled = false },
     notifier = { enabled = false },
   },
   keys = {

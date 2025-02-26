@@ -2,7 +2,7 @@ return {
   {
     'kuznetsss/meadow.nvim',
     priority = 1000,
-    dev = true,
+    -- dev = true,
     config = function()
       require('meadow').setup {}
       vim.cmd.colorscheme 'meadow'
