@@ -5,9 +5,10 @@ vim.opt.keymap = 'russian-jcukenwin'
 vim.opt.iminsert = 0
 vim.opt.imsearch = 0
 
--- copy line shift from previous line
-vim.opt.autoindent = true
-vim.opt.smartindent = true
+-- tree-sitter handles indent
+vim.opt.autoindent = false
+vim.opt.smartindent = false
+vim.opt.breakindent = true
 
 vim.opt.number = true
 vim.opt.relativenumber = true
