@@ -1,7 +1,7 @@
 return {
   'saghen/blink.cmp',
   dependencies = {
-    'giuxtaposition/blink-cmp-copilot',
+    'fang2hou/blink-copilot',
     'windwp/nvim-autopairs',
     'L3MON4D3/LuaSnip',
   },
@@ -76,7 +76,7 @@ return {
         },
         copilot = {
           name = 'copilot',
-          module = 'blink-cmp-copilot',
+          module = 'blink-copilot',
           score_offset = 100,
           async = true,
         },
