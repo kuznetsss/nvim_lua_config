@@ -120,7 +120,7 @@ local setup_ls = function()
 
   require('lspconfig').rust_analyzer.setup {
     on_init = function(client)
-      client.config.settings['rust-analyzer'].cargo = { features = 'all' }
+      client.config.settings['rust-analyzer'].cargo = { features = 'all', all_targets = true }
     end,
     capabilities = capabilities,
     settings = {
@@ -162,6 +162,9 @@ local setup_ls = function()
   require('lspconfig').ts_ls.setup {
     capabilities = capabilities,
     filetypes = { 'javascript', 'typescript' },
+  }
+  require('lspconfig').tinymist.setup {
+    capabilities = capabilities,
   }
 end
 
