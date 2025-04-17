@@ -7,6 +7,15 @@ return {
       ensure_installed = 'all',
       highlight = { enable = true },
       indent = { enable = true },
+      incremental_selection = {
+        enable = true,
+        keymaps = {
+          init_selection = false, -- set to `false` to disable one of the mappings
+          node_incremental = '+',
+          scope_incremental = '_',
+          node_decremental = '-',
+        },
+      },
     }
   end,
 }

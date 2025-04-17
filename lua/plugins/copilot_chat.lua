@@ -33,7 +33,12 @@ return {
       'CopilotChatAgents',
     },
     keys = {
-      { "<leader>cc", "<cmd>CopilotChat<cr>", desc = "CopilotChat" },
+      {
+        '<leader>cc',
+        '<cmd>CopilotChat<cr>',
+        mode = { 'n', 'v' },
+        desc = 'CopilotChat',
+      },
     },
   },
 }
