@@ -1,21 +1,17 @@
 return {
-  'epwalsh/obsidian.nvim',
-  version = '*', -- recommended, use latest release instead of latest commit
-  -- lazy = true,
+  'obsidian-nvim/obsidian.nvim',
+  version = '*',
+  lazy = true,
   ft = 'markdown',
-  -- Load obsidian.nvim only for markdown files in the vault:
-  -- event = {
-  --   'BufReadPre ' .. vim.fn.expand('~') .. '/Documents/zk/**.md',
-  --   'BufNewFile ' .. vim.fn.expand('~') .. '/Documents/zk/**.md',
-  -- },
   dependencies = {
     'nvim-lua/plenary.nvim',
+    'saghen/blink.cmp',
   },
-  cmd = { 'ObsidianQuickSwitch', 'ObsidianTags', 'ObsidianSearch'},
+  cmd = { 'Obsidian' },
   keys = {
-    {'<leader>zk', '<cmd>ObsidianSearch<cr>', desc = 'Search in Obsidian'},
+    { '<leader>zk', '<cmd>Obsidian search<cr>', desc = 'Search in Obsidian' },
   },
-    opts = {
+  opts = {
     workspaces = {
       {
         name = 'personal',
@@ -23,7 +19,11 @@ return {
       },
     },
     daily_notes = {
-      folder = '0-Daily'
+      folder = '0-Daily',
+    },
+    completion = {
+      nvim_cmp = false,
+      blink = true,
     },
     mappings = {
       -- Overrides the 'gf' mapping to work on markdown/wiki links within your vault.
@@ -34,7 +34,7 @@ return {
         opts = { noremap = false, expr = true, buffer = true },
       },
       -- Toggle check-boxes.
-      ['<leader> '] = {
+      ['<leader>ch'] = {
         action = function()
           return require('obsidian').util.toggle_checkbox()
         end,
@@ -49,33 +49,35 @@ return {
       },
       ['<C-p>'] = {
         action = function()
-          vim.cmd.ObsidianQuickSwitch()
+          vim.cmd.Obsidian 'quick_switch'
         end,
         opts = { buffer = true },
       },
       ['<C-y>'] = {
         action = function()
-          vim.cmd.ObsidianTags()
+          vim.cmd.Obsidian 'tags'
         end,
         opts = { buffer = true },
       },
     },
     ui = {
-      bullets = { char = '', hl_group = 'ObsidianBullet' },
-      hl_groups = {
-        ObsidianTodo = { link = '@markup.list.unchecked' },
-        ObsidianDone = { link = '@markup.list.checked' },
-        ObsidianRigthArrow = { link = '@Constant' },
-        ObsidianTilde = { bold = true, fg = '#ff5370' },
-        ObsidianBullet = { link = '@markup.list', bold = true },
-        ObsidianRefText = { link = '@markup.link' },
-        ObsidianExtLinkIcon = { link = '@markup.link.label' },
-        ObsidianTag = { link = '@markup.quote' },
-        ObsidianBlockID = { italic = true, fg = '#89ddff' },
-        ObsidianHighlightText = { bg = '#75662e' },
-      },
+      enable = false,
+      -- bullets = { char = '', hl_group = 'ObsidianBullet' },
+      -- hl_groups = {
+      --   ObsidianTodo = { link = '@markup.list.unchecked' },
+      --   ObsidianDone = { link = '@markup.list.checked' },
+      --   ObsidianRigthArrow = { link = '@Constant' },
+      --   ObsidianTilde = { bold = true, fg = '#ff5370' },
+      --   ObsidianBullet = { link = '@markup.list', bold = true },
+      --   ObsidianRefText = { link = '@markup.link' },
+      --   ObsidianExtLinkIcon = { link = '@markup.link.label' },
+      --   ObsidianTag = { link = '@markup.quote' },
+      --   ObsidianBlockID = { italic = true, fg = '#89ddff' },
+      --   ObsidianHighlightText = { bg = '#75662e' },
+      -- },
     },
     picker = {
+      name = 'snacks.pick',
       mappings = {
         new = '<C-a>',
         insert_link = '<C-l>',
