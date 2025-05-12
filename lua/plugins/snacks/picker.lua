@@ -23,6 +23,13 @@ return {
       end,
       'LSP references picker',
     },
+    {
+      'gf',
+      function()
+        Snacks.picker.lsp_definitions()
+      end,
+      'LSP definitions picker (or jump to definition)',
+    },
 
     {
       '<leader>ds',

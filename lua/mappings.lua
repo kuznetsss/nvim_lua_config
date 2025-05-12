@@ -25,9 +25,6 @@ nmap('<Space><Space>', function()
 end)
 
 ------ LSP
-nmap('gd', vim.lsp.buf.declaration)
-nmap('gf', vim.lsp.buf.definition)
-nmap('gs', vim.cmd.ClangdSwitchSourceHeader)
 nmap('K', vim.lsp.buf.hover)
 nmap('<leader>lh', function()
   vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
