@@ -18,6 +18,9 @@ return {
     },
     display = {
       action_palette = { provider = 'snacks' },
+      chat = {
+        auto_scroll = false,
+      },
     },
     strategies = {
       chat = {

@@ -6,6 +6,7 @@ return {
   opts = {
     animate = { enabled = true },
     bigfile = { enabled = true },
+    dashboard = { enabled = true },
     bufdelete = { enabled = true },
     image = { enabled = true },
     input = { enabled = false },
