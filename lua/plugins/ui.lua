@@ -38,6 +38,7 @@ return {
     },
     dependencies = {
       'MunifTanjim/nui.nvim',
+      'nvim-treesitter/nvim-treesitter',
       'rcarriga/nvim-notify',
     },
   },
