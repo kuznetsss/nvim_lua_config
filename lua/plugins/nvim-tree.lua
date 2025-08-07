@@ -16,4 +16,8 @@ return {
       mode = 'i',
     },
   },
+  cmd = {
+    'NvimTreeToggle',
+    'NvimTreeFocus',
+  },
 }
