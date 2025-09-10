@@ -4,6 +4,7 @@ return {
   'obsidian-nvim/obsidian.nvim',
   version = '*',
   lazy = true,
+  enabled = false,
   ft = 'markdown',
   dependencies = {
     'nvim-lua/plenary.nvim',
@@ -43,7 +44,7 @@ return {
         end, { buffer = true, expr = true })
 
         nmap('<C-p>', function()
-          vim.cmd.Obsidian 'quick_switch'
+          vim.cmd.Obsidian 'search'
         end, { buffer = true })
 
         nmap('<C-y>', function()
