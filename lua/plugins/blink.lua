@@ -1,7 +1,6 @@
 return {
   'saghen/blink.cmp',
   dependencies = {
-    'fang2hou/blink-copilot',
     'windwp/nvim-autopairs',
     'L3MON4D3/LuaSnip',
   },
@@ -67,18 +66,12 @@ return {
     -- Default list of enabled providers defined so that you can extend it
     -- elsewhere in your config, without redefining it, due to `opts_extend`
     sources = {
-      default = { 'lazydev', 'lsp', 'buffer', 'copilot', 'path', 'snippets' },
+      default = { 'lazydev', 'lsp', 'buffer', 'path', 'snippets' },
       providers = {
         lazydev = {
           name = 'LazyDev',
           module = 'lazydev.integrations.blink',
           score_offset = 100,
-        },
-        copilot = {
-          name = 'copilot',
-          module = 'blink-copilot',
-          score_offset = 100,
-          async = true,
         },
         lsp = {
           fallbacks = {},
