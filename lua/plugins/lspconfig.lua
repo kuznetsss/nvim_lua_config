@@ -1,6 +1,4 @@
 local setup_ls = function()
-  local lspconfig = require 'lspconfig'
-
   for k, v in pairs(require('utils').signs) do
     local hl = 'DiagnosticSign' .. k
     vim.fn.sign_define(hl, { text = v, texthl = hl, numhl = hl })
@@ -40,7 +38,7 @@ local setup_ls = function()
   -- local capabilities = require('cmp_nvim_lsp').default_capabilities()
   local capabilities = require('blink.cmp').get_lsp_capabilities()
 
-  lspconfig.lua_ls.setup {
+  vim.lsp.config.lua_ls = {
     settings = {
       Lua = {
         runtime = {
@@ -69,7 +67,9 @@ local setup_ls = function()
     },
     capabilities = capabilities,
   }
-  lspconfig.clangd.setup {
+  vim.lsp.enable('lua_ls')
+
+  vim.lsp.config.clangd = {
     cmd = {
       'clangd',
       '--clang-tidy',
@@ -87,7 +87,9 @@ local setup_ls = function()
     init_options = { clangdFileStatus = true },
     capabilities = capabilities,
   }
-  lspconfig.pylsp.setup {
+  vim.lsp.enable('clangd')
+
+  vim.lsp.config.pylsp = {
     capabilities = capabilities,
     settings = {
       pylsp = {
@@ -106,19 +108,24 @@ local setup_ls = function()
       },
     },
   }
-  require('lspconfig').yamlls.setup {
+  vim.lsp.enable('pylsp')
+
+  vim.lsp.config.yamlls = {
     capabilities = capabilities,
   }
+  vim.lsp.enable('yamlls')
 
-  require('lspconfig').cmake.setup {
+  vim.lsp.config.cmake = {
     capabilities = capabilities,
   }
+  vim.lsp.enable('cmake')
 
-  require('lspconfig').gopls.setup {
+  vim.lsp.config.gopls = {
     capabilities = capabilities,
   }
+  vim.lsp.enable('gopls')
 
-  require('lspconfig').rust_analyzer.setup {
+  vim.lsp.config.rust_analyzer = {
     on_init = function(client)
       client.config.settings['rust-analyzer'].cargo = { features = 'all', all_targets = true }
     end,
@@ -134,11 +141,9 @@ local setup_ls = function()
       },
     },
   }
+  vim.lsp.enable('rust_analyzer')
 
-  require('lspconfig').ansiblels.setup {
-    capabilities = capabilities,
-  }
-  require('lspconfig').nixd.setup {
+  vim.lsp.config.nixd = {
     capabilities = capabilities,
     settings = {
       nixd = {
@@ -156,16 +161,23 @@ local setup_ls = function()
       },
     },
   }
-  require('lspconfig').html.setup {
+  vim.lsp.enable('nixd')
+
+  vim.lsp.config.html = {
     capabilities = capabilities,
   }
-  require('lspconfig').ts_ls.setup {
+  vim.lsp.enable('html')
+
+  vim.lsp.config.ts_ls = {
     capabilities = capabilities,
     filetypes = { 'javascript', 'typescript' },
   }
-  require('lspconfig').tinymist.setup {
+  vim.lsp.enable('ts_ls')
+
+  vim.lsp.config.tinymist = {
     capabilities = capabilities,
   }
+  vim.lsp.enable('tinymist')
 end
 
 return {
