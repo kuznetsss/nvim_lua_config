@@ -13,7 +13,6 @@ return {
         auto_show = true,
         auto_show_delay_ms = 500,
         window = {
-          border = 'single',
           max_width = 80,
           max_height = 40,
         },
