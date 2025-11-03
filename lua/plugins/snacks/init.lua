@@ -1,5 +1,6 @@
 return {
   'folke/snacks.nvim',
+  version = '*',
   priority = 999,
   lazy = false,
   import = 'plugins.snacks',

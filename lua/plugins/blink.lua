@@ -28,6 +28,9 @@ return {
           end,
         },
       },
+      menu = {
+        border = 'none',
+      },
     },
 
     keymap = {

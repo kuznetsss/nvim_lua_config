@@ -60,4 +60,4 @@ vim.g.maplocalleader = ' '
 vim.opt.mouse = 'r'
 
 vim.opt.shell = 'zsh'
--- vim.opt.winborder = "rounded"
+vim.opt.winborder = "rounded"

@@ -6,7 +6,7 @@ return {
     {
       '<C-t>',
       function()
-        require('toggleterm').toggle()
+        require('toggleterm').toggle(1)
       end,
       mode = 'n',
     },
@@ -31,5 +31,11 @@ return {
       end,
       mode = 'n',
     },
+    {
+      '<leader>j',
+      function()
+        require('toggleterm').toggle(9, 20, nil, 'float', 'jj')
+      end
+    }
   },
 }
