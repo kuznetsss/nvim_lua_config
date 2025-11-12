@@ -10,6 +10,7 @@ return {
           keys = {
             ['<c-d>'] = { 'preview_scroll_down', mode = { 'i', 'n' } },
             ['<c-u>'] = { 'preview_scroll_up', mode = { 'i', 'n' } },
+            ['<c-h>'] = { 'toggle_hidden', mode = { 'i', 'n' } },
           },
         },
       },

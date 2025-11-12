@@ -1,5 +1,11 @@
+local overrides = require('utils').override('local.codecompanion', {
+  acp = {},
+  adapter = 'copilot',
+})
+
 return {
   'olimorris/codecompanion.nvim',
+  version = '*',
   dependencies = {
     'nvim-lua/plenary.nvim',
     'nvim-treesitter/nvim-treesitter',
@@ -17,6 +23,7 @@ return {
           })
         end,
       },
+      acp = overrides.acp,
     },
     display = {
       action_palette = { provider = 'snacks' },
@@ -26,7 +33,7 @@ return {
     },
     strategies = {
       chat = {
-        adapter = 'copilot',
+        adapter = overrides.adapter,
         keymaps = {
           send = {
             modes = { n = '<CR>', i = '<C-CR>' },

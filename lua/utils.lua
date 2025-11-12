@@ -3,9 +3,9 @@ local M = {}
 function M.save_file()
   local filename = vim.api.nvim_buf_get_name(0)
   if
-      not vim.bo.readonly
-      and vim.bo.buftype == ''
-      and string.len(filename) > 0
+    not vim.bo.readonly
+    and vim.bo.buftype == ''
+    and string.len(filename) > 0
   then
     vim.cmd.update()
   end
@@ -20,7 +20,7 @@ M.signs = {
 
 M.map = function(mode, lhs, rhs, options)
   options =
-      vim.tbl_extend('force', { noremap = false, silent = true }, options or {})
+    vim.tbl_extend('force', { noremap = false, silent = true }, options or {})
   vim.keymap.set(mode, lhs, rhs, options)
 end
 
@@ -30,6 +30,12 @@ end
 
 M.imap = function(lhs, rhs, options)
   M.map('i', lhs, rhs, options)
+end
+
+M.override = function(file, defaults)
+  local success, f = pcall(require, file)
+  f = success and f or {}
+  return vim.tbl_deep_extend('force', defaults, f)
 end
 
 return M
