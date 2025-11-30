@@ -9,7 +9,7 @@ return {
     config = function()
       require('neogit').setup {
         commit_editor = {
-          kind = 'split',
+          kind = 'split_below',
         },
         console_timeout = 10000,
       }
