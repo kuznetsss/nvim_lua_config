@@ -31,11 +31,11 @@ return {
       end,
       mode = 'n',
     },
-    {
-      '<leader>j',
-      function()
-        require('toggleterm').toggle(9, 20, nil, 'float', 'jj')
-      end
-    }
+    -- {
+    --   '<leader>j',
+    --   function()
+    --     require('toggleterm').toggle(9, 20, nil, 'float', 'jj')
+    --   end
+    -- }
   },
 }
