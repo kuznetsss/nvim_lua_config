@@ -67,7 +67,7 @@ local setup_ls = function()
     },
     capabilities = capabilities,
   }
-  vim.lsp.enable('lua_ls')
+  vim.lsp.enable 'lua_ls'
 
   vim.lsp.config.clangd = {
     cmd = {
@@ -87,7 +87,7 @@ local setup_ls = function()
     init_options = { clangdFileStatus = true },
     capabilities = capabilities,
   }
-  vim.lsp.enable('clangd')
+  vim.lsp.enable 'clangd'
 
   vim.lsp.config.pylsp = {
     capabilities = capabilities,
@@ -108,26 +108,27 @@ local setup_ls = function()
       },
     },
   }
-  vim.lsp.enable('pylsp')
+  vim.lsp.enable 'pylsp'
 
   vim.lsp.config.yamlls = {
     capabilities = capabilities,
   }
-  vim.lsp.enable('yamlls')
+  vim.lsp.enable 'yamlls'
 
   vim.lsp.config.cmake = {
     capabilities = capabilities,
   }
-  vim.lsp.enable('cmake')
+  vim.lsp.enable 'cmake'
 
   vim.lsp.config.gopls = {
     capabilities = capabilities,
   }
-  vim.lsp.enable('gopls')
+  vim.lsp.enable 'gopls'
 
   vim.lsp.config.rust_analyzer = {
     on_init = function(client)
-      client.config.settings['rust-analyzer'].cargo = { features = 'all', all_targets = true }
+      client.config.settings['rust-analyzer'].cargo =
+      { features = 'all', all_targets = true }
     end,
     capabilities = capabilities,
     settings = {
@@ -141,43 +142,52 @@ local setup_ls = function()
       },
     },
   }
-  vim.lsp.enable('rust_analyzer')
+  vim.lsp.enable 'rust_analyzer'
 
   vim.lsp.config.nixd = {
     capabilities = capabilities,
     settings = {
       nixd = {
         nixpkgs = {
-          expr = 'import <nixpkgs> { }',
+          expr = 'import (builtins.getFlake "'
+              .. vim.env.HOME
+              .. '/.config/nix/").inputs.nixpkgs { }',
         },
         formatting = {
           command = { 'nixfmt' },
         },
         options = {
           home_manager = {
-            expr = '(builtins.getFlake ("~/.config/nix/)).homeConfigurations.h.options',
+            expr = '(builtins.getFlake ("'
+                .. vim.env.HOME
+                .. '/.config/nix/")).homeConfigurations.mac.options',
+          },
+          nixos = {
+            expr = '(builtins.getFlake ("'
+                .. vim.env.HOME
+                .. '/.config/nix/")).nixosConfigurations.ivan.options',
           },
         },
       },
     },
   }
-  vim.lsp.enable('nixd')
+  vim.lsp.enable 'nixd'
 
   vim.lsp.config.html = {
     capabilities = capabilities,
   }
-  vim.lsp.enable('html')
+  vim.lsp.enable 'html'
 
   vim.lsp.config.ts_ls = {
     capabilities = capabilities,
     filetypes = { 'javascript', 'typescript' },
   }
-  vim.lsp.enable('ts_ls')
+  vim.lsp.enable 'ts_ls'
 
   vim.lsp.config.tinymist = {
     capabilities = capabilities,
   }
-  vim.lsp.enable('tinymist')
+  vim.lsp.enable 'tinymist'
 end
 
 return {
