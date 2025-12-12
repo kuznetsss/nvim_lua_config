@@ -61,22 +61,22 @@ return {
   {
     'mfussenegger/nvim-dap',
     dependencies = {
-      'rcarriga/nvim-dap-ui',
+      'igorlfs/nvim-dap-view',
       'nvim-neotest/nvim-nio',
     },
     lazy = true,
     config = function()
-      local dap, dapui = require 'dap', require 'dapui'
-      dapui.setup()
+      local dap = require 'dap'
+      local dap_view = require 'dap-view'
       dap.listeners.after.event_initialized['dapui_config'] = function()
-        dapui.open()
+        dap_view.open()
       end
       dap.listeners.before.event_exited['dapui_config'] = function()
         -- dapui.close()
       end
       setup_dap()
-      vim.api.nvim_create_user_command('DapUiToggle', function()
-        dapui.toggle()
+      vim.api.nvim_create_user_command('DapViewToggle', function()
+        dap_view.toggle()
       end, {})
     end,
     keys = {
