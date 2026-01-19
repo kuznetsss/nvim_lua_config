@@ -59,6 +59,6 @@ end)
 
 nmap('<leader>qf', vim.lsp.buf.code_action)
 nmap('<leader>rn', vim.lsp.buf.rename)
-nmap('<leader>cf', function()
-  vim.lsp.buf.format { async = true }
-end)
+-- nmap('<leader>cf', function()
+--   vim.lsp.buf.format { async = true }
+-- end)

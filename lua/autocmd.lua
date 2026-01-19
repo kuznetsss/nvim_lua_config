@@ -18,3 +18,10 @@ vim.api.nvim_create_autocmd({ 'BufLeave', 'FocusLost' }, {
   pattern = '*',
   callback = require('utils').save_file,
 })
+
+vim.api.nvim_create_autocmd("BufWritePre", {
+  pattern = "*",
+  callback = function(args)
+    require("conform").format({ bufnr = args.buf })
+  end,
+})
