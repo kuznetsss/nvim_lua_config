@@ -42,6 +42,8 @@ return {
               display_name = 'jjui',
               direction = 'float',
               close_on_exit = true,
+              hidden = true,
+              count = 128,
               on_open = function()
                 vim.cmd 'startinsert'
                 vim.keymap.set('t', '<Esc>', '<Esc>', { buffer = 0 })
