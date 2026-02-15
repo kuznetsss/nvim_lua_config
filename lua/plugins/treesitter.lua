@@ -8,15 +8,39 @@ return {
       callback = function(event)
         local lang = vim.treesitter.language.get_lang(event.match)
             or event.match
+        local buf = event.buf
         local ts = require 'nvim-treesitter'
-        if
-            vim.list_contains(
-              ts.get_installed(),
-              vim.treesitter.language.get_lang(lang)
-            )
-        then
-          vim.treesitter.start()
+        if not vim.tbl_contains(ts.get_available(), lang) then
+          return
         end
+        if vim.tbl_contains(ts.get_installed(), lang) then
+          vim.treesitter.start(buf)
+          return
+        end
+        vim.notify('Installing treesitter partser for ' .. lang)
+        local i = 0
+        local timer = vim.uv.new_timer()
+        ts.install { lang }
+        timer:start(
+          0,
+          1000,
+          vim.schedule_wrap(function()
+            i = i + 1
+            if
+                vim.list_contains(
+                  ts.get_installed(),
+                  vim.treesitter.language.get_lang(lang)
+                )
+            then
+              timer:close()
+              vim.treesitter.start(buf)
+            end
+            if i > 60 then
+              timer:close()
+              vim.notify("Parser installation took too long. Treesitter will not be enabled for "..lang..".", vim.log.levels.WARN)
+            end
+          end)
+        )
       end,
     })
   end,
