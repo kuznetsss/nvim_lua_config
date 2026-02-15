@@ -9,6 +9,7 @@ vim.opt.imsearch = 0
 vim.opt.autoindent = false
 vim.opt.smartindent = false
 vim.opt.breakindent = true
+vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
 
 vim.opt.number = true
 vim.opt.relativenumber = true
@@ -45,7 +46,7 @@ vim.opt.undolevels = 5000
 -- set folding by TreeSitter
 vim.opt.foldmethod = 'expr'
 vim.opt.foldlevelstart = 999
-vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'
+vim.opt.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
 
 -- Don't fold text
 vim.opt.conceallevel = 0
@@ -60,4 +61,4 @@ vim.g.maplocalleader = ' '
 vim.opt.mouse = 'r'
 
 vim.opt.shell = 'zsh'
-vim.opt.winborder = "rounded"
+vim.opt.winborder = 'rounded'
