@@ -17,7 +17,7 @@ return {
           return require('codecompanion.adapters').extend('copilot', {
             schema = {
               model = {
-                default = 'claude-sonnet-4.5',
+                default = 'claude-sonnet-4.6',
               },
             },
           })
@@ -27,6 +27,7 @@ return {
     },
     display = {
       action_palette = { provider = 'snacks' },
+      chat = { show_reasoning = false },
     },
     strategies = {
       chat = {
