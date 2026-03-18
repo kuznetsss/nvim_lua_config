@@ -29,7 +29,18 @@ return {
       action_palette = { provider = 'snacks' },
       chat = { show_reasoning = false },
     },
-    strategies = {
+    interactions = {
+      cli = {
+        agent = 'claude_code',
+        agents = {
+          claude_code = {
+            cmd = 'claude',
+            args = {},
+            description = 'Claude Code CLI',
+            provider = 'terminal',
+          },
+        },
+      },
       chat = {
         adapter = overrides.adapter,
         keymaps = {
@@ -53,6 +64,7 @@ return {
     'CodeCompanion',
     'CodeCompanionChat',
     'CodeCompanionCmd',
+    'CodeCompanionCLI',
     'CodeCompanionActions',
   },
   keys = {
@@ -62,6 +74,19 @@ return {
         vim.cmd.CodeCompanionChat 'toggle'
       end,
       desc = 'Toggle CodeCompanion Chat',
+    },
+    {
+      '<leader>cl',
+      function()
+        for _, buf in ipairs(vim.api.nvim_list_bufs()) do
+          if vim.bo[buf].filetype == 'codecompanion_cli' then
+            require('codecompanion').toggle()
+            return
+          end
+        end
+        vim.cmd.CodeCompanionCLI()
+      end,
+      desc = 'Toggle CodeCompanion CLI',
     },
     {
       '<leader>ca',
