@@ -1,9 +1,15 @@
+vim.opt.sessionoptions:remove('blank')
+vim.opt.sessionoptions:remove('terminal')
 return {
   'folke/persistence.nvim',
   config = true,
   event = 'BufReadPre',
-  keys =
-  {
-    { '<leader>ss', function() require('persistence').load() end },
-  }
+  keys = {
+    {
+      '<leader>ss',
+      function()
+        require('persistence').load()
+      end,
+    },
+  },
 }

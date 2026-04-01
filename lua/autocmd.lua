@@ -1,7 +1,9 @@
 -- Disable auto comment symbols insert
 vim.api.nvim_create_autocmd({ 'BufEnter' }, {
   pattern = { '*' },
-  callback = function() vim.opt_local.formatoptions:remove({ 'c', 'r', 'o' }) end
+  callback = function()
+    vim.opt_local.formatoptions:remove { 'c', 'r', 'o' }
+  end,
 })
 
 -- Terminal setup
@@ -19,9 +21,15 @@ vim.api.nvim_create_autocmd({ 'BufLeave', 'FocusLost' }, {
   callback = require('utils').save_file,
 })
 
-vim.api.nvim_create_autocmd("BufWritePre", {
-  pattern = "*",
+vim.api.nvim_create_autocmd('BufWritePre', {
+  pattern = '*',
   callback = function(args)
-    require("conform").format({ bufnr = args.buf })
+    require('conform').format { bufnr = args.buf }
   end,
 })
+
+vim.api.nvim_create_user_command('Undotree', function()
+  vim.cmd.packadd 'nvim.undotree'
+  vim.cmd.Undotree()
+  vim.notify 'lazy undotree'
+end, {})
