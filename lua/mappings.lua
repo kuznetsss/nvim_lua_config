@@ -48,24 +48,28 @@ nmap('[e', function()
   vim.diagnostic.jump {
     severity = { min = vim.diagnostic.severity.WARN },
     count = -1,
+    on_jump = vim.diagnostic.open_float,
   }
 end)
 nmap(']e', function()
   vim.diagnostic.jump {
     severity = { min = vim.diagnostic.severity.WARN },
     count = 1,
+    on_jump = vim.diagnostic.open_float,
   }
 end)
 nmap('[h', function()
   vim.diagnostic.jump {
     severity = { max = vim.diagnostic.severity.INFO },
     count = -1,
+    on_jump = vim.diagnostic.open_float,
   }
 end)
 nmap(']h', function()
   vim.diagnostic.jump {
     severity = { max = vim.diagnostic.severity.INFO },
     count = 1,
+    on_jump = vim.diagnostic.open_float,
   }
 end)
 

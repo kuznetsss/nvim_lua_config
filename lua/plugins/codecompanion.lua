@@ -28,6 +28,7 @@ return {
     display = {
       action_palette = { provider = 'snacks' },
       chat = { show_reasoning = false },
+      diff = { threshold_for_chat = 0 },
     },
     interactions = {
       cli = {
