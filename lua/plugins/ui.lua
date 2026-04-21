@@ -19,7 +19,19 @@ return {
     config = true,
   },
   {
+    'rachartier/tiny-cmdline.nvim',
+    init = function()
+      vim.o.cmdheight = 0
+      require('tiny-cmdline').setup {
+        menu_col_offset = 3,
+        native_types = {},
+        on_reposition = require('tiny-cmdline').adapters.blink,
+      }
+    end,
+  },
+  {
     'folke/noice.nvim',
+    enabled = false,
     event = 'VimEnter',
     config = {
       routes = {
