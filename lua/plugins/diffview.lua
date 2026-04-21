@@ -1,7 +1,7 @@
 return {
   {
-    'sindrets/diffview.nvim',
-    dependencies = { 'nvim-lua/plenary.nvim' },
+    'dlyongemallo/diffview.nvim',
+    version = '*',
     keys = {
       {
         '<leader>gd',
