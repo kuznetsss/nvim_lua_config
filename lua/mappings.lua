@@ -45,16 +45,28 @@ nmap('<leader>ld', function()
 end)
 
 nmap('[e', function()
-  vim.diagnostic.goto_prev { severity = { min = vim.diagnostic.severity.WARN } }
+  vim.diagnostic.jump {
+    severity = { min = vim.diagnostic.severity.WARN },
+    count = -1,
+  }
 end)
 nmap(']e', function()
-  vim.diagnostic.goto_next { severity = { min = vim.diagnostic.severity.WARN } }
+  vim.diagnostic.jump {
+    severity = { min = vim.diagnostic.severity.WARN },
+    count = 1,
+  }
 end)
 nmap('[h', function()
-  vim.diagnostic.goto_prev { severity = { max = vim.diagnostic.severity.INFO } }
+  vim.diagnostic.jump {
+    severity = { max = vim.diagnostic.severity.INFO },
+    count = -1,
+  }
 end)
 nmap(']h', function()
-  vim.diagnostic.goto_next { severity = { max = vim.diagnostic.severity.INFO } }
+  vim.diagnostic.jump {
+    severity = { max = vim.diagnostic.severity.INFO },
+    count = 1,
+  }
 end)
 
 nmap('<leader>qf', vim.lsp.buf.code_action)
