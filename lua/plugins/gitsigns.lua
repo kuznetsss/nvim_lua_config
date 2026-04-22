@@ -2,19 +2,18 @@ return {
   {
     'lewis6991/gitsigns.nvim',
     config = true,
-    dependencies = { 'nvim-lua/plenary.nvim' },
     event = { 'BufReadPre', 'BufNewFile' },
     keys = {
       {
         ']c',
         function()
-          require('gitsigns').next_hunk()
+          require('gitsigns').nav_hunk 'next'
         end,
       },
       {
         '[c',
         function()
-          require('gitsigns').prev_hunk()
+          require('gitsigns').nav_hunk 'prev'
         end,
       },
       {
@@ -36,5 +35,5 @@ return {
         end,
       },
     },
-  }
+  },
 }

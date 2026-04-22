@@ -20,19 +20,19 @@ return {
       end,
       mode = 't',
     },
-    {
-      '<A-t>',
-      function()
-        local pathStr = vim.api.nvim_buf_get_name(0)
-        local path = require('plenary.path'):new(pathStr)
-        if not path:is_path() then
-          vim.notify('Current buffer is not a file', vim.log.levels.WARN)
-          return
-        end
-        vim.cmd.ToggleTerm('dir=' .. path:parent():expand())
-      end,
-      mode = 'n',
-    },
+    -- {
+    --   '<A-t>',
+    --   function()
+    --     local pathStr = vim.api.nvim_buf_get_name(0)
+    --     local path = require('plenary.path'):new(pathStr)
+    --     if not path:is_path() then
+    --       vim.notify('Current buffer is not a file', vim.log.levels.WARN)
+    --       return
+    --     end
+    --     vim.cmd.ToggleTerm('dir=' .. path:parent():expand())
+    --   end,
+    --   mode = 'n',
+    -- },
     {
       '<leader>jj',
       function()

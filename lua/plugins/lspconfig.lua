@@ -128,16 +128,13 @@ local setup_ls = function()
   vim.lsp.config.rust_analyzer = {
     on_init = function(client)
       client.config.settings['rust-analyzer'].cargo =
-      { features = 'all', all_targets = true }
+        { features = 'all', all_targets = true }
     end,
     capabilities = capabilities,
     settings = {
       ['rust-analyzer'] = {
         diagnostics = {
           enable = false,
-        },
-        checkOnSave = {
-          command = 'clippy',
         },
       },
     },
@@ -150,8 +147,8 @@ local setup_ls = function()
       nixd = {
         nixpkgs = {
           expr = 'import (builtins.getFlake "'
-              .. vim.env.HOME
-              .. '/.config/nix/").inputs.nixpkgs { }',
+            .. vim.env.HOME
+            .. '/.config/nix/").inputs.nixpkgs { }',
         },
         formatting = {
           command = { 'nixfmt' },
@@ -159,13 +156,13 @@ local setup_ls = function()
         options = {
           home_manager = {
             expr = '(builtins.getFlake ("'
-                .. vim.env.HOME
-                .. '/.config/nix/")).homeConfigurations.mac.options',
+              .. vim.env.HOME
+              .. '/.config/nix/")).homeConfigurations.mac.options',
           },
           nixos = {
             expr = '(builtins.getFlake ("'
-                .. vim.env.HOME
-                .. '/.config/nix/")).nixosConfigurations.ivan.options',
+              .. vim.env.HOME
+              .. '/.config/nix/")).nixosConfigurations.ivan.options',
           },
         },
       },

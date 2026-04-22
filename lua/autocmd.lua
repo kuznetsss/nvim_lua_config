@@ -37,20 +37,23 @@ end, {})
 local ignored_clients = { 'null-ls' }
 vim.api.nvim_create_autocmd('LspProgress', {
   callback = function(ev)
-    local client = vim.lsp.get_client_by_id(ev.data.client_id)
-    if not client or vim.tbl_contains(ignored_clients, client.name) then
+    local client_name = vim.lsp.get_client_by_id(ev.data.client_id).name
+    if vim.tbl_contains(ignored_clients, client_name) then
       return
     end
     local value = ev.data.params.value
-    local status = ({ begin = 'running', report = 'running', ['end'] = 'success' })[value.kind]
-    vim.api.nvim_echo({ { value.message or value.title or '' } }, false, {
-      id = ('lsp-progress:%d:%s'):format(ev.data.client_id, tostring(ev.data.params.token)),
-      kind = 'progress',
-      source = client.name,
-      title = value.title or '',
-      percent = value.percentage,
-      status = status,
-    })
+    vim.api.nvim_echo(
+      { { value.title .. ' ' .. (value.message or 'done') } },
+      false,
+      {
+        id = 'lsp.' .. ev.data.params.token,
+        kind = 'progress',
+        source = 'vim.lsp',
+        title = client_name,
+        status = value.kind ~= 'end' and 'running' or 'success',
+        percent = value.percentage,
+      }
+    )
   end,
 })
 
