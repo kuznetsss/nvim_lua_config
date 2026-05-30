@@ -34,13 +34,24 @@ vim.api.nvim_create_user_command('Undotree', function()
   vim.notify 'lazy undotree'
 end, {})
 
-local ignored_clients = { 'null-ls' }
+local ignored_clients = {
+  ['null-ls'] = {},
+  ['rust_analyzer'] = { 'cargo clippy' },
+}
 vim.api.nvim_create_autocmd('LspProgress', {
   callback = function(ev)
     local client_name = vim.lsp.get_client_by_id(ev.data.client_id).name
-    if vim.tbl_contains(ignored_clients, client_name) then
+    local ignored_titles = ignored_clients[client_name]
+    if
+      ignored_titles
+      and (
+        #ignored_titles == 0
+        or vim.tbl_contains(ignored_titles, ev.data.params.value.title)
+      )
+    then
       return
     end
+
     local value = ev.data.params.value
     vim.api.nvim_echo(
       { { value.title .. ' ' .. (value.message or 'done') } },

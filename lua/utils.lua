@@ -6,6 +6,7 @@ function M.save_file()
     not vim.bo.readonly
     and vim.bo.buftype == ''
     and string.len(filename) > 0
+    and vim.uv.fs_stat(filename) ~= nil
   then
     vim.cmd.update()
   end

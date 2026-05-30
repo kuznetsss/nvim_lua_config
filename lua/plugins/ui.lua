@@ -30,31 +30,6 @@ return {
     end,
   },
   {
-    'folke/noice.nvim',
-    enabled = false,
-    event = 'VimEnter',
-    config = {
-      routes = {
-        {
-          filter = {
-            event = 'lsp',
-            kind = 'progress',
-            cond = function(message)
-              local client = vim.tbl_get(message.opts, 'progress', 'client')
-              return client == 'null-ls'
-            end,
-          },
-          opts = { skip = true },
-        },
-      },
-    },
-    dependencies = {
-      'MunifTanjim/nui.nvim',
-      'nvim-treesitter/nvim-treesitter',
-      'rcarriga/nvim-notify',
-    },
-  },
-  {
     'kuznetsss/fixedline.nvim',
     config = true,
   },
