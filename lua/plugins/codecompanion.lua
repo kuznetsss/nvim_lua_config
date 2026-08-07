@@ -96,5 +96,13 @@ return {
       end,
       desc = 'Open CodeCompanion Actions',
     },
+    {
+      '<leader>cp',
+      function()
+        return require('codecompanion').cli { prompt = true }
+      end,
+      mode = { 'n', 'v' },
+      desc = 'Prompt the CLI agent',
+    },
   },
 }
