@@ -1,6 +1,7 @@
 return {
   'kuznetsss/delegate.nvim',
   config = true,
+  enabled = false,
   -- dev = true,
   keys = {
     {

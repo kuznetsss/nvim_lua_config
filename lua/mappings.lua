@@ -86,3 +86,9 @@ nmap('<leader>rn', vim.lsp.buf.rename)
 -- nmap('<leader>cf', function()
 --   vim.lsp.buf.format { async = true }
 -- end)
+nmap('<leader>jd', function()
+  vim.cmd [[cgetexpr system('COLUMNS=999 jj diff --stat --color=never | head -n -1 | sed "s/\(\s\)*|/:1:\0/" ')]]
+  vim.cmd.copen()
+end)
+nmap('<leader>qn', vim.cmd.cnext)
+nmap('<leader>qp', vim.cmd.cprev)
