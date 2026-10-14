@@ -7,6 +7,7 @@ return {
         require('kulala').run()
       end,
       desc = 'Send request',
+      ft = { 'http', 'rest' },
     },
   },
   ft = { 'http', 'rest' },

@@ -4,16 +4,16 @@ return {
     cmd = 'Tasksd',
     ---@module "tasksd"
     opts = {
-      -- see Configuration below; {} is a fine starting point
+      auto_save = true,
     },
     keys = {
       {
         '<F5>',
-        '<cmd>Tasksd start_task<CR>',
+        '<cmd>Tasksd repeat<CR>',
       },
       {
         '<F6>',
-        '<cmd>Tasksd repeat<CR>',
+        '<cmd>Tasksd start_task<CR>',
       },
       {
         '<F7>',
